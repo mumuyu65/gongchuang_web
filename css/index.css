@@ -1,0 +1,15 @@
+header{
+    background-color:#333333;
+    height:70px;
+    line-height:70px;
+}
+
+header .navbar-brand{
+    height:70px;
+}
+
+header .navbar-brand span{
+    color:#fff;
+    margin-left:30px;
+    font-size:26px;
+}
