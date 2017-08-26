@@ -4,12 +4,250 @@ header{
     line-height:70px;
 }
 
-header .navbar-brand{
-    height:70px;
+header .navbar-header>a:hover{
+    text-decoration: none;
 }
 
-header .navbar-brand span{
+header .navbar-header span{
     color:#fff;
     margin-left:30px;
     font-size:26px;
+    vertical-align: top;
+}
+
+header .list-inline>li{
+    margin-right:13px;
+    padding:0 10px;
+}
+
+header .list-inline>li:hover{
+    background-color:rgba(191,191,191,0.1);
+    cursor:pointer;
+}
+
+header .list-inline>li:hover>a{
+    text-decoration: none;
+}
+
+header .list-inline>li>a{
+    color:#fff;
+    font-size:18px;
+}
+
+/* 广告轮播图*/
+.gc_ad{
+    width:100%; height:705px; margin-bottom:10px; overflow: hidden;
+}
+
+.gc_ad .carousel-indicators .active {
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    background-color:rgba(192,45,40,0.8);
+}
+
+.gc_ad .carousel-indicators li{
+    background-color:rgba(234,234,234,1);
+    width: 12px;
+    height: 12px;
+    margin:0;
+}
+
+/* 投放情况*/
+.gc_detail{
+    width:100%;
+    height:auto;
+    padding-top:20px;
+    padding-bottom:70px;
+}
+
+.gc_detail>.list-inline{
+    width:1070px;
+    margin:0 auto;
+}
+
+.gc_detail>.list-inline>li{
+    width:339px;
+    height:140px;
+    margin-right:23px;
+    background:url("../imgs/index/bycircle_sm.png") 0 0 no-repeat;
+    padding:30px 0;
+    padding-left:160px;
+}
+
+.gc_detail>.list-inline>li:nth-last-child(1){
+    margin-right:0;
+    background:url("../imgs/index/bycircle_sm_red.png") 0 0 no-repeat;
+}
+
+.gc_detail>.list-inline>li>span{
+    display:block;
+}
+
+.gc_detail>.list-inline>li>span:nth-child(1){
+    font-size:22px;
+    color:#333333;
+    opacity: 0.6;
+}
+
+.gc_detail>.list-inline>li>span:nth-child(2){
+    font-size:33px;
+    color:#333333;
+}
+
+.gc_detail>.list-inline>li:nth-last-child(1)>span{
+    color:#fff;
+}
+
+.gc_detail>.gc_detail_inner{
+    width:1070px;
+    padding:70px 15px 0 15px;
+    margin:0 auto;
+}
+
+.gc_detail>.gc_detail_inner>.pull-left>h4:nth-child(odd){
+    color:#c02d28;
+}
+
+.gc_detail>.gc_detail_inner>.pull-left>.list-inline{
+    margin:0;
+}
+
+.gc_detail>.gc_detail_inner>.pull-left>.list-inline>li{
+    width:12px;
+    height:12px;
+    border-radius: 50%;
+    border:1px solid #ececec;
+    margin-right:10px;
+}
+
+.gc_detail>.gc_detail_inner>.pull-left>.list-inline>li:nth-child(1){
+    background-color:#c59a70;
+}
+
+.gc_detail>.gc_detail_inner>.pull-left>.list-inline>li:nth-child(2){
+    background-color:#fff;
+}
+
+.gc_detail>.gc_detail_inner>.pull-left>.list-inline>li:nth-child(3){
+    background-color:#65bdd2;
+}
+
+.gc_detail>.gc_detail_inner .more{
+    background:url("../imgs/index/add_more.png") 0 0 no-repeat;
+    text-align: start;
+    color:#333333;
+    padding:0 0 5px 10px;
+    line-height:30px;
+    text-decoration: none;
+}
+
+.gc_detail>.gc_detail_inner .inner-content{
+    width:260px;
+    height:auto;
+    margin:0 auto;
+}
+
+.gc_detail>.gc_detail_inner .inner-content h5{
+    font-weight: 600;
+}
+
+.gc_detail>.gc_detail_inner>.pull-right{
+    padding-right:50px;
+}
+.gc_detail>.gc_detail_inner>.pull-right>h2{
+    color:#c02d28;
+}
+.gc_detail>.gc_detail_inner>.pull-right>a{
+    width: 75px;
+    color:#fff;
+    margin-top:30px;
+    height:25px;
+    border-radius: 25px;
+    line-height: 25px;
+    text-align: center;
+    text-decoration: none;
+    display:block;
+}
+.gc_detail>.gc_detail_inner>.pull-right>a:nth-child(2){
+    background-color: #c59a70;
+}
+.gc_detail>.gc_detail_inner>.pull-right>a+a{
+    background-color: #c02d28;
+}
+.gc_detail_inner #myCarousel_1 .list-inline>li{
+    margin-right: 30px;
+}
+
+/* 共创商城 */
+.gc_mall{
+    width:100%;
+    height:324px;
+    position: relative;
+    color:#fff;
+    background: url("../imgs/index/gc_mall_ad.png") 0 0 no-repeat;
+    padding-top:120px;
+}
+.gc_mall .gc_mall_ad{
+    width:500px;
+    height:120px;
+    margin:0 auto;
+    text-align:center;
+}
+.gc_mall .gc_mall_ad>span{
+    display:block;
+}
+.gc_mall .gc_mall_ad>.divider{
+    width: 30px;
+    height: 10px;
+    background-color:#c02d28;
+    margin:2px auto;
+}
+.gc_mall .gc_mall_ad>span:nth-child(1){
+    font-size: 48px;
+}
+.gc_mall>a{
+    position: absolute;
+    bottom:-37.5px;
+    left:960px;
+    width: 180px;
+    line-height: 75px;
+    text-align: center;
+    height: 75px;
+    background-color: #c02d28;
+    color: #fff;
+    font-size:27px;
+    background: url("../imgs/index/gc_mall.png") 0 0 no-repeat;
+    text-decoration: none;
+}
+
+/* 单车*/
+.gc_index_bycircle{
+    width:100%;
+    height:auto;
+    padding:37.5px 0;
+}
+.gc_index_bycircle .gc_index_bycircle_inner{
+    width:1140px;
+    height:100%;
+    margin:0 auto;
+}
+
+/* 互动区 */
+.gc_index_hd{
+    width:100%;
+    height:auto;
+}
+
+.gc_index_hd .hd_title{
+    width:100%;
+    height:88px;
+    background: url("../imgs/index/index_hd.png") 0 0 no-repeat;
+    line-height:88px;
+}
+
+.gc_index_hd .hd_title>span{
+    font-size:30px;
+    color:#fff;
+
 }

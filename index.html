@@ -24,66 +24,180 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-default ">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" style="padding:0 0 0 15px;" href="http://www.clantrip.com"><img alt="Brand" style="max-width:130px;" src="http://www.clantrip.com/static/images/logo.png"></a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="http://www.clantrip.com">首页 <span class="sr-only">(current)</span></a><p class="line-top hidden-xs"></p></li>
-                        <li><a href="http://www.clantrip.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=6">签证指南</a></li>
-                        <li><a href="http://www.clantrip.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=13">签证加急</a></li>
-                        <li><a href="http://www.clantrip.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=9">签证服务</a></li>
-                        <li><a href="http://www.clantrip.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=10">签证资讯</a></li>
-                        <li class="hidden-sm"><a href="http://www.clantrip.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=14">资料下载</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+        <div class="layout">
+            <div class="navbar-header">
+                <a href="">
+                    <img alt="Brand" style="max-width:130px; display:inline-block;" src="http://www.clantrip.com/static/images/logo.png">
+                    <span>利公共创平台</span>
+                </a>
             </div>
-            <!-- /.container-fluid -->
-        </nav>
-        <!--<div class="layout">-->
-                    <!--<div class="navbar-header">-->
-                        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-                            <!--<span class="sr-only">Toggle navigation</span>-->
-                            <!--<span class="icon-bar"></span>-->
-                            <!--<span class="icon-bar"></span>-->
-                            <!--<span class="icon-bar"></span>-->
-                        <!--</button>-->
-                        <!--<a class="navbar-brand" href="">-->
-                            <!--<img alt="Brand" style="max-width:130px; display:inline-block;" src="http://www.clantrip.com/static/images/logo.png"/>-->
-                            <!--<span>利公共创平台</span>-->
-                        <!--</a>-->
-                    <!--</div>-->
-                    <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-                        <!--<ul class="nav navbar-nav navbar-right">-->
-                            <!--<li class="active"><a href="http://www.clantrip.com">商城 <span class="sr-only">(current)</span></a><p class="line-top hidden-xs"></p></li>-->
-                            <!--<li><a href="http://www.clantrip.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=6">流转商城</a></li>-->
-                            <!--<li><a href="http://www.clantrip.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=13">我的空间</a></li>-->
-                            <!--<li><a href="http://www.clantrip.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=9">我的资产</a></li>-->
-                            <!--<li><a href="http://www.clantrip.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=10">登录|注册</a></li>-->
-                            <!--<li class="hidden-sm"><a href="http://www.clantrip.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=14">购物车</a></li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <ul class="pull-right list-inline">
+                <li class="active"><a href="#">商城</a></li>
+                <li><a href="#">流转商城</a></li>
+                <li><a href="#">我的空间</a></li>
+                <li><a href="#">我的资产</a></li>
+                <li><a href="#">登录</a> | <a href="#">注册</a> </li>
+                <li><a href="#">(0)购物车</a></li>
+            </ul>
+        </div>
     </header>
     <section>
+        <div class="layout">
+            <!-- 轮播图 -->
+            <aside class="gc_ad">
+                <div id="myCarousel" class="carousel slide">
+                    <!-- 轮播（Carousel）指标 -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <!-- 轮播（Carousel）项目 -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="imgs/index/banner.png" alt="First slide">
+                        </div>
+                        <div class="item">
+                            <img src="imgs/index/banner.png" alt="First slide">
+                        </div>
+                        <div class="item">
+                            <img src="imgs/index/banner.png" alt="First slide">
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <!-- 投放情况 -->
+            <aside class="gc_detail">
+                <ul class="list-inline">
+                        <li>
+                            <span>参与人数</span>
+                            <span>4299947</span>
+                        </li>
+                        <li>
+                            <span>投放城市</span>
+                            <span>4299947</span>
+                        </li>
+                        <li>
+                            <span>销售量</span>
+                            <span>4299947</span>
+                        </li>
+                </ul>
+                <div class="gc_detail_inner">
+                    <span class="btn-index pull-left">今日截止</span>
+                    <a class="btn-index pull-right more" href="#">更多</a>
+                    <div class="text-center inner-content">
+                        <h3>V E L O U P 单车</h3>
+                        <h5>轻客Tsinova 智慧电单车</h5>
+                        <h5>锂电池助力电动自行车 电动车北京实体店</h5>
+                    </div>
+                    <div class="pull-left">
+                        <h4>颜色：</h4>
+                        <ol class="list-inline">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ol>
+                        <h4>容量:</h4>
+                        <h4>5.8 A h</h4>
+                        <h4>电压:</h4>
+                        <h4>36v</h4>
+                    </div>
+                    <div class="pull-right">
+                        <h2>&yen;3000</h2>
+                        <a href="#">
+                            立即购买
+                        </a>
+                        <a href="#">加入购物车</a>
+                    </div>
+                    <div class="text-center">
+                        <img src="imgs/index/gc_index_car.png" style=" height: 330px;" />
+                    </div>
+                    <div class="gc_divided">
+                        <hr/>
+                        <h5 class="text-center">猜你喜欢</h5>
+                    </div>
+                    <div id="myCarousel_1" class="carousel slide text-center">
+                        <!-- 轮播（Carousel）项目 -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <ul class="list-inline">
+                                    <li><img src="imgs/index/gc_index_car_sm.png" alt="First slide"></li>
+                                    <li> <img src="imgs/index/gc_index_car_sm.png" alt="First slide"></li>
+                                    <li> <img src="imgs/index/gc_index_car_sm.png" alt="First slide"></li>
+                                    <li> <img src="imgs/index/gc_index_car_sm.png" alt="First slide"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- 轮播（Carousel）导航 -->
+                        <a class="carousel-control left" href="#myCarousel"
+                           data-slide="prev" style="font-size:50px; top:40px; color:#9b9b9b;">&lsaquo;
+                        </a>
+                        <a class="carousel-control right" href="#myCarousel"
+                           data-slide="next" style="font-size:50px; top:40px; color:#9b9b9b;">&rsaquo;
+                        </a>
+                    </div>
+                </div>
+            </aside>
+            <!-- 商城 -->
+            <div class="gc_mall">
+                <div class="gc_mall_ad">
+                    <span>畅快骑行</span>
+                    <div class="divider"></div>
+                    <span style="font-size: 30px;">拒绝机械束缚，畅想人车合一的淋漓</span>
+                </div>
+                <a href="#">
+                    共创商城
+                </a>
+            </div>
+            <!--单车 -->
+            <aside class="gc_index_bycircle">
+                <div class="gc_index_bycircle_inner">
+                    <div id="myCarousel_2" class="carousel slide">
+                        <!-- 轮播（Carousel）指标 -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel_2" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel_2" data-slide-to="1"></li>
+                            <li data-target="#myCarousel_2" data-slide-to="2"></li>
+                        </ol>
+                        <!-- 轮播（Carousel）项目 -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="media">
+                                    <a class="media-left" href="#">
+                                        <img class="media-object" src="imgs/index/index_bycircle.png"
+                                             alt="通用的占位符图像">
+                                    </a>
 
+                                    <div class="media-body">
+                                        <h4 class="media-heading">媒体标题</h4>
+                                        <p>这是一些示例文本。这是一些示例文本。
+                                            这是一些示例文本。这是一些示例文本。
+                                            这是一些示例文本。这是一些示例文本。
+                                            这是一些示例文本。这是一些示例文本。
+                                            这是一些示例文本。这是一些示例文本。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <!-- 互动区 -->
+            <aside class="gc_index_hd">
+                <div class="hd_title text-center">
+                    <span>互动区</span>
+                </div>
+            </aside>
+        </div>
     </section>
-    <footer>
+    <div class="layout">
+        <footer>
 
-    </footer>
+        </footer>
+    </div>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/gongchuang/index.js"></script>
 </body>
 </html>
