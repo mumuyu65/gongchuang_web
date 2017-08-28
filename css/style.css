@@ -55,9 +55,52 @@ aside{
     background-color:#fff;
 }
 
+header{
+    background-color:#333333;
+    height:70px;
+    line-height:70px;
+    position: relative;
+    z-index: 2;
+}
+
+header .navbar-header>a:hover{
+    text-decoration: none;
+}
+
+header .navbar-header span{
+    color:#fff;
+    margin-left:30px;
+    font-size:26px;
+    vertical-align: top;
+}
+
+header .list-inline>li{
+    margin-right:13px;
+    padding:0 10px;
+}
+
+header .list-inline>li:hover{
+    background-color:rgba(191,191,191,0.1);
+    cursor:pointer;
+}
+
+header .list-inline>li:nth-last-child(1){
+    background-color:rgba(191,191,191,0.1);
+    cursor:pointer;
+}
+
+header .list-inline>li:hover>a{
+    text-decoration: none;
+}
+
+header .list-inline>li>a{
+    color:#fff;
+    font-size:18px;
+}
+
 footer{
     width:100%;
-    height:auto;
+    height:205px;
     background-color:#333333;
     color:#fff;
 }
