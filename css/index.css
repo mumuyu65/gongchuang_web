@@ -168,7 +168,7 @@ header .list-inline>li>a{
 }
 
 .gc_detail>.gc_detail_inner .inner-content{
-    width:260px;
+    width:275px;
     height:auto;
     margin:0 auto;
 }
@@ -182,9 +182,11 @@ header .list-inline>li>a{
     position: relative;
     z-index: 2;
 }
+
 .gc_detail>.gc_detail_inner>.pull-right>h2{
     color:#c02d28;
 }
+
 .gc_detail>.gc_detail_inner>.pull-right>a{
     width: 75px;
     color:#fff;
@@ -196,12 +198,15 @@ header .list-inline>li>a{
     text-decoration: none;
     display:block;
 }
+
 .gc_detail>.gc_detail_inner>.pull-right>a:nth-child(2){
     background-color: #c59a70;
 }
+
 .gc_detail>.gc_detail_inner>.pull-right>a+a{
     background-color: #c02d28;
 }
+
 .gc_detail_inner #myCarousel_1 .list-inline>li{
     margin-right: 30px;
 }
@@ -215,24 +220,29 @@ header .list-inline>li>a{
     background: url("../imgs/index/gc_mall_ad.png") 0 0 no-repeat;
     padding-top:120px;
 }
+
 .gc_mall .gc_mall_ad{
     width:500px;
     height:120px;
     margin:0 auto;
     text-align:center;
 }
+
 .gc_mall .gc_mall_ad>span{
     display:block;
 }
+
 .gc_mall .gc_mall_ad>.divider{
     width: 30px;
     height: 10px;
     background-color:#c02d28;
     margin:2px auto;
 }
+
 .gc_mall .gc_mall_ad>span:nth-child(1){
     font-size: 48px;
 }
+
 .gc_mall>a{
     position: absolute;
     bottom:-37.5px;

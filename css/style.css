@@ -57,8 +57,42 @@ aside{
 
 footer{
     width:100%;
-    height:202px;
+    height:auto;
     background-color:#333333;
+    color:#fff;
 }
+
+.footer-container{
+    padding:30px 130px 0 130px;
+}
+
+.footer-container>.list-unstyled{
+    display: inline-block;
+    margin-right:70px;
+    vertical-align: top;
+}
+
+.footer-container>.list-unstyled>li{
+    padding:5px 0;
+}
+
+.footer-container>.list-unstyled>li:nth-child(1){
+    padding:10px 0;
+}
+
+.footer-container>.list-unstyled:nth-child(3){
+    margin-right:150px;
+}
+
+.footer-container>.list-unstyled>li>span{
+    color:#fff;
+    font-size:16px;
+}
+
+.footer-container>.list-unstyled>li>a{
+    color:#888888;
+    text-decoration: none;
+}
+
 
 
