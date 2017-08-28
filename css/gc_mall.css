@@ -1,0 +1,16 @@
+.gc_mall{
+    position: relative;
+}
+
+.gc_mall .carousel-indicators .active {
+    width: 15px;
+    height: 15px;
+    background-color:rgba(192,45,40,0.8);
+}
+
+.gc_mall .carousel-indicators li{
+    background-color:rgba(234,234,234,1);
+    width: 15px;
+    height: 15px;
+    margin-right:40px;
+}

@@ -19,6 +19,12 @@ aside{
     height:40px;
     line-height:40px;
     text-align: center;
+    text-decoration: none;
+}
+
+.btn-index:hover{
+    text-decoration: none;
+    color:#fff;
 }
 
 .carousel-control.left {

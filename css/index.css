@@ -1,6 +1,9 @@
 /* 广告轮播图*/
 .gc_ad{
-    width:100%; height:705px; margin-bottom:10px; overflow: hidden;
+    width:100%;
+    height:705px;
+    margin-bottom:10px;
+    overflow: hidden;
 }
 
 .gc_ad .carousel-indicators .active {
