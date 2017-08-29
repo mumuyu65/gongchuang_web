@@ -14,3 +14,85 @@
     height: 15px;
     margin-right:40px;
 }
+
+.gc_mall .mall_title{
+    height:200px;
+    padding:50px 0;
+    text-align: center;
+}
+
+.gc_mall .mall_title>span{
+    font-size:30px;
+    display: block;
+}
+
+.gc_mall .mall_1{
+    width:100%;
+    height: 465px;
+}
+
+.gc_mall .mall_1 .carousel-indicators{
+    bottom: -60px;
+}
+
+.gc_mall .mall_1 .carousel-indicators>li{
+    width:85px;
+    height:5px;
+    border-radius:0;
+}
+
+/* 商品 */
+.gc_mall .mall_goods{
+    padding:0 60px;
+}
+
+.gc_mall .mall_goods>.goods_item{
+    width:350px;
+    height:575px;
+    background-color:#F4F4F4;
+    display:inline-block;
+    vertical-align: top;
+    margin-right:7px;
+    margin-bottom: 35px;
+    padding:15px;
+}
+
+.gc_mall .mall_goods>.goods_item .item-desc{
+    margin-top: 35px;
+}
+
+.gc_mall .mall_goods>.goods_item .item-desc p{
+    font-size: 25px;
+}
+
+.gc_mall .mall_goods>.goods_item .item-desc h4{
+    text-align: end;
+}
+
+.gc_mall .mall_goods>.goods_item .item-desc hr{
+    border-top:2px solid #dcdcdc;
+}
+
+.gc_mall .mall_goods>.goods_item .item-desc .list-inline{
+    margin-top:35px;
+}
+
+.gc_mall .mall_goods>.goods_item .item-desc .list-inline>li{
+    vertical-align: top;
+}
+
+.gc_mall .mall_goods>.goods_item .item-desc .list-inline>li:nth-child(1)>a{
+    padding:10px 30px;
+    font-size:16px;
+    border:2px solid #D0BFB1;
+    color:#333333;
+    text-decoration: none;
+}
+
+.gc_mall .mall_goods>.goods_item .item-desc .list-inline>li:nth-child(2)>a{
+    padding:10px 8px;
+    font-size:16px;
+    color:#fff;
+    background-color:#C02D28;
+    border:2px solid #C02D28;
+}
