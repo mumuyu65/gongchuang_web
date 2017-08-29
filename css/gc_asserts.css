@@ -1,0 +1,136 @@
+.gc_asserts .desc_1{
+    margin-top:-3px;
+    height:380px;
+}
+
+.gc_asserts .desc_1 .desc_1_list{
+    display:inline-block;
+    width: 297px;
+    height:100%;
+    vertical-align: top;
+    box-shadow: 0 0 25px 6px rgba(236,236,236,0.5);
+}
+
+.gc_asserts .desc_1 .desc_1_list:hover{
+    background-color:#C02D28;
+    color:#fff;
+}
+
+.gc_asserts .desc_1 .desc_1_list .desc_1_list_inner{
+    margin:75px 0 100px 65px;
+}
+
+.gc_asserts .desc_2{
+    margin-top:20px;
+    padding:50px 40px;
+}
+
+.gc_asserts .desc_2 .desc_2_inner{
+    width:924px;
+    height:65px;
+    border:2px solid #C02D28;
+    border-radius: 10px;
+    margin:0 auto;
+}
+
+.gc_asserts .desc_2 .desc_2_inner .item{
+    float:left;
+    width:226.5px;
+    height:100%;
+    line-height:65px;
+    font-size:20px;
+    cursor: pointer;
+    text-align: center;
+    border-right:2px solid #C02D28;
+}
+
+.gc_asserts .desc_2 .desc_2_inner .item:nth-last-child(1){
+    border-right:2px solid transparent;
+}
+
+.gc_asserts .desc_2 .desc_2_inner .item.active{
+    background-color:#C02D28;
+    color:#fff;
+}
+
+.gc_asserts .desc_2 .desc_3{
+    margin:50px 0;
+    padding-left:60px;
+}
+
+.gc_asserts .desc_2 .desc_3>h4{
+    margin:20px 0;
+}
+
+.gc_asserts .desc_2 .desc_4{
+    width:100%;
+    margin-bottom:95px;
+    height: 260px;
+    background-color: #F6F6F6;
+    position: relative;
+}
+
+.gc_asserts .desc_2 .desc_4 .icon-1{
+    width:270px;
+    height:43px;
+    position: absolute;
+    left:20px;
+    top:-20px;
+    line-height: 43px;
+    background-color:#C02D28;
+    color:#fff;
+    font-size:24px;
+    text-align: center;
+}
+
+.gc_asserts .desc_2 .desc_4 .icon-2{
+    width:270px;
+    height:43px;
+    position: absolute;
+    right:300px;
+    bottom:-20px;
+    line-height: 43px;
+    background-color:#C02D28;
+    color:#fff;
+    font-size:24px;
+    text-align: center;
+}
+
+.gc_asserts .desc_2 .desc_4 .media-object{
+    width:324px;
+    height:260px;
+}
+
+.gc_asserts .desc_2 .desc_4 .media-body{
+    padding:25px 40px;
+}
+
+.gc_asserts .desc_2 .desc_4 .media-body>.item{
+    width:230px;
+    height:100%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.gc_asserts .desc_2 .desc_4 .media-body>.item .item-part{
+    margin-top:50px;
+    color:#E61F1C;
+}
+
+.gc_asserts .desc_2 .desc_4 .media-body>.item .item-parti{
+    margin-top:50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
