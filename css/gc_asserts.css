@@ -60,6 +60,15 @@
 
 .gc_asserts .desc_2 .desc_3>h4{
     margin:20px 0;
+    font-size: 22px;
+}
+
+.gc_asserts .desc_2 .desc_3>h4>span{
+    margin-left:20px;
+}
+
+.gc_asserts .desc_2 .desc_3>h4>span.active{
+    color:#C02D28;
 }
 
 .gc_asserts .desc_2 .desc_4{
