@@ -143,5 +143,36 @@ footer{
     text-decoration: none;
 }
 
+/* 评论 */
+.comment_ct>li{
+    position: relative;
+    font-size:20px;
+    margin-right: 20px;
+    color: #CACACA;
+}
+
+.comment_ct>li:after{
+    content:'';
+    position: absolute;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background-color:#eaeaea;
+    right:-15px;
+    top:25%;
+}
+
+.comment_ct>li:nth-child(3):after{
+    background-color:transparent;
+}
+
+.comment_ct>li:nth-child(4):after{
+    background-color:transparent;
+}
+
+.comment_ct>li>i{
+    font-size:20px;
+}
+
 
 
