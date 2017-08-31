@@ -72,10 +72,6 @@
     margin:0 auto;
 }
 
-.gc_detail>.gc_detail_inner>.pull-left>h4:nth-child(odd){
-    color:#c02d28;
-}
-
 .gc_detail>.gc_detail_inner>.pull-left>.list-inline{
     margin:0;
 }
@@ -155,24 +151,39 @@
 }
 
 .gc_detail>.gc_detail_inner>.pull-right>a{
-    width: 75px;
-    color:#fff;
+    width:90px;
+    color:#333333;
+    border:1px solid #c02d28;
     margin-top:30px;
     height:25px;
-    border-radius: 25px;
     line-height: 25px;
     text-align: center;
     text-decoration: none;
-    display:block;
+    position: relative;
+    display: block;
+    font-size:12px;
 }
 
 .gc_detail>.gc_detail_inner>.pull-right>a:nth-child(2){
-    background-color: #c59a70;
+    color:#c02d28;
 }
 
 .gc_detail>.gc_detail_inner>.pull-right>a+a{
-    background-color: #c02d28;
+    /*background-color: #c02d28;*/
+    border:1px solid #333333;
 }
+
+.gc_detail>.gc_detail_inner>.pull-right>a+a>i{
+    position: absolute;
+    width:25px;
+    height:25px;
+    line-height: 25px;
+    left:-25px;
+    top:-1px;
+    color:#fff;
+    background-color:#C02D28;
+}
+
 
 .gc_detail_inner #myCarousel_1 .list-inline>li{
     margin-right: 30px;
