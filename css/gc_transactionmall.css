@@ -1,0 +1,86 @@
+.gc_transactionmall .desc_2{
+    margin-top:20px;
+    padding:50px 40px;
+}
+
+.gc_transactionmall .desc_2 .desc_2_inner{
+    width:924px;
+    height:65px;
+    border:2px solid #C02D28;
+    border-radius: 10px;
+    margin:0 auto;
+}
+
+.gc_transactionmall .desc_2 .desc_2_inner .item{
+    float:left;
+    width:226.5px;
+    height:100%;
+    line-height:65px;
+    font-size:20px;
+    cursor: pointer;
+    text-align: center;
+    border-right:2px solid #C02D28;
+}
+
+.gc_transactionmall .desc_2 .desc_2_inner .item:nth-last-child(1){
+    border-right:2px solid transparent;
+}
+
+.gc_transactionmall .desc_2 .desc_2_inner .item.active{
+    background-color:#C02D28;
+    color:#fff;
+}
+
+.gc_transactionmall .tab-content{
+    padding:10px 110px;
+}
+
+.gc_transactionmall .tab-content .transaction-item{
+    border:2px solid #eaeaea;
+    margin-bottom: 10px;
+}
+
+.gc_transactionmall .tab-content .transaction-item>.media {
+    border-bottom: 2px solid #eaeaea;
+}
+
+.gc_transactionmall .tab-content .transaction-item>.media .media-body{
+    padding:25px 40px 25px 25px;
+}
+
+.gc_transactionmall .tab-content .transaction-item>.media .media-body .icon-dingwei1{
+    color:#C02D28;
+}
+
+.gc_transactionmall .tab-content .transaction-item>.media .media-body .price{
+    color:#C02D28;
+}
+
+.gc_transactionmall .tab-content .transaction-item>.media .media-heading{
+    margin-top:50px;
+}
+
+.gc_transactionmall .tab-content .transaction-item .item-footer{
+    height:50px;
+    line-height: 50px;
+    padding-right:40px;
+}
+
+.gc_transactionmall .tab-content .transaction-item .item-footer .btn-default{
+    border-radius:0;
+    font-size:16px;
+}
+
+.gc_transactionmall .tab-content .transaction-item .item-footer .btn-default:nth-child(1):hover{
+    background-color:transparent;
+}
+
+.gc_transactionmall .tab-content .transaction-item .item-footer .btn-default:nth-child(1){
+    border:1px solid #c59a70;
+}
+
+.gc_transactionmall .tab-content .transaction-item .item-footer .btn-default:nth-child(2){
+    background-color:#C02D28;
+    color:#fff;
+    margin-left:20px;
+}
