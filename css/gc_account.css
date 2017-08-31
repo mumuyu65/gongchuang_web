@@ -1,0 +1,65 @@
+.gc_account{
+    min-height:800px;
+    padding:50px;
+}
+
+.gc_account .account-item{
+    width:200px;
+    margin-right:45px;
+}
+
+.gc_account .account-item .list-unstyled>li h4{
+    text-align: end;
+    padding:10px 0;
+    color:#333333;
+}
+
+.gc_account .account-item .list-unstyled>li>a{
+    text-decoration: none;
+}
+
+.gc_account .account-item .list-unstyled>li.active h4{
+    color:#C02D28;
+}
+
+.gc_account .account-item img{
+    width:100%;
+}
+
+.gc_account .account-content{
+    width:850px;
+    min-height: 700px;
+    border:2px solid #eaeaea;
+    padding:20px;
+}
+
+.gc_account .account-content .gc_address_new_content{
+    padding:20px;
+    height:auto;
+}
+
+.gc_account .nav.nav-tabs>li>a{
+    color:#333;
+}
+
+.gc_account .nav.nav-tabs>li.active>a{
+    color:#C02D28;
+}
+
+
+.gc_account_quan{
+    border:1px solid #ececec; min-height:600px;
+}
+
+.gc_account_quan .tab-content-inner .quan-item{
+    display:inline-block;
+    width:235px;
+    height:120px;
+    background-color:#C02D28;
+    margin:10px;
+}
+
+.gc_account_quan .tab-content-inner .quan-item.outdate{
+    background-color:#eaeaea;
+}
+

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>利公共创平台--账号管理</title>
+    <base target="_blank">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="all" >
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="Page-Enter"   content="revealTrans(duration=2.0,transtion=0)">
+    <meta http-equiv="Page-Exit"    content="revealTrans(duration=2.0,transtion=12)">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no,shrink-to-fit=yes"
+          name="viewport">
+    <meta name="format-detection" content="telephone=no" >
+    <meta name="format-detection" content="date=no" >
+    <meta name="format-detection" content="address=no" >
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="keywords" content="单车商城,充电宝,共创,互惠互利" >
+    <meta name="description" content="单车商城,充电宝商城">
+    <link rel="stylesheet" type="text/css" href="js/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/gc_account.css"/>
+</head>
+<body>
+<!-- header -->
+<header>
+    <div class="layout">
+        <div class="navbar-header">
+            <a href="index.html">
+                <img alt="Brand" style="max-width:130px; display:inline-block;" src="http://www.clantrip.com/static/images/logo.png">
+                <span>利公共创平台</span>
+            </a>
+        </div>
+        <ul class="pull-right list-inline">
+            <li class="active"><a href="gc_mall.html">商城</a></li>
+            <li><a href="gc_transactionmall.html">流转商城</a></li>
+            <li><a href="gc_comment.html">我的空间</a></li>
+            <li><a href="gc_asserts.html">我的资产</a></li>
+            <li><a href="#">登录</a> | <a href="#">注册</a> </li>
+            <li><a href="#"><i class="iconfont icon icon-lingdang" style="font-size:24px;"></i><span class="alert">99</span></a></li>
+            <li style="margin-right:0;"><a href="gc_shoppingcart.html"><i class="iconfont icon icon-gouwuchekong" style="margin-right:10px;"></i>购物车(0)</a></li>
+        </ul>
+    </div>
+</header>
+<!-- section -->
+<section>
+    <div class="layout">
+        <aside class="gc_account">
+            <h4 style="color:#C02D28;">账号管理</h4>
+            <div class="pull-left account-item">
+                <img src="imgs/detail/detail_3.png" alt=""/>
+                <ul class="list-unstyled pull-right">
+                    <li class="active">
+                        <a href="#home" data-toggle="tab">
+                            <h4>个人资料</h4>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#ios" data-toggle="tab">
+                            <h4>我的收货地址</h4>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#jmeter" data-toggle="tab">
+                            <h4>我的优惠券</h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="pull-left tab-content account-content">
+                    <div class="tab-pane fade in active gc_address" id="home" >
+                        <h4>个人资料</h4>
+                        <div class="gc_address_new_content">
+                            <h4>当前头像: <img src="imgs/detail/detail_3.png" alt=""></h4>
+                            <h4>昵称: <input type="text" /></h4>
+                            <h4>
+                                性别：<input type="radio" value="male"  />男 <input type="radio" value="female"  />女
+                            </h4>
+                            <h4>
+                                生日: <select name="" ></select><select name="" ></select><select name="" ></select>
+                            </h4>
+                            <h4 style="margin-left:0;">
+                                所在城市: <select name="" ></select><select name="" ></select><select name="" ></select>
+                            </h4>
+                            <h4>
+                                具体地址: <input type="text" />
+                            </h4>
+                            <h3 class="text-center">
+                                <button class="btn btn-default">取消</button>
+                                <button class="btn btn-danger">保存</button>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade gc_address" id="ios">
+                        <h4>新增收货地址</h4>
+                        <div class="gc_address_new_content">
+                            <h4> 收件人: <input type="text" /></h4>
+                            <h4> 收件地址:
+                                <select id="s1"><option>省份</option></select>
+                                <select id="s2"><option>地级市</option></select>
+                                <select id="s3"><option>市、县级市、县</option></select>
+                            </h4>
+                            <h4> 详细地址: <input type="text" /></h4>
+                            <h4> 手机号码: <input type="number" /></h4>
+                            <h4><i class="iconfont icon icon-duigou1" style="color:#C02D28; font-size: 20px; margin-right:10px;"></i>设为默认地址</h4>
+                            <h3>
+                                <button class="btn btn-default">取消</button>
+                                <button class="btn btn-danger">保存</button>
+                            </h3>
+                        </div>
+
+                        <h4>我的收货地址</h4>
+                        <hr/>
+                        <div class="gc_address_inner" style="padding:0;">
+                            <div class="item">
+                                <div class="item_header active">
+                                    默认地址
+                                </div>
+                                <div class="item_detail">
+                                    <h4>收件人:小羽</h4>
+                                    <h4>地址:上海市长宁区延安西路2077号金桥大厦1907室</h4>
+                                    <h4>电话:13545267412</h4>
+                                </div>
+                                <div class="pull-right text-center item_opera">
+                                    <h5>编辑</h5>
+                                    <h5>设为默认收货地址</h5>
+                                    <h5><i class="iconfont icon icon-trash"></i>删除</h5>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="item_header">
+                                    收货地址
+                                </div>
+                                <div class="item_detail">
+                                    <h4>收件人:小羽</h4>
+                                    <h4>地址:上海市长宁区延安西路2077号金桥大厦1907室</h4>
+                                    <h4>电话:13545267412</h4>
+                                </div>
+                                <div class="pull-right text-center item_opera">
+                                    <h5>编辑</h5>
+                                    <h5>设为默认收货地址</h5>
+                                    <h5><i class="iconfont icon icon-trash"></i>删除</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="jmeter">
+                        <h4>我的优惠券</h4>
+                        <hr/>
+                        <div class="gc_account_quan">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#home_1" data-toggle="tab">
+                                        可用优惠券
+                                    </a>
+                                </li>
+                                <li><a href="#ejb" data-toggle="tab">已过期优惠券</a></li>
+                            </ul>
+                            <div class="tab-content" >
+                                <div class="tab-pane fade in active" id="home_1">
+                                    <div class="tab-content-inner">
+                                        <div class="quan-item"></div>
+                                        <div class="quan-item"></div>
+                                        <div class="quan-item"></div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="ejb">
+                                    <div class="tab-content-inner">
+                                        <div class="quan-item outdate"></div>
+                                        <div class="quan-item outdate"></div>
+                                        <div class="quan-item outdate"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div style="clear: both;"></div>
+        </aside>
+    </div>
+</section>
+<!-- footer -->
+<div class="layout">
+    <footer>
+        <div class="footer-container">
+            <ul class="list-unstyled">
+                <li><span>帮助中心</span></li>
+                <li><a href="#">购买指南</a></li>
+                <li><a href="#">支付方式</a></li>
+                <li><a href="#">物流公司</a></li>
+            </ul>
+            <ul class="list-unstyled">
+                <li><span>服务支持</span></li>
+                <li><a href="#">售后服务</a></li>
+                <li><a href="#">售后政策</a></li>
+                <li><a href="#">服务网点</a></li>
+            </ul>
+            <ul class="list-unstyled">
+                <li><span>媒体中心</span></li>
+                <li><a href="#">资讯动态</a></li>
+                <li><a href="#">官方视频</a></li>
+                <li><a href="#">官方图片</a></li>
+            </ul>
+            <ul class="list-unstyled">
+                <li><span>客服电话：400-411-0220</span></li>
+                <li style="color:#fff;">周一至周日9:30-18:30(法定节假日除外)</li>
+            </ul>
+        </div>
+        <hr style="border-top:1px solid #6F6F6F;"/>
+    </footer>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/gongchuang/gc_account.js"></script>
+</body>
+</html>
