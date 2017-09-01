@@ -1,0 +1,78 @@
+.login{
+    background:url("../imgs/login.jpg") no-repeat 0 0 ;
+}
+
+.login header{
+    background-color:#fff;
+}
+
+.login header span{
+    color:#333333;
+}
+
+.login header .pull-right span{
+    font-size: 20px;
+}
+
+.login .login-container{
+    min-height:700px;
+    padding:60px;
+}
+
+.login .login-container .inner{
+    width:400px;
+    height:auto;
+    box-shadow: 0 0 8px 2px #ececec;
+    background-color: #fff;
+}
+
+.login .login-container .inner .inner-h {
+    color: #888888;
+}
+
+.inner-w{
+    padding:10px 40px;
+}
+
+.inner-w .inner-w-1{
+    border:1px solid #ececec;
+    font-size:16px;
+    padding:5px 10px;
+}
+
+.inner-w .inner-w-1 .iconfont{
+    font-size:20px;
+}
+
+.inner-w .inner-w-1 .inner-wr{
+    margin-left:10px;
+    padding-left:10px;
+    border:none;
+    height:30px;
+    width:260px;
+}
+
+.inner-w .inner-w-1.inner-w-2{
+   margin:20px 0;
+}
+
+.inner-w .inner-w-3{
+    height:30px;
+}
+
+.inner-w .inner-w-lg{
+    cursor: pointer;
+    display:block;
+    width:100%;
+    color:#fff;
+    background-color:#C02D28;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    font-size:20px;
+}
+
+.inner-w .inner-f{
+    margin:20px 0;
+    font-size:16px;
+}
