@@ -61,6 +61,11 @@ aside{
     background-color:#fff;
 }
 
+a:hover,a:visited,a:focus{
+    text-decoration: none;
+}
+
+/* header */
 header{
     background-color:#333333;
     height:70px;
@@ -106,6 +111,10 @@ header .list-inline>li>a{
     display: inline-block;
 }
 
+header .list-inline>li.active>a{
+    color:#C02D28;
+}
+
 header .list-inline>li>a .alert {
     position: absolute;
     right: -10px;
@@ -118,6 +127,7 @@ header .list-inline>li>a .alert {
     line-height: 1;
 }
 
+/* footer */
 footer{
     width:100%;
     height:205px;

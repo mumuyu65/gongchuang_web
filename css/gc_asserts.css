@@ -112,6 +112,7 @@
 
 .gc_asserts .desc_2 .desc_4 .media-body{
     padding:25px 40px;
+    position: relative;
 }
 
 .gc_asserts .desc_2 .desc_4 .media-body>.item{
