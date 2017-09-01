@@ -1,0 +1,13 @@
+.register{
+    background: url("../imgs/true.jpg") no-repeat 0 0;
+}
+
+.register .inner-vcode{
+    cursor:pointer;
+    padding:10px;
+    background-color: #C02D28;
+    color:#fff;
+    position: absolute;
+    right:0;
+    top:0;
+}
