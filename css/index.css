@@ -311,6 +311,8 @@
 .gc_index_hd{
     width:100%;
     height:auto;
+    z-index:2;
+    position: relative;
 }
 
 .gc_index_hd .hd_title{

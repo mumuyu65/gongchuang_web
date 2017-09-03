@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>利公共创平台--互动区</title>
+    <title>利公共创平台--我的空间</title>
     <base target="_blank">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -19,8 +19,10 @@
     <meta name="keywords" content="单车商城,充电宝,共创,互惠互利" >
     <meta name="description" content="单车商城,充电宝商城">
     <link rel="stylesheet" type="text/css" href="js/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/gc_comment.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/gc_space.css"/>
 </head>
 <body>
 <!-- header -->
@@ -28,7 +30,7 @@
     <div class="layout">
         <div class="navbar-header">
             <a href="index.html">
-                <img alt="Brand" style="max-width:130px; display:inline-block;" src="http://www.clantrip.com/static/images/logo.png">
+                <!--<img alt="Brand" style="max-width:130px; display:inline-block;" src="http://www.clantrip.com/static/images/logo.png">-->
                 <span>利公共创平台</span>
             </a>
         </div>
@@ -37,136 +39,188 @@
             <li><a href="gc_transactionmall.html">流转商城</a></li>
             <li class="active"><a href="gc_space.html">我的空间</a></li>
             <li><a href="gc_asserts.html">我的资产</a></li>
-            <li><a href="#">登录</a> | <a href="#">注册</a> </li>
-            <li><a href="#"><i class="iconfont icon icon-lingdang" style="font-size:24px;"></i><span class="alert">99</span></a></li>
             <li style="margin-right:0;"><a href="gc_shoppingcart.html"><i class="iconfont icon icon-gouwuchekong" style="margin-right:10px;"></i>购物车(0)</a></li>
+            <li><a href="#"><i class="iconfont icon icon-lingdang" style="font-size:24px;"></i><span class="alert">99</span></a></li>
+            <li><a href="login.html">登录</a></li>
+            <li><a href="register.html">注册</a></li>
         </ul>
     </div>
 </header>
 <!-- section -->
 <section>
     <div class="layout">
-        <aside class="gc-comment">
+        <aside class="gc-space">
             <img src="imgs/space/space-1.png" alt="" />
-            <div class="gc-comment-inner">
-                <div class="item">
-                    <h4>王某某</h4>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid culpa est expedita harum inventore, itaque sed. Consequuntur dolorem ducimus explicabo facilis harum,
-                    iusto reprehenderit saepe tempore totam! Architecto est, voluptate.
-                    <img src="imgs/index/timg.png" alt="" />
-                    <ul class="list-inline">
-                        <li><img src="imgs/index/dianzan.png" alt="">1234</li>
-                        <li><img src="imgs/index/comment.png" alt="">1234</li>
-                        <li><img src="imgs/index/share.png" alt="">1234</li>
-                    </ul>
-                </div>
-                <div class="timer">
-                    21/08
+            <div class="gc_index_hd">
+                <div class="hd_inner">
+                    <div class="hd_item">
+                        <div class="timer">21/08</div>
+                        <img class="img_title" src="imgs/index/timg.png" alt=""/>
+                        <div class="hd_item_h">
+                            <h4>王某某</h4>
+                            <h5>12:30</h5>
+                            <div class="hd_item_des">
+                                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto consequatur deleniti eum eveniet explicabo incidunt ipsum magni maiores molestias nulla obcaecati possimus quasi, repellat sunt. Accusamus harum placeat temporibus.
+                                </h5>
+                                <div class="hd_item_img">
+                                    <img src="imgs/mall/mall_car.png" alt="">
+                                    <img src="imgs/mall/mall_car.png" alt="">
+                                </div>
+                            </div>
+                            <ul class="list-inline hd_item_comment">
+                                <li>
+                                    <img src="imgs/index/dianzan.png" alt="" />
+                                    <span style="vertical-align: middle;">2245</span>
+                                </li>
+                                <li class="text-center">
+                                    <img src="imgs/index/comment.png" alt="" />
+                                    <span style="vertical-align: middle;">2245</span>
+                                </li>
+                                <li class="text-center">
+                                    <img src="imgs/index/share.png" alt="" />
+                                    <span style="vertical-align: middle;">2245</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="hd_item_comment_inner">
+                            <div class="hd_icon" >
+                                <i class="iconfont icon icon-xiangshang"></i>
+                            </div>
+                            <div class="hd_icon_inner">
+                                <i class="iconfont icon icon-xiangshang"></i>
+                            </div>
+                            <div class="media">
+                                <a class="media-left" href="#">
+                                    <img class="media-object" src="imgs/index/timg.png"
+                                         alt=""/>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">媒体标题</h4>
+                                    <h5>12:30</h5>
+                                    <div class="hd_comment_content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <a class="media-left" href="#">
+                                    <img class="media-object" src="imgs/index/timg.png"
+                                         alt=""/>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">媒体标题</h4>
+                                    <h5>12:30</h5>
+                                    <div class="hd_comment_content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <a class="media-left" href="#">
+                                    <img class="media-object" src="imgs/index/timg.png"
+                                         alt=""/>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">媒体标题</h4>
+                                    <h5>12:30</h5>
+                                    <div class="hd_comment_content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="text-center hd_more">
+                                <a href="gc_comment_details.html">
+                                    查看更多 <i class="iconfont icon icon-xiangxia-copy"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hd_item">
+                        <div class="timer">21/08</div>
+                        <img class="img_title" src="imgs/index/timg.png" alt=""/>
+                        <div class="hd_item_h">
+                            <h4>王某某</h4>
+                            <h5>12:30</h5>
+                            <div class="hd_item_des">
+                                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto consequatur deleniti eum eveniet explicabo incidunt ipsum magni maiores molestias nulla obcaecati possimus quasi, repellat sunt. Accusamus harum placeat temporibus.
+                                </h5>
+                                <div class="hd_item_img">
+                                    <img src="imgs/mall/mall_car.png" alt="">
+                                    <img src="imgs/mall/mall_car.png" alt="">
+                                </div>
+                            </div>
+                            <ul class="list-inline hd_item_comment">
+                                <li>
+                                    <img src="imgs/index/dianzan.png" alt="" />
+                                    <span style="vertical-align: middle;">2245</span>
+                                </li>
+                                <li class="text-center">
+                                    <img src="imgs/index/comment.png" alt="" />
+                                    <span style="vertical-align: middle;">2245</span>
+                                </li>
+                                <li class="text-center">
+                                    <img src="imgs/index/share.png" alt="" />
+                                    <span style="vertical-align: middle;">2245</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="hd_item_comment_inner">
+                            <div class="hd_icon" >
+                                <i class="iconfont icon icon-xiangshang"></i>
+                            </div>
+                            <div class="hd_icon_inner">
+                                <i class="iconfont icon icon-xiangshang"></i>
+                            </div>
+                            <div class="media">
+                                <a class="media-left" href="#">
+                                    <img class="media-object" src="imgs/index/timg.png"
+                                         alt=""/>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">媒体标题</h4>
+                                    <h5>12:30</h5>
+                                    <div class="hd_comment_content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <a class="media-left" href="#">
+                                    <img class="media-object" src="imgs/index/timg.png"
+                                         alt=""/>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">媒体标题</h4>
+                                    <h5>12:30</h5>
+                                    <div class="hd_comment_content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <a class="media-left" href="#">
+                                    <img class="media-object" src="imgs/index/timg.png"
+                                         alt=""/>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">媒体标题</h4>
+                                    <h5>12:30</h5>
+                                    <div class="hd_comment_content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="text-center hd_more">
+                                <a href="gc_comment_details.html">
+                                    查看更多 <i class="iconfont icon icon-xiangxia-copy"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="gc-comment-inner">
-                <div class="item">
-                    <h4>王某某</h4>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid culpa est expedita harum inventore, itaque sed. Consequuntur dolorem ducimus explicabo facilis harum,
-                    iusto reprehenderit saepe tempore totam! Architecto est, voluptate.
-                    <img src="imgs/index/timg.png" alt="" />
-                    <ul class="list-inline">
-                        <li><img src="imgs/index/dianzan.png" alt="">1234</li>
-                        <li><img src="imgs/index/comment.png" alt="">1234</li>
-                        <li><img src="imgs/index/share.png" alt="">1234</li>
-                    </ul>
-                </div>
-                <div class="timer">
-                    21/08
-                </div>
-            </div>
-
-            <div class="gc-comment-inner">
-                <div class="item">
-                    <h4>王某某</h4>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid culpa est expedita harum inventore, itaque sed. Consequuntur dolorem ducimus explicabo facilis harum,
-                    iusto reprehenderit saepe tempore totam! Architecto est, voluptate.
-                    <img src="imgs/index/timg.png" alt="" />
-                    <ul class="list-inline">
-                        <li><img src="imgs/index/dianzan.png" alt="">1234</li>
-                        <li><img src="imgs/index/comment.png" alt="">1234</li>
-                        <li><img src="imgs/index/share.png" alt="">1234</li>
-                    </ul>
-                </div>
-                <div class="timer">
-                    21/08
-                </div>
-            </div>
-
-            <div class="gc-comment-inner">
-                <div class="item">
-                    <h4>王某某</h4>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid culpa est expedita harum inventore, itaque sed. Consequuntur dolorem ducimus explicabo facilis harum,
-                    iusto reprehenderit saepe tempore totam! Architecto est, voluptate.
-                    <img src="imgs/index/timg.png" alt="" />
-                    <ul class="list-inline">
-                        <li><img src="imgs/index/dianzan.png" alt="">1234</li>
-                        <li><img src="imgs/index/comment.png" alt="">1234</li>
-                        <li><img src="imgs/index/share.png" alt="">1234</li>
-                    </ul>
-                </div>
-                <div class="timer">
-                    21/08
-                </div>
-            </div>
-
-            <div class="gc-comment-inner">
-                <div class="item">
-                    <h4>王某某</h4>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid culpa est expedita harum inventore, itaque sed. Consequuntur dolorem ducimus explicabo facilis harum,
-                    iusto reprehenderit saepe tempore totam! Architecto est, voluptate.
-                    <img src="imgs/index/timg.png" alt="" />
-                    <ul class="list-inline">
-                        <li><img src="imgs/index/dianzan.png" alt="">1234</li>
-                        <li><img src="imgs/index/comment.png" alt="">1234</li>
-                        <li><img src="imgs/index/share.png" alt="">1234</li>
-                    </ul>
-                </div>
-                <div class="timer">
-                    21/08
-                </div>
-            </div>
-
-            <div class="gc-comment-inner">
-                <div class="item">
-                    <h4>王某某</h4>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid culpa est expedita harum inventore, itaque sed. Consequuntur dolorem ducimus explicabo facilis harum,
-                    iusto reprehenderit saepe tempore totam! Architecto est, voluptate.
-                    <img src="imgs/index/timg.png" alt="" />
-                    <ul class="list-inline">
-                        <li><img src="imgs/index/dianzan.png" alt="">1234</li>
-                        <li><img src="imgs/index/comment.png" alt="">1234</li>
-                        <li><img src="imgs/index/share.png" alt="">1234</li>
-                    </ul>
-                </div>
-                <div class="timer">
-                    21/08
-                </div>
-            </div>
-
-            <div class="gc-comment-inner">
-                <div class="item">
-                    <h4>王某某</h4>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid culpa est expedita harum inventore, itaque sed. Consequuntur dolorem ducimus explicabo facilis harum,
-                    iusto reprehenderit saepe tempore totam! Architecto est, voluptate.
-                    <img src="imgs/index/timg.png" alt="" />
-                    <ul class="list-inline">
-                        <li><img src="imgs/index/dianzan.png" alt="">1234</li>
-                        <li><img src="imgs/index/comment.png" alt="">1234</li>
-                        <li><img src="imgs/index/share.png" alt="">1234</li>
-                    </ul>
-                </div>
-                <div class="timer">
-                    21/08
-                </div>
-            </div>
-
         </aside>
     </div>
 </section>

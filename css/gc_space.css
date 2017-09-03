@@ -1,0 +1,32 @@
+.gc-space{
+    padding:40px 0;
+    position: relative;
+}
+
+.gc-space>img{
+    position:absolute;
+    right:0;
+    top:-12px;
+    width: 95%;
+    z-index: 1;
+}
+
+.gc-space .timer{
+    position: absolute;
+    right:-40px;
+    top:58px;
+    color:#333333;
+    z-index: 2;
+    font-size:35px;
+}
+
+.gc-space .hd_item:nth-child(1) .timer{
+    color:#fff;
+}
+
+
+
+
+
+
+
