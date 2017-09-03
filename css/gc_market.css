@@ -1,0 +1,50 @@
+.gc_market_h{
+    font-size:22px;
+    padding:20px 40px;
+    border-bottom:2px solid #f2f2f2;
+}
+
+.gc_market{
+    padding:0 30px;
+}
+
+.gc_market .gc_market_num{
+    padding:10px 40px;
+    font-size:24px;
+    border:2px solid #f2f2f2;
+    margin:15px 0;
+    background-color: #FAFAFA;
+}
+
+.gc_market .gc_market_add{
+    display:block;
+    padding:10px 0;
+    color:#333333;
+    font-size:24px;
+    border:2px solid #f2f2f2;
+    margin:15px 0;
+    background-color: #FAFAFA;
+}
+
+.gc_market .gc_market_add i.iconfont{
+    font-size:28px;
+}
+
+.gc_market_inner{
+    padding-bottom: 30px;
+    min-height:600px;
+}
+
+.gc_market_inner .market_item{
+    padding:20px 65px;
+    border:2px solid #f2f2f2;
+    background-color:#FAFAFA;
+}
+
+.gc_market_inner .market_item h3{
+    margin:20px;
+}
+
+.gc_market_inner .media-heading{
+    color:#7F7F7F;
+}
