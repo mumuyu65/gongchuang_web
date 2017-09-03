@@ -1,0 +1,22 @@
+.gc_comment_h{
+    padding:10px 40px;
+    font-size:22px;
+    border-bottom:2px solid #f2f2f2;
+}
+
+.hd_comment_context{
+    margin:10px 0;
+    height:170px;
+    overflow-x: hidden;
+    overflow-y:auto;
+    background-color: #EEEEEE;
+    padding:20px;
+}
+
+.hd_comment_icon li{
+    cursor: pointer;
+}
+
+.hd_comment_icon li .iconfont{
+    font-size:30px;
+}

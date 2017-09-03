@@ -323,5 +323,100 @@
 .gc_index_hd .hd_title>span{
     font-size:30px;
     color:#fff;
+}
 
+.gc_index_hd .hd_inner{
+    width:950px;
+    height:auto;
+    margin:0 auto;
+    padding:60px 0;
+}
+
+.gc_index_hd .hd_inner .hd_item{
+    width: 100%;
+    padding:0 80px;
+    margin-bottom:65px;
+    position: relative;
+}
+
+.gc_index_hd .hd_inner .hd_item .img_title{
+    position: absolute;
+    left:17px;
+    top:-40px;
+    z-index:2;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_h{
+    background-color:#F8F8F8;
+    padding:20px 40px 20px 100px;
+    position: relative;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_h .hd_item_des{
+    background-color:#EEEEEE;
+    padding:20px;
+    margin-bottom: 30px;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_h .hd_item_des>h5{
+    color:#888888;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_h .hd_item_des .hd_item_img{
+    margin:10px 0;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_h .hd_item_des .hd_item_img>img{
+    margin-bottom:5px;
+    margin-right:5px;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_h .hd_item_comment>li{
+    width:200px;
+    border-right:1px solid #888888;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_h .hd_item_comment>li:nth-child(3){
+    border-right:1px solid transparent;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_comment_inner{
+    margin-top:5px;
+    border:2px solid #fff;
+    padding:20px;
+    position: relative;
+    background-color: #F8F8F8;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_comment_inner .hd_icon{
+    position: absolute; top:-47px; left:375px; z-index:2;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_comment_inner .hd_icon>.iconfont{
+    font-size:45px; color:#fff;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_comment_inner .hd_icon_inner{
+    position: absolute; top:-36px; left:378px;z-index:2;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_comment_inner .hd_icon_inner .iconfont{
+    font-size:38px; color:#F8F8F8;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_comment_inner .media-object{
+    width:50px;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_comment_inner .media-body .hd_comment_content{
+    background-color: #EEEEEE;
+    padding:10px;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_comment_inner .media-body hr{
+    border-top:2px solid #F2F2F2;
+}
+
+.gc_index_hd .hd_inner .hd_item .hd_item_comment_inner .hd_more>a{
+    color:#333; font-size:16px; opacity: 0.6;
 }
