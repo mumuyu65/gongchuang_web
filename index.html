@@ -67,7 +67,7 @@
                 </li>
                 <li><a href="login.html">登录</a> <a href="register.html" style="margin-left:20px;">注册</a></li>
                 <li><a href="#"><i class="iconfont icon icon-lingdang" style="font-size:24px;"></i><span class="alert">99</span></a></li>
-                <li style="margin-right:0;"><a href="gc_shoppingcart.html"><i class="iconfont icon icon-gouwuchekong" style="margin-right:10px;"></i>购物车(0)</a></li>
+                <li class="shopping-cart"><a href="gc_shoppingcart.html"><i class="iconfont icon icon-gouwuchekong" style="margin-right:10px;"></i>购物车(<span id="shop_cart_num">0</span>)</a></li>
             </ul>
         </div>
     </header>
@@ -106,7 +106,7 @@
                 </ul>
                 <div class="gc_detail_inner">
                     <a href="gc_mall.html" class="btn-index pull-left">共创商城</a>
-                    <a class="btn-index pull-right more" href="#">更多</a>
+                    <a class="btn-index pull-right more" href="gc_mall.html">更多</a>
                     <div class="text-center inner-content">
                         <h3>V E L O U P 单车</h3>
                         <h5>轻客Tsinova 智慧电单车</h5>
@@ -124,15 +124,15 @@
                     </div>
                     <div class="pull-right" style="padding-top:100px;">
                         <h2>&yen;3000</h2>
-                        <a href="#">
+                        <a href="gc_order.html">
                             立即购买
                         </a>
-                        <a href="#">
+                        <a href="javascript:void(0)" id="add_to_cart">
                             <i class="iconfont icon icon-gouwuchekong"></i>
                             加入购物车
                         </a>
                     </div>
-                    <div class="text-center index_deadline">
+                    <div class="text-center index_deadline" id="index_deadline">
                         <img src="imgs/index/gc_index_car.png" style=" height: 330px;" />
                         <ul class="list-inline">
                             <li><h3>剩余</h3></li>
@@ -384,6 +384,7 @@
     </div>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/blueImp/md5.min.js"></script>
     <script type="text/javascript" src="js/api.js"></script>

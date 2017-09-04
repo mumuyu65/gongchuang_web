@@ -1,7 +1,7 @@
 /* 广告轮播图*/
 .gc_ad{
     width:100%;
-    height:705px;
+    height:auto;
     margin-bottom:10px;
     overflow: hidden;
 }
@@ -105,6 +105,10 @@
     text-decoration: none;
 }
 
+.more:hover{
+    color:#333333;
+}
+
 .gc_detail>.gc_detail_inner>.index_deadline{
     position: relative;
     z-index:1;
@@ -183,7 +187,6 @@
     color:#fff;
     background-color:#C02D28;
 }
-
 
 .gc_detail_inner #myCarousel_1 .list-inline>li{
     margin-right: 30px;

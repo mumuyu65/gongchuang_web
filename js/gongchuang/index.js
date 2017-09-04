@@ -6,6 +6,14 @@ var Index={
     Ts:Date.parse(new Date())/1000,
     init:function () {
         Index.carousel();   //轮播图
+
+        //加入购物车
+        $("#add_to_cart").click(function () {
+            Index.shoppingCart();
+        });
+
+        //产品查询
+        Index.products();
     },
     carousel:function () {
         var obj={
@@ -44,6 +52,68 @@ var Index={
                 alert(result.Msg);
             }
         })
+    },
+    shoppingCart:function () {
+        var cart = $('.shopping-cart');
+        var imgtodrag = $('#index_deadline>img');
+        if (imgtodrag) {
+            var imgclone = imgtodrag.clone().offset({
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
+            }).css({
+                'opacity': '0.5',
+                'position': 'absolute',
+                'height': '150px',
+                'width': '150px',
+                'z-index': '100'
+            })
+                .appendTo($('body'))
+                .animate({
+                    'top': cart.offset().top + 10,
+                    'left': cart.offset().left + 10,
+                    'width': 75,
+                    'height': 75
+                }, 1000, 'easeInOutExpo');
+
+            imgclone.animate({
+                'width': 0,
+                'height': 0
+            }, function () {
+                $(this).detach()
+            });
+
+            var num = parseInt($("#shop_cart_num").text());
+
+            num = num +1;
+
+            $("#shop_cart_num").text(num);
+        }
+    },
+    products:function () {
+      var obj={
+          recommend:1,
+          status:1,
+          begidx:0,
+          counts:1,
+          ver: Index.Version,
+          ts:Index.Ts
+      };
+
+      var Sign = Index.md(obj);
+      var params={
+            recommend:1,
+            status:1,
+            begidx:0,
+            counts:1,
+            ver: Index.Version,
+            ts:Index.Ts,
+            sign:Sign
+      };
+
+      $.post(api_config.productsQuery,params,function (result) {
+          console.log(result);
+      });
+
     },
     md:function (obj) {
         var _arr = new Array();

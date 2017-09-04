@@ -15,11 +15,16 @@ aside{
 .btn-index{
     font-size:18px; color:#fff;
     background-color:#c02d28;
-    width:140px;
-    height:40px;
-    line-height:40px;
+    width:130px;
+    height:60px;
+    line-height:60px;
     text-align: center;
     text-decoration: none;
+    background:url("../imgs/index/btn-index.png") 0 0 no-repeat;
+}
+
+.btn-index:hover{
+    color:#333;
 }
 
 .btn-index:hover{
@@ -68,7 +73,6 @@ a:hover,a:visited,a:focus{
 /* 轮播图*/
 .carousel-inner .item img{
     width:100%;
-    margin-top:50px;
 }
 
 /* header */
