@@ -65,6 +65,12 @@ a:hover,a:visited,a:focus{
     text-decoration: none;
 }
 
+/* 轮播图*/
+.carousel-inner .item img{
+    width:100%;
+    margin-top:50px;
+}
+
 /* header */
 header{
     background-color:#333333;
