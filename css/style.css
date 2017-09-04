@@ -127,6 +127,28 @@ header .list-inline>li>a .alert {
     line-height: 1;
 }
 
+header .dropdown-menu{
+    top:90%;
+    min-width:0;
+    background-color:#333333;
+    border-radius: 0;
+}
+
+header .dropdown-menu>li>a {
+    padding: 10px 13px;
+    background-color: #333333;
+    color: #fff;
+}
+
+header .dropdown-menu>li>a:hover{
+    background-color:#C02D28;
+    color:#fff;
+}
+
+header .dropdown-menu>li{
+    margin-top:-5px;
+}
+
 /* footer */
 footer{
     width:100%;
