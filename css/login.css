@@ -77,3 +77,8 @@
     margin:20px 0;
     font-size:16px;
 }
+
+.inner-w-1 .inner-wr:focus{
+    border:1px solid transparent;
+    outline:none;
+}

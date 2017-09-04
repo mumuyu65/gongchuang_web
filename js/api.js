@@ -3,7 +3,9 @@
  */
 
 
-var endpoint='https://api.yddtv.cn:10032';
+// var endpoint='https://api.yddtv.cn:10032';
+
+var endpoint = 'http://api.yddtv.cn:10031';
 
 var api_config={
     login:endpoint+'/cowin/login',   //登录

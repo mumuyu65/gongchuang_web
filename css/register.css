@@ -11,3 +11,7 @@
     right:0;
     top:0;
 }
+
+.register .inner-vcode:hover{
+    opacity: 0.8;
+}
