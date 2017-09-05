@@ -21,6 +21,7 @@ var Index={
 
         if($.cookie('gcUser')){
             Index.user = JSON.parse($.cookie('gcUser'));
+            console.log(Index.user);
         }
 
         //我的空间
@@ -239,8 +240,7 @@ var Index={
                       var comment_img = '<img src="'+arr[j]+'" />';
                       hd_item_img.append(comment_img);
                   }
-                  var hd_item =
-                      '<div class="hd_item">'+
+                  var hd_item = '<div class="hd_item" data-id="'+comment_data.id+'" data-index="'+i+'">'+
                           '<img class="img_title" src="'+comment_data.headurl+'" alt=""/>'+
                           '<div class="hd_item_h">'+
                               '<h4>'+comment_data.nick+'</h4>'+
@@ -249,13 +249,13 @@ var Index={
                                   '<h5>'+comment_data.text+ '</h5>'+
                                 '</div>'+
                               '<ul class="list-inline hd_item_comment">'+
-                                  '<li><img src="imgs/index/dianzan.png" alt="" />'+
+                                  '<li class="zan"><img src="imgs/index/dianzan.png" alt="" />'+
                                         '<span>'+comment_data.fans+'</span>'+
                                   '</li>'+
-                                  '<li class="text-center"><img src="imgs/index/comment.png" alt="" />'+
+                                  '<li class="text-center comment"><img src="imgs/index/comment.png" alt="" />'+
                                       '<span>'+comment_data.review+'</span>'+
                                   '</li>'+
-                                  '<li class="text-center"><img src="imgs/index/share.png" alt="" />'+
+                                  '<li class="text-center share"><img src="imgs/index/share.png" alt="" />'+
                                       '<span>'+comment_data.viewers+'</span>'+
                                   '</li>'+
                               '</ul>'+
@@ -269,6 +269,13 @@ var Index={
                       Index.commentList(comment_data.id,i);
                   }
               }
+
+              $("#hd_inner .hd_item .hd_item_comment .zan").click(function () {
+                   var fans= $(this).text();
+                   var Id =$(this).parent().parent().parent(".hd_item").attr("data-id");
+                   var idx= $(this).parent().parent().parent(".hd_item").attr("data-index");
+                   Index.thumbUp(idx,Id,fans);
+              });
           }
        })
     },
@@ -289,7 +296,7 @@ var Index={
         };
 
         $.post(api_config.talkView,params,function (result) {
-            console.log(result);
+            //console.log(result);
         });
         var hd_item_comment_inner=
             '<div class="hd_item_comment_inner">'+
@@ -337,6 +344,7 @@ var Index={
         //返回拼接信息
         return Index.add(H) + '：' + Index.add(M);
     },
+    //倒计时
     countDown:function (tm){
         //获取一个事件戳
         var time = new Date(tm);
@@ -348,6 +356,37 @@ var Index={
         var S = time.getSeconds();
         //返回拼接信息
         return Index.add(H) + '：' + Index.add(M)+ '：' + Index.add(S);
+    },
+    //点赞
+    thumbUp:function (idx,Id,num) {
+        if(Index.user){
+            var obj={
+                sid:Index.user.SessionId,
+                id:Id,
+                ver: Index.Version,
+                ts:Index.Ts
+            };
+
+            var Sign = Index.md(obj);
+
+            var params={
+                sid:Index.user.SessionId,
+                id:Id,
+                ver: Index.Version,
+                ts:Index.Ts,
+                sign:Sign
+            };
+
+            $.post(api_config.fans,params,function (result) {
+                if(result.Code == 3){
+                    $("#hd_inner .hd_item").eq(idx).find(".hd_item_comment .zan span").text(parseInt(num)+1);
+                }
+                alert(result.Msg);
+            });
+
+        }else{
+            window.open("login.html");
+        }
     },
     add:function(m) {
         return m < 10 ? '0' + m : m
@@ -414,7 +453,13 @@ Index.msTimeCount.prototype={
         }else{
             _this._hour=_this._minute=_this._seconds=0;
         }
+        if(_this._hour<10){
+            _this._hour = '0'+_this._hour;
+        }
         _this._hourHtmlObj.innerHTML=_this._hour;
+        if(_this._minute<10){
+            _this._minute = '0'+_this._minute;
+        }
         _this._minuteHtmlObj.innerHTML=_this._minute;
         if(_this._seconds<10){
             _this._seconds = '0'+_this._seconds;

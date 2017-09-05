@@ -36,7 +36,7 @@ var Login={
             $.post(api_config.login,params,function (result) {
                 if(result.Code ==3){
                     $.cookie('gcUser',JSON.stringify(result.Data));
-                    window.open('index.html');
+                    window.location.href='index.html';
                 }else{
                     alert(result.Msg);
                 }
