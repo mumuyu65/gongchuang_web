@@ -71,7 +71,7 @@ a:hover,a:visited,a:focus{
 }
 
 /* 轮播图*/
-.carousel-inner .item img{
+#myCarousel .carousel-inner .item img{
     width:100%;
 }
 

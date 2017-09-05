@@ -36,8 +36,8 @@
             <ul class="pull-right list-inline">
                 <li><a href="gc_mall.html">商城</a></li>
                 <li><a href="gc_transactionmall.html">流转商城</a></li>
-                <li><a href="gc_space.html">我的空间</a></li>
-                <li><a href="gc_asserts.html">我的资产</a></li>
+                <li><a href="javascript:void(0)" id="gc_space">我的空间</a></li>
+                <li><a href="javascript:void(0)" id="gc_asserts">我的资产</a></li>
                 <li style="display:none;" class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle" id="dropdownMenu1"
                        data-toggle="dropdown">
@@ -107,65 +107,26 @@
                 <div class="gc_detail_inner">
                     <a href="gc_mall.html" class="btn-index pull-left">共创商城</a>
                     <a class="btn-index pull-right more" href="gc_mall.html">更多</a>
-                    <div class="text-center inner-content">
-                        <h3>V E L O U P 单车</h3>
-                        <h5>轻客Tsinova 智慧电单车</h5>
-                        <h5>锂电池助力电动自行车 电动车北京实体店</h5>
-                    </div>
-                    <div class="pull-left" style="padding-top:100px;">
-                        <h4><span style="color:#888888; text-decoration: line-through;">上海：5000</span><span style="color:#C02D28;">(已售尽)</span></h4>
-                        <h4 style="color:#C02D28; margin:20px 0;">广州: 5000 </h4>
-                        <h4 style="margin-top:50px;">颜色：</h4>
-                        <ol class="list-inline">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ol>
-                    </div>
-                    <div class="pull-right" style="padding-top:100px;">
-                        <h2>&yen;3000</h2>
-                        <a href="gc_order.html">
-                            立即购买
-                        </a>
-                        <a href="javascript:void(0)" id="add_to_cart">
-                            <i class="iconfont icon icon-gouwuchekong"></i>
-                            加入购物车
-                        </a>
-                    </div>
-                    <div class="text-center index_deadline" id="index_deadline">
-                        <img src="imgs/index/gc_index_car.png" style=" height: 330px;" />
-                        <ul class="list-inline">
-                            <li><h3>剩余</h3></li>
-                            <li class="timer"><h3>18</h3></li>
-                            <li>:</li>
-                            <li class="timer"><h3>12</h3></li>
-                            <li>:</li>
-                            <li class="timer"><h3>13</h3></li>
-                        </ul>
-                    </div>
-                    <div class="gc_divided">
-                        <hr/>
-                        <h5 class="text-center">猜你喜欢</h5>
-                    </div>
-                    <div id="myCarousel_1" class="carousel slide text-center">
-                        <!-- 轮播（Carousel）项目 -->
+                    <!-- 商城产品轮播（Carousel）图-->
+                    <div id="myCarousel_products" class="carousel slide">
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <ul class="list-inline">
-                                    <li><img src="imgs/index/gc_index_car_sm.png" alt="First slide"></li>
-                                    <li> <img src="imgs/index/gc_index_car_sm.png" alt="First slide"></li>
-                                    <li> <img src="imgs/index/gc_index_car_sm.png" alt="First slide"></li>
-                                    <li> <img src="imgs/index/gc_index_car_sm.png" alt="First slide"></li>
-                                </ul>
-                            </div>
                         </div>
-                        <!-- 轮播（Carousel）导航 -->
-                        <a class="carousel-control left" href="#myCarousel"
-                           data-slide="prev" style="font-size:50px; top:40px; color:#9b9b9b;">&lsaquo;
-                        </a>
-                        <a class="carousel-control right" href="#myCarousel"
-                           data-slide="next" style="font-size:50px; top:40px; color:#9b9b9b;">&rsaquo;
-                        </a>
+                        <div class="gc_divided">
+                            <hr/>
+                            <h5 class="text-center">猜你喜欢</h5>
+                        </div>
+                        <!-- 轮播（Carousel）指标 -->
+                        <div class="text-center products_indicators">
+                            <ol class="list-inline" id="products_indicators">
+                            </ol>
+                            <!-- 轮播（Carousel）导航 -->
+                            <a class="carousel-control left" href="#myCarousel_products"
+                               data-slide="prev">&lsaquo;
+                            </a>
+                            <a class="carousel-control right" href="#myCarousel_products"
+                               data-slide="next">&rsaquo;
+                            </a>
+                        </div>
                     </div>
                 </div>
             </aside>
@@ -178,170 +139,7 @@
                     </a>
                 </div>
                 <div class="hd_inner">
-                    <div class="hd_item">
-                        <img class="img_title" src="imgs/index/timg.png" alt=""/>
-                        <div class="hd_item_h">
-                            <h4>王某某</h4>
-                            <h5>12:30</h5>
-                            <div class="hd_item_des">
-                                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto consequatur deleniti eum eveniet explicabo incidunt ipsum magni maiores molestias nulla obcaecati possimus quasi, repellat sunt. Accusamus harum placeat temporibus.
-                                </h5>
-                                <div class="hd_item_img">
-                                    <img src="imgs/mall/mall_car.png" alt="">
-                                    <img src="imgs/mall/mall_car.png" alt="">
-                                </div>
-                            </div>
-                            <ul class="list-inline hd_item_comment">
-                                <li>
-                                    <img src="imgs/index/dianzan.png" alt="" />
-                                    <span style="vertical-align: middle;">2245</span>
-                                </li>
-                                <li class="text-center">
-                                    <img src="imgs/index/comment.png" alt="" />
-                                    <span style="vertical-align: middle;">2245</span>
-                                </li>
-                                <li class="text-center">
-                                    <img src="imgs/index/share.png" alt="" />
-                                    <span style="vertical-align: middle;">2245</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="hd_item_comment_inner">
-                            <div class="hd_icon" >
-                                <i class="iconfont icon icon-xiangshang"></i>
-                            </div>
-                            <div class="hd_icon_inner">
-                                <i class="iconfont icon icon-xiangshang"></i>
-                            </div>
-                            <div class="media">
-                                <a class="media-left" href="#">
-                                    <img class="media-object" src="imgs/index/timg.png"
-                                         alt=""/>
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">媒体标题</h4>
-                                    <h5>12:30</h5>
-                                    <div class="hd_comment_content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a class="media-left" href="#">
-                                    <img class="media-object" src="imgs/index/timg.png"
-                                         alt=""/>
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">媒体标题</h4>
-                                    <h5>12:30</h5>
-                                    <div class="hd_comment_content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a class="media-left" href="#">
-                                    <img class="media-object" src="imgs/index/timg.png"
-                                         alt=""/>
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">媒体标题</h4>
-                                    <h5>12:30</h5>
-                                    <div class="hd_comment_content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
-                                    </div>
-                                </div>
-                            </div>
-                            <hr/>
-                            <div class="text-center hd_more">
-                                <a href="gc_comment_details.html">
-                                    查看更多 <i class="iconfont icon icon-xiangxia-copy"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hd_item">
-                        <img class="img_title" src="imgs/index/timg.png" alt=""/>
-                        <div class="hd_item_h">
-                            <h4>王某某</h4>
-                            <h5>12:30</h5>
-                            <div class="hd_item_des">
-                                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto consequatur deleniti eum eveniet explicabo incidunt ipsum magni maiores molestias nulla obcaecati possimus quasi, repellat sunt. Accusamus harum placeat temporibus.
-                                </h5>
-                                <div class="hd_item_img">
-                                    <img src="imgs/mall/mall_car.png" alt="">
-                                    <img src="imgs/mall/mall_car.png" alt="">
-                                </div>
-                            </div>
-                            <ul class="list-inline hd_item_comment">
-                                <li>
-                                    <img src="imgs/index/dianzan.png" alt="" />
-                                    <span style="vertical-align: middle;">2245</span>
-                                </li>
-                                <li class="text-center">
-                                    <img src="imgs/index/comment.png" alt="" />
-                                    <span style="vertical-align: middle;">2245</span>
-                                </li>
-                                <li class="text-center">
-                                    <img src="imgs/index/share.png" alt="" />
-                                    <span style="vertical-align: middle;">2245</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="hd_item_comment_inner">
-                            <div class="hd_icon" >
-                                <i class="iconfont icon icon-xiangshang"></i>
-                            </div>
-                            <div class="hd_icon_inner">
-                                <i class="iconfont icon icon-xiangshang"></i>
-                            </div>
-                            <div class="media">
-                                <a class="media-left" href="#">
-                                    <img class="media-object" src="imgs/index/timg.png"
-                                         alt=""/>
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">媒体标题</h4>
-                                    <h5>12:30</h5>
-                                    <div class="hd_comment_content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a class="media-left" href="#">
-                                    <img class="media-object" src="imgs/index/timg.png"
-                                         alt=""/>
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">媒体标题</h4>
-                                    <h5>12:30</h5>
-                                    <div class="hd_comment_content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a class="media-left" href="#">
-                                    <img class="media-object" src="imgs/index/timg.png"
-                                         alt=""/>
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">媒体标题</h4>
-                                    <h5>12:30</h5>
-                                    <div class="hd_comment_content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!
-                                    </div>
-                                </div>
-                            </div>
-                            <hr/>
-                            <div class="text-center hd_more">
-                                <a href="gc_comment_details.html">
-                                    查看更多 <i class="iconfont icon icon-xiangxia-copy"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="hd_inner"></div>
                     <div style="width:960px; margin:30px auto; position: relative;">
                         <img src="imgs/index/index_comment.png" alt="">
                         <input type="text" class="form-control"

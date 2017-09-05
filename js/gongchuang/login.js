@@ -34,10 +34,9 @@ var Login={
             };
             
             $.post(api_config.login,params,function (result) {
-                //console.log(result);
                 if(result.Code ==3){
                     $.cookie('gcUser',JSON.stringify(result.Data));
-                    window.location.href='index.html';
+                    window.open('index.html');
                 }else{
                     alert(result.Msg);
                 }

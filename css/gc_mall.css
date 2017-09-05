@@ -15,6 +15,49 @@
     margin-right:40px;
 }
 
+/* 轮播图 */
+.gc_mall .carousel-inner .item{
+    height:600px;
+    position: relative;
+}
+
+.gc_mall .carousel-inner .item .item_inner{
+    position: absolute;
+    left: 50px;
+    top:80px;
+}
+
+.gc_mall .carousel-inner .item .item_inner>h1{
+    font-size:45px;
+}
+
+.gc_mall .carousel-inner .item .item_inner .item_desc{
+    margin-top:80px;
+}
+
+.gc_mall .carousel-inner .item .item_inner .item_desc>li{
+    margin-right:60px;
+}
+
+.gc_mall .carousel-inner .item .item_inner .item_desc>li:nth-child(3){
+    margin-right:0;
+}
+
+.gc_mall .carousel-inner .item .item_inner .item_icon{
+    margin-top:50px;
+}
+
+.gc_mall .carousel-inner .item .item_inner .item_icon>li{
+    margin-right:65px;
+}
+
+.gc_mall .carousel-inner .item .item_inner .item_icon>li>a{
+    padding:10px 30px;
+    font-size:16px;
+    color:#333;
+    border:1px solid #333;
+}
+
 .gc_mall .mall_title{
     height:200px;
     padding:50px 0;
