@@ -34,13 +34,53 @@
             </a>
         </div>
         <ul class="pull-right list-inline">
-            <li><a href="gc_mall.html">商城</a></li>
+            <li class="active"><a href="gc_mall.html">商城</a></li>
             <li><a href="gc_transactionmall.html">流转商城</a></li>
-            <li><a href="gc_space.html">我的空间</a></li>
-            <li><a href="gc_asserts.html">我的资产</a></li>
-            <li><a href="login.html">登录</a> <a href="register.html" style="margin-left:20px;">注册</a></li>
-            <li><a href="#"><i class="iconfont icon icon-lingdang" style="font-size:24px;"></i><span class="alert">99</span></a></li>
-            <li style="margin-right:0;"><a href="gc_shoppingcart.html"><i class="iconfont icon icon-gouwuchekong" style="margin-right:10px;"></i>购物车(0)</a></li>
+            <li><a href="javascript:void(0)" id="gc_space">我的空间</a></li>
+            <li><a href="javascript:void(0)" id="gc_asserts">我的资产</a></li>
+            <li style="display:none;" class="dropdown" id="gc_user_logined">
+                <a href="javascript:void(0)" class="dropdown-toggle" id="dropdownMenu1"
+                   data-toggle="dropdown" style="color:#C02D28;">
+                    <span class="gc_nick">主题</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="padding-bottom:0;">
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="gc_wallet.html" class="text-center">我的钱包</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="gc_order.html">我的订单</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">我的流转</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="gc_contract.html">我的合同</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="gc_account.html">账号管理</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="javascript:void(0)" id="gc_logout">退出</a>
+                    </li>
+                </ul>
+            </li>
+            <li id="gc_user_login"><a href="login.html">登录</a> <a href="register.html" style="margin-left:20px;">注册</a></li>
+            <li class="dropdown gc_notice" id="gc_notice" style="display: none;">
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2">
+                    <i class="iconfont icon icon-lingdang" style="font-size:24px;"></i>
+                    <span class="alert">0</span>
+                </a>
+                <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                    <div class="notice-inner">
+                        <i class="iconfont icon icon-xiangshang"></i>
+                        <div class="notice-info">
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="shopping-cart"><a href="gc_shoppingcart.html"><i class="iconfont icon icon-gouwuchekong" style="margin-right:10px;"></i>购物车(<span id="shop_cart_num">0</span>)</a></li>
         </ul>
     </div>
 </header>
@@ -48,84 +88,97 @@
 <section class="gc_mall">
     <div class="layout">
         <!-- 轮播图 -->
-        <aside>
-            <div id="myCarousel" class="carousel slide">
+        <aside class="gc_mall_ad">
+            <div id="gc_mall_myCarousel" class="carousel slide">
                 <!-- 轮播（Carousel）指标 -->
                 <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#gc_mall_myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#gc_mall_myCarousel" data-slide-to="1"></li>
+                    <li data-target="#gc_mall_myCarousel" data-slide-to="2"></li>
                 </ol>
                 <!-- 轮播（Carousel）项目 -->
-                <div class="carousel-inner" id="gc_mall_carousel">
-                </div>
+                <div class="carousel-inner" id="gc_mall_carousel"></div>
             </div>
         </aside>
-        <aside>
+        <!-- 今日截止-->
+        <aside style="width:100%;overflow:hidden;">
             <div class="mall_title">
-                    <span>今日截止</span>
-                    <span>Today's deadline</span>
+                <span>今日截止</span>
+                <span>Today's deadline</span>
             </div>
-            <div class="mall_1">
-                <div id="myCarousel_1" class="carousel slide">
-                    <!-- 轮播（Carousel）指标 -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel_1" data-slide-to="0"  class="active"></li>
-                        <li data-target="#myCarousel_1" data-slide-to="1"></li>
-                        <li data-target="#myCarousel_1" data-slide-to="2"></li>
-                    </ol>
-                    <!-- 轮播（Carousel）项目 -->
-                    <div class="carousel-inner">
-                        <div class="item active" style="position: relative;">
-                            <div class="media" style="width:560px; height:410px; background-color: #F8F8F8; padding:30px;">
-                                <div class="media-body">
-                                    <h4 class="media-heading"><img src="imgs/mall/square-2.png" alt=""></h4>
-                                    <h3>轻客Tsinova</h3>
-                                    <h3>智慧电单车</h3>
-                                    <div style="margin-top:50px;">
-                                        <img src="imgs/mall/mall_money.png" alt=""  />
-                                    </div>
-                                </div>
-                                <a class="media-right" href="#">
-                                    <img class="media-object" src="imgs/mall/mall_car.png" >
-                                </a>
-                                <div class="text-center mall_deadline">
-                                    <ul class="list-inline">
-                                        <li><h3>剩余</h3></li>
-                                        <li class="timer"><h3>18</h3></li>
-                                        <li>:</li>
-                                        <li class="timer"><h3>12</h3></li>
-                                        <li>:</li>
-                                        <li class="timer"><h3>13</h3></li>
-                                    </ul>
-                                </div>
-                            </div>
+            <div class="mall_1" id="today_deadline">
+                <ol class="carousel-indicators" >
+                    <li></li>
+                    <li class="active"></li>
+                    <li></li>
+                </ol>
+                <div class="media" style="left:-280px;position:absolute;display:inline-block;width:560px; height:410px; background-color: #F8F8F8; padding:30px;">
+                    <div class="media-body">
+                        <h4 class="media-heading"><img src="imgs/mall/square-2.png" alt=""></h4>
+                        <h3>轻客Tsinova111</h3>
+                        <h3>智慧电单车</h3>
+                        <div style="margin-top:50px;">
+                            <img src="imgs/mall/mall_money.png" alt=""  />
                         </div>
-                        <div class="item" style="position: relative;">
-                            <div class="media" style="width:560px; height:410px; background-color: #F8F8F8; padding:30px;">
-                                <div class="media-body">
-                                    <h4 class="media-heading"><img src="imgs/mall/square-2.png" alt=""></h4>
-                                    <h3>轻客Tsinova</h3>
-                                    <h3>智慧电单车</h3>
-                                    <div style="margin-top:50px;">
-                                        <img src="imgs/mall/mall_money.png" alt=""  />
-                                    </div>
-                                </div>
-                                <a class="media-right" href="#">
-                                    <img class="media-object" src="imgs/mall/mall_car.png" >
-                                </a>
-                                <div class="text-center mall_deadline">
-                                    <ul class="list-inline">
-                                        <li><h3>剩余</h3></li>
-                                        <li class="timer"><h3>18</h3></li>
-                                        <li>:</li>
-                                        <li class="timer"><h3>12</h3></li>
-                                        <li>:</li>
-                                        <li class="timer"><h3>13</h3></li>
-                                    </ul>
-                                </div>
-                            </div>
+                    </div>
+                    <a class="media-right" href="#">
+                        <img class="media-object" src="imgs/mall/mall_car.png" >
+                    </a>
+                    <div class="text-center mall_deadline">
+                        <ul class="list-inline">
+                            <li><h3>剩余</h3></li>
+                            <li class="timer"><h3>18</h3></li>
+                            <li>:</li>
+                            <li class="timer"><h3>12</h3></li>
+                            <li>:</li>
+                            <li class="timer"><h3>13</h3></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="media" style="left:300px;position:absolute;display:inline-block;width:560px; height:410px; background-color: #F8F8F8; padding:30px;">
+                    <div class="media-body">
+                        <h4 class="media-heading"><img src="imgs/mall/square-2.png" alt=""></h4>
+                        <h3>轻客Tsinova222</h3>
+                        <h3>智慧电单车</h3>
+                        <div style="margin-top:50px;">
+                            <img src="imgs/mall/mall_money.png" alt=""  />
                         </div>
+                    </div>
+                    <a class="media-right" href="#">
+                        <img class="media-object" src="imgs/mall/mall_car.png" >
+                    </a>
+                    <div class="text-center mall_deadline">
+                        <ul class="list-inline">
+                            <li><h3>剩余</h3></li>
+                            <li class="timer"><h3>18</h3></li>
+                            <li>:</li>
+                            <li class="timer"><h3>12</h3></li>
+                            <li>:</li>
+                            <li class="timer"><h3>13</h3></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="media" style="left:880px;position:absolute;display:inline-block;width:560px; height:410px; background-color: #F8F8F8; padding:30px;">
+                    <div class="media-body">
+                        <h4 class="media-heading"><img src="imgs/mall/square-2.png" alt=""></h4>
+                        <h3>轻客Tsinova333</h3>
+                        <h3>智慧电单车</h3>
+                        <div style="margin-top:50px;">
+                            <img src="imgs/mall/mall_money.png" alt=""  />
+                        </div>
+                    </div>
+                    <a class="media-right" href="#">
+                        <img class="media-object" src="imgs/mall/mall_car.png" >
+                    </a>
+                    <div class="text-center mall_deadline">
+                        <ul class="list-inline">
+                            <li><h3>剩余</h3></li>
+                            <li class="timer"><h3>18</h3></li>
+                            <li>:</li>
+                            <li class="timer"><h3>12</h3></li>
+                            <li>:</li>
+                            <li class="timer"><h3>13</h3></li>
+                        </ul>
                     </div>
                 </div>
             </div>

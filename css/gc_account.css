@@ -38,6 +38,27 @@
     height:auto;
 }
 
+.gc_account .account-content .gc_address_new_content .account-profile{
+    position: relative;
+}
+
+.gc_account .account-content .gc_address_new_content .account-profile>img{
+    margin-left:20px;
+    width:150px;
+    height: 150px;
+}
+
+#gc_account_intro{
+    vertical-align: top;
+    margin-left:20px;
+    padding:20px;
+    width: 82%;
+    height:200px;
+    border:1px solid #A9A9A9;
+    display: inline-block;
+    outline:none;
+}
+
 .gc_account .nav.nav-tabs>li>a{
     color:#333;
 }

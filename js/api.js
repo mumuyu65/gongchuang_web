@@ -17,6 +17,7 @@ var api_config={
     personSetting:endpoint+'/cowin/userinfo/update',  //个人设置
     authentication:endpoint+'/cowin/user/authen',  //身份验证
     checkAuthen:endpoint+'/cowin/user/authen/query',   //查询身份认证
+    downloadProfile:endpoint+'/cowin/head/head',   //下载头像
     messageQuery:endpoint+'/cowin/msg/query',   //消息查询
     talkQuery:endpoint+'/cowin/talk/query',      //查询说说
     talkView:endpoint+'/cowin/talk/view',       //查看说说
