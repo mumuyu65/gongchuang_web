@@ -21,6 +21,8 @@ aside{
     text-align: center;
     text-decoration: none;
     background:url("../imgs/index/btn-index.png") 0 0 no-repeat;
+    position: relative;
+    z-index:3;
 }
 
 .btn-index:hover{
@@ -157,6 +159,37 @@ header .dropdown-menu>li>a:hover{
 
 header .dropdown-menu>li{
     margin-top:-5px;
+}
+
+header .gc_notice .dropdown-menu{
+    left:auto;
+    right:-4px;
+    border:none;
+    min-width:300px;
+    background-color:#fff;
+    padding:0;
+    display:none;
+}
+
+header .gc_notice:hover .dropdown-menu{
+    display: block;
+}
+
+header .gc_notice .dropdown-menu .notice-inner{
+    padding:8px 15px;
+    position: relative;
+}
+
+header .gc_notice .dropdown-menu .notice-inner .iconfont{
+    position: absolute;
+    top:-40px;
+    right:20px;
+    color:#fff;
+}
+
+header .gc_notice .dropdown-menu .notice-inner .notice-item img{
+    width:50px;
+    height:50px;
 }
 
 /* footer */

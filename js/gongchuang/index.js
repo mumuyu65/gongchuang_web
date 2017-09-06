@@ -22,6 +22,17 @@ var Index={
         if($.cookie('gcUser')){
             Index.user = JSON.parse($.cookie('gcUser'));
             console.log(Index.user);
+            $("#gc_user_logined").css('display','inline-block');
+            $("#gc_user_login").css('display','none');
+
+            $("#dropdownMenu1 .gc_nick").text(Index.user.Nick);
+
+            $("#gc_logout").click(function () {
+                Index.logout();
+            });
+
+            $("#gc_notice").css("display","inline-block");
+            Index.notice();   //通知查询
         }
 
         //我的空间
@@ -39,6 +50,55 @@ var Index={
                 window.open("gc_asserts.html");
             }else{
                 window.open("login.html");
+            }
+        });
+    },
+    //通知
+    notice:function () {
+        var obj={
+            sid:Index.user.SessionId,
+            begidx:0,
+            counts:10,
+            flag:0,
+            ver: Index.Version,
+            ts:Index.Ts
+        };
+
+        var Sign=Index.md(obj);
+
+        var params={
+            sid:Index.user.SessionId,
+            begidx:0,
+            counts:10,
+            flag:0,
+            ver: Index.Version,
+            ts:Index.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.messageQuery,params,function (result) {
+            console.log(result);
+            if(result.Code ==3){
+                var notice_num = result.Data.Total;
+                $("#gc_notice .alert").text(notice_num);
+                if(notice_num == 0){
+                    $('#gc_notice .notice-info').addClass("text-center");
+                    $('#gc_notice .notice-info').text("暂无任何消息通知");
+                }else{
+                    var notice_data = result.Data.Detail;
+
+                    var notice_len = notice_data.length;
+                    $('#gc_notice .notice-info').empty();
+                    for(var i =0 ; i < notice_len;i++){
+                        var notice_info = '<ul class="notice-item list-inline">'+
+                            ' <li><img src="'+notice_data[i].imgurl+'" alt="" class="img-circle" /></li>'+
+                            ' <li><h4>'+notice_data[i].title+'</h4></li>'+
+                            '<li><h5>'+notice_data[i].content+'</h5></li>'+
+                        ' </ul>';
+
+                        $('#gc_notice .notice-info').append(notice_info);
+                    }
+                }
             }
         });
     },
@@ -264,10 +324,6 @@ var Index={
                   $("#hd_inner").append(hd_item);
 
                   $("#hd_inner .hd_item").eq(i).find(".hd_item_des").append(hd_item_img);
-
-                  if(comment_data.review>0){
-                      Index.commentList(comment_data.id,i);
-                  }
               }
 
               $("#hd_inner .hd_item .hd_item_comment .zan").click(function () {
@@ -276,55 +332,21 @@ var Index={
                    var idx= $(this).parent().parent().parent(".hd_item").attr("data-index");
                    Index.thumbUp(idx,Id,fans);
               });
+
+              $("#hd_inner .hd_item .hd_item_comment .comment").click(function () {
+                  var Id =$(this).parent().parent().parent(".hd_item").attr("data-id");
+                  Index.commentList(Id);
+              });
           }
        })
     },
-    commentList:function(Id,idx){
-        var obj={
-            id:Id,
-            ver: Index.Version,
-            ts:Index.Ts
-        };
-
-        var Sign = Index.md(obj);
-
-        var params = {
-            id:Id,
-            ver: Index.Version,
-            ts:Index.Ts,
-            sign:Sign
-        };
-
-        $.post(api_config.talkView,params,function (result) {
-            //console.log(result);
-        });
-        var hd_item_comment_inner=
-            '<div class="hd_item_comment_inner">'+
-                '<div class="hd_icon" >'+
-                    '<i class="iconfont icon icon-xiangshang"></i>'+
-                '</div>'+
-                '<div class="hd_icon_inner">'+
-                    '<i class="iconfont icon icon-xiangshang"></i>'+
-                '</div>'+
-                '<div class="media">'+
-                    '<a class="media-left" href="#">'+
-                        '<img class="media-object" src="imgs/index/timg.png" alt=""/>'+
-                    '</a>'+
-                    '<div class="media-body">'+
-                        '<h4 class="media-heading">媒体标题</h4>'+
-                        '<h5>12:30</h5>'+
-                        '<div class="hd_comment_content">'+
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto, consectetur consequuntur doloremque dolorum earum eius excepturi id inventore minus mollitia perferendis porro quia quos rem, soluta veritatis vitae, voluptatum!'+
-                        '</div>'+
-                    '</div>'+
-                '</div>'+
-                '<hr/>'+
-                '<div class="text-center hd_more">'+
-                    '<a href="gc_comment_details.html">'+
-                    '查看更多 <i class="iconfont icon icon-xiangxia-copy"></i>'+
-                    '</a>'+
-                '</div>'+
-            '</div>';
+    //评论
+    commentList:function(Id){
+        if(Index.user){
+            window.open('gc_comment_details.html?Id='+Id);
+        }else{
+            window.open("login.html");
+        }
     },
     dateStamp:function (tm){
         //获取一个事件戳
@@ -387,6 +409,31 @@ var Index={
         }else{
             window.open("login.html");
         }
+    },
+    //退出
+    logout:function () {
+        var obj={
+            sid:Index.user.SessionId,
+            ver: Index.Version,
+            ts:Index.Ts
+        };
+
+        var Sign = Index.md(obj);
+
+        var params={
+            sid:Index.user.SessionId,
+            ver: Index.Version,
+            ts:Index.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.logout,params,function (result) {
+            if(result.Code ==3){
+                $.cookie('gcUser', '', { expires: -1 }); // 删除 cookie
+                window.location.href="index.html";
+            }
+            alert(result.Msg);
+        });
     },
     add:function(m) {
         return m < 10 ? '0' + m : m

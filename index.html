@@ -38,10 +38,10 @@
                 <li><a href="gc_transactionmall.html">流转商城</a></li>
                 <li><a href="javascript:void(0)" id="gc_space">我的空间</a></li>
                 <li><a href="javascript:void(0)" id="gc_asserts">我的资产</a></li>
-                <li style="display:none;" class="dropdown">
+                <li style="display:none;" class="dropdown" id="gc_user_logined">
                     <a href="javascript:void(0)" class="dropdown-toggle" id="dropdownMenu1"
-                       data-toggle="dropdown">
-                        主题
+                       data-toggle="dropdown" style="color:#C02D28;">
+                        <span class="gc_nick">主题</span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -61,12 +61,25 @@
                             <a role="menuitem" tabindex="-1" href="gc_account.html">账号管理</a>
                         </li>
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="javascript:void(0)">退出</a>
+                            <a role="menuitem" tabindex="-1" href="javascript:void(0)" id="gc_logout">退出</a>
                         </li>
                     </ul>
                 </li>
-                <li><a href="login.html">登录</a> <a href="register.html" style="margin-left:20px;">注册</a></li>
-                <li><a href="#"><i class="iconfont icon icon-lingdang" style="font-size:24px;"></i><span class="alert">99</span></a></li>
+                <li id="gc_user_login"><a href="login.html">登录</a> <a href="register.html" style="margin-left:20px;">注册</a></li>
+                <li class="dropdown gc_notice" id="gc_notice" style="display: none;">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2">
+                        <i class="iconfont icon icon-lingdang" style="font-size:24px;"></i>
+                        <span class="alert">0</span>
+                    </a>
+                    <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                        <div class="notice-inner">
+                            <i class="iconfont icon icon-xiangshang"></i>
+                            <div class="notice-info">
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="shopping-cart"><a href="gc_shoppingcart.html"><i class="iconfont icon icon-gouwuchekong" style="margin-right:10px;"></i>购物车(<span id="shop_cart_num">0</span>)</a></li>
             </ul>
         </div>
