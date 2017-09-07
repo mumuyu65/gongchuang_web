@@ -83,10 +83,80 @@
     position:relative;
 }
 
+.gc_mall .mall_1 .media{
+     position:absolute;
+     display:inline-block;
+     width:560px;
+     height:410px;
+     background-color: #F8F8F8;
+     padding:30px;
+     top:0;
+     margin-top:0;
+ }
+
+.gc_mall .mall_1 .media-1{
+     left:-280px;
+ }
+
+.gc_mall .mall_1 .media-2{
+    left:300px;
+}
+
+.gc_mall .mall_1 .media-3{
+    left:880px;
+}
+
+.gc_mall .mall_1 .media .media-body .media-heading{
+    position: relative;
+}
+
+.gc_mall .mall_1 .media .media-body .media-inner{
+    margin-top:50px;
+    position:relative;
+}
+
+.gc_mall .mall_1 .media .mall-media-icon{
+    position: absolute;
+    left:20px;
+    top:10px;
+    color:#fff;
+}
+
+.gc_mall .mall_1 .media .media-object{
+    width:277px;
+    height:248px;
+}
+
+.gc_mall .mall_1 .media .mall-media-icon .icon-c{
+    display: inline-block; width:8px; height:8px;
+    border-radius: 50%; background-color:#fff;
+    vertical-align: middle;
+}
+
+.gc_mall .mall_1 .media .mall-media-icon .icon-t{
+    font-size:26px;
+}
+
+.gc_mall .mall_1 .media .mall-media-icon .icon-y{
+    font-size:20px
+}
+
 .gc_mall .mall_1 .carousel-indicators>li{
     width:85px;
     height:5px;
     border-radius:0;
+}
+
+.mall_deadline li{
+    font-size:20px;
+}
+
+.mall_deadline .timer h3{
+    padding:5px 8px;
+    background-color:#333;
+    color:#fff;
+    border-radius: 10px;
+
 }
 
 /* 商品 */
@@ -110,7 +180,7 @@
 }
 
 .gc_mall .mall_goods>.goods_item .item-desc p{
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .gc_mall .mall_goods>.goods_item .item-desc h4{

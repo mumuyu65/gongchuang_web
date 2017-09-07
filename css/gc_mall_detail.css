@@ -21,6 +21,11 @@
     margin-right:130px;
 }
 
+.gc_mall_detail .desc .desc_3 img{
+    width:463px;
+    height:415px;
+}
+
 .gc_mall_detail .desc .desc_3>.list-inline>li{
     font-size:24px;
 }

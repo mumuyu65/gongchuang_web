@@ -186,7 +186,7 @@ var gcMall={
             recommend:1,
             status:1,
             begidx:0,
-            counts:10,
+            counts:3,
             ver: gcMall.Version,
             ts:gcMall.Ts
         };
@@ -204,41 +204,83 @@ var gcMall={
         };
 
         $.post(api_config.productsQuery,params,function(result){
-            console.log(result);
-
+            //console.log(result);
             if(result.Code ==3){
+                var mall_recommand_tmp=result.Data.Detail;
+                var tmp_len = mall_recommand_tmp.length;
+                $("#today_deadline .carousel-indicators").empty();
+                $("#mall_recommand").empty();
+                for(var i= 0; i<tmp_len;i++){
+                    var recommand_icon = '<li></li>';
+                    $("#today_deadline .carousel-indicators").append(recommand_icon);
+                    var Idx = i+1;
+                    var mall_recommand = '<div class="media media-'+Idx+'">'+
+                        '<div class="media-body">'+
+                            '<h4 class="media-heading">'+
+                                '<img src="imgs/mall/square-2.png">'+
+                                ' <div class="mall-media-icon">'+
+                                    '  <span class="icon-c"></span>'+
+                                    ' <span class="icon-t">'+mall_recommand_tmp[i].name+'</span>'+
+                                '   </div>'+
+                            '  </h4>'+
+                        '  <h3>'+mall_recommand_tmp[i].web_intro+'</h3>'+
+                    '  <div class="media-inner">'+
+                    ' <img src="imgs/mall/mall_money.png"/>'+
+                    ' <div class="mall-media-icon">'+
+                    '  <span class="icon-t">'+mall_recommand_tmp[i].discount_price+'</span>'+
+                    '   <span class="icon-y">元</span>'+
+                    '   </div>'+
+                    '   </div>'+
+                    '   </div>'+
+                    '  <a class="media-right" href="#">'+
+                    '    <img class="media-object" src="'+mall_recommand_tmp[i].coverurl+'" >'+
+                    '    </a>'+
+                    '    <div class="text-center mall_deadline">'+
+                    '    <ul class="list-inline">'+
+                    '    <li><h3>剩余</h3></li>'+
+                    '    <li class="timer"><h3>18</h3></li>'+
+                    '   <li>:</li>'+
+                    '<li class="timer"><h3>12</h3></li>'+
+                    '    <li>:</li>'+
+                    '<li class="timer"><h3>13</h3></li>'+
+                    '    </ul>'+
+                    '    </div>'+
+                    '    </div>';
 
+                    $("#mall_recommand").append(mall_recommand);
+                }
 
-            }
-        });
+                $("#today_deadline .carousel-indicators li").eq(1).addClass("active");
 
-        $("#today_deadline li").click(function () {
-            $(this).siblings().removeClass('active');
-            $(this).addClass("active");
-            var Index = $(this).index();
-            if(Index==0){
-                $("#today_deadline .media").eq(Index+2).animate(
-                    { left: '1460px'}, 2000);
-                $("#today_deadline .media").eq(Index).animate(
-                    { left: '+300px' }, 2000);
-                $("#today_deadline .media").eq(Index+1).animate(
-                    { left: '+880px' }, 2000);
-            }
-            if(Index==1){
-                $("#today_deadline .media").eq(Index-1).animate(
-                    { left: '-280px' }, 2000);
-                $("#today_deadline .media").eq(Index).animate(
-                    { left: '300px' }, 2000);
-                $("#today_deadline .media").eq(Index+1).animate(
-                    { left: '880px' }, 2000);
-            }
-            if(Index==2){
-                $("#today_deadline .media").eq(Index-2).animate(
-                    { left: '-880px' }, 2000);
-                $("#today_deadline .media").eq(Index).animate(
-                    { left: '300px' }, 2000);
-                $("#today_deadline .media").eq(Index-1).animate(
-                    { left: '-280px' }, 2000);
+                $("#today_deadline li").click(function () {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass("active");
+                    var Index = $(this).index();
+                    if(Index==0){
+                        $("#today_deadline .media").eq(Index+2).animate(
+                            { left: '1460px'}, 2000);
+                        $("#today_deadline .media").eq(Index).animate(
+                            { left: '+300px' }, 2000);
+                        $("#today_deadline .media").eq(Index+1).animate(
+                            { left: '+880px' }, 2000);
+                    }
+                    if(Index==1){
+                        $("#today_deadline .media").eq(Index-1).animate(
+                            { left: '-280px' }, 2000);
+                        $("#today_deadline .media").eq(Index).animate(
+                            { left: '300px' }, 2000);
+                        $("#today_deadline .media").eq(Index+1).animate(
+                            { left: '880px' }, 2000);
+                    }
+                    if(Index==2){
+                        $("#today_deadline .media").eq(Index-2).animate(
+                            { left: '-880px' }, 2000);
+                        $("#today_deadline .media").eq(Index).animate(
+                            { left: '300px' }, 2000);
+                        $("#today_deadline .media").eq(Index-1).animate(
+                            { left: '-280px' }, 2000);
+                    }
+                });
             }
         });
     },
@@ -247,7 +289,7 @@ var gcMall={
             recommend:-1,
             status:1,
             begidx:0,
-            counts:10,
+            counts:9,
             ver: gcMall.Version,
             ts:gcMall.Ts
         };
@@ -258,7 +300,7 @@ var gcMall={
             recommend:-1,
             status:1,
             begidx:0,
-            counts:10,
+            counts:9,
             ver: gcMall.Version,
             ts:gcMall.Ts,
             sign:Sign
@@ -266,6 +308,43 @@ var gcMall={
 
         $.post(api_config.productsQuery,params,function(result){
             //console.log(result);
+            if(result.Code ==3){
+                var mall_products = result.Data.Detail;
+
+                var products_len = mall_products.length;
+
+                $("#mall_goods").empty();
+                for(var i=0; i<products_len;i++){
+                    var status;
+                    if(mall_products[i].status ==1){
+                        status = '预售';
+                    }else{
+                        status = '已售';
+                    }
+                    var mall_products_item = '<div class="goods_item text-center">'+
+                    '<img src="'+mall_products[i].coverurl+'" style="width:277px; height:248px;"  />'+
+                        '<div class="item-desc">'+
+                            '<p>'+
+                            '【<span style="color:#E61F1C">'+status+'</span>】'+mall_products[i].product_name+
+                            '</p>'+
+                            '<img src="imgs/mall/square-3.png" alt="">'+
+                                '<h4>预售:'+mall_products[i].presale_total+'</h4>'+
+                            '<hr/>'+
+                            '<ul class="list-inline">'+
+                                '<li><a href="javascript:void(0)" class="products_add_more" data-index="'+i+'">了解更多</a></li>'+
+                               ' <li><a href="javascript:void(0)"><i class="iconfont icon icon-gouwuchekong add-shop-cart"></i></a></li>'+
+                            '</ul>'+
+                        '</div>'+
+                    '</div>';
+                    $("#mall_goods").append(mall_products_item);
+                }
+
+                $("#mall_goods .products_add_more").click(function () {
+                    var Idx = $(this).attr("data-index");
+                    $.cookie('mall_products',JSON.stringify(mall_products[parseInt(Idx)]));
+                    window.open('gc_mall_detail.html');
+                });
+            }
         });
     }
 };
