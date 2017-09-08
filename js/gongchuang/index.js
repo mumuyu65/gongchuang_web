@@ -21,7 +21,7 @@ var Index={
 
         if($.cookie('gcUser')){
             Index.user = JSON.parse($.cookie('gcUser'));
-            console.log(Index.user);
+            //console.log(Index.user);
             $("#gc_user_logined").css('display','inline-block');
             $("#gc_user_login").css('display','none');
 
@@ -52,6 +52,15 @@ var Index={
                 window.open("login.html");
             }
         });
+
+        //更多
+        $("#add_more").click(function () {
+            if(Index.user){
+                window.open("gc_space.html");
+            }else{
+                window.location.href='login.html';
+            }
+        });
     },
     //通知
     notice:function () {
@@ -77,7 +86,7 @@ var Index={
         };
 
         $.post(api_config.messageQuery,params,function (result) {
-            console.log(result);
+            //console.log(result);
             if(result.Code ==3){
                 var notice_num = result.Data.Total;
                 $("#gc_notice .alert").text(notice_num);
@@ -294,12 +303,8 @@ var Index={
               var comment_len = result.Data.Total;
               for(var i =0; i<comment_len;i++) {
                   var comment_data = temp_comment[i];
-                  var arr = comment_data.imgurl.split(";");
                   var hd_item_img = $('<div class="hd_item_img"></div>');
-                  for(var j =0; j<arr.length-1;j++){
-                      var comment_img = '<img src="'+arr[j]+'" />';
-                      hd_item_img.append(comment_img);
-                  }
+
                   var hd_item = '<div class="hd_item" data-index="'+i+'" data-index="'+i+'">'+
                           '<img class="img_title" src="'+comment_data.headurl+'" alt=""/>'+
                           '<div class="hd_item_h">'+
@@ -323,7 +328,14 @@ var Index={
                       '</div>';
                   $("#hd_inner").append(hd_item);
 
-                  $("#hd_inner .hd_item").eq(i).find(".hd_item_des").append(hd_item_img);
+                  if(!comment_data.imgurl){
+                      var arr = comment_data.imgurl.split(";");
+                      for(var j =0; j<arr.length-1;j++){
+                          var comment_img = '<img src="'+arr[j]+'" />';
+                          hd_item_img.append(comment_img);
+                      }
+                      $("#hd_inner .hd_item").eq(i).find(".hd_item_des").append(hd_item_img);
+                  }
               }
 
               $("#hd_inner .hd_item .hd_item_comment .zan").click(function () {

@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="090661dc-1a68-43a9-adf7-3be8a662656a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gc_comment_details.html" afterPath="$PROJECT_DIR$/gc_comment_details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gc_space.html" afterPath="$PROJECT_DIR$/gc_space.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/gongchuang/gc_space.js" afterPath="$PROJECT_DIR$/js/gongchuang/gc_space.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.html" afterPath="$PROJECT_DIR$/test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gc_asserts.html" afterPath="$PROJECT_DIR$/gc_asserts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/gongchuang/gc_asserts.js" afterPath="$PROJECT_DIR$/js/gongchuang/gc_asserts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/gongchuang/index.js" afterPath="$PROJECT_DIR$/js/gongchuang/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,44 +32,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/gongchuang/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="553">
-              <caret line="301" column="19" lean-forward="true" selection-start-line="296" selection-start-column="18" selection-end-line="301" selection-end-column="19" />
+            <state relative-caret-position="420">
+              <caret line="60" column="48" lean-forward="false" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
               <folding>
                 <element signature="e#247#292#0" expanded="false" />
-                <element signature="e#409#893#0" expanded="false" />
-                <element signature="e#951#1112#0" expanded="false" />
-                <element signature="e#1174#1337#0" expanded="false" />
-                <element signature="e#1379#3010#0" expanded="false" />
-                <element signature="e#1397#1567#0" expanded="false" />
-                <element signature="e#1622#1815#0" expanded="false" />
-                <element signature="e#3037#4112#0" expanded="false" />
-                <element signature="e#3055#3143#0" expanded="false" />
-                <element signature="e#3202#3314#0" expanded="false" />
-                <element signature="e#4143#5207#0" expanded="false" />
-                <element signature="e#5234#8456#0" expanded="false" />
-                <element signature="e#5250#5394#0" expanded="false" />
-                <element signature="e#5446#5625#0" expanded="false" />
-                <element signature="e#8496#8851#0" expanded="false" />
-                <element signature="e#8879#9239#0" expanded="false" />
-                <element signature="e#9282#9389#0" expanded="false" />
-                <element signature="e#9442#9571#0" expanded="false" />
-                <element signature="e#11897#12188#0" expanded="false" />
-                <element signature="e#12510#12707#0" expanded="false" />
-                <element signature="e#12736#13132#0" expanded="false" />
-                <element signature="e#13171#13422#0" expanded="false" />
-                <element signature="e#13467#14245#0" expanded="false" />
-                <element signature="e#14279#14866#0" expanded="false" />
-                <element signature="e#14888#14931#0" expanded="false" />
-                <element signature="e#14955#15295#0" expanded="false" />
-                <element signature="e#15329#17116#0" expanded="false" />
-                <element signature="e#15362#15413#0" expanded="false" />
-                <element signature="e#15452#15904#0" expanded="false" />
-                <element signature="e#15943#16284#0" expanded="false" />
-                <marker date="1504839977814" expanded="true" signature="6070:6096" ph="..." />
-                <marker date="1504839977814" expanded="true" signature="7145:7150" ph="¥" />
+                <element signature="e#409#895#0" expanded="false" />
+                <element signature="e#953#1114#0" expanded="false" />
+                <element signature="e#1176#1339#0" expanded="false" />
+                <element signature="e#1608#3241#0" expanded="false" />
+                <element signature="e#1626#1796#0" expanded="false" />
+                <element signature="e#1851#2044#0" expanded="false" />
+                <element signature="e#3268#4343#0" expanded="false" />
+                <element signature="e#3286#3374#0" expanded="false" />
+                <element signature="e#3433#3545#0" expanded="false" />
+                <element signature="e#4374#5438#0" expanded="false" />
+                <element signature="e#5465#8687#0" expanded="false" />
+                <element signature="e#5481#5625#0" expanded="false" />
+                <element signature="e#5677#5856#0" expanded="false" />
+                <element signature="e#8727#9082#0" expanded="false" />
+                <element signature="e#9110#9470#0" expanded="false" />
+                <element signature="e#9496#12790#0" expanded="false" />
+                <element signature="e#9513#9620#0" expanded="false" />
+                <element signature="e#9673#9802#0" expanded="false" />
+                <element signature="e#12217#12508#0" expanded="false" />
+                <element signature="e#12830#13027#0" expanded="false" />
+                <element signature="e#13056#13452#0" expanded="false" />
+                <element signature="e#13491#13742#0" expanded="false" />
+                <element signature="e#13787#14565#0" expanded="false" />
+                <element signature="e#14599#15186#0" expanded="false" />
+                <element signature="e#15208#15251#0" expanded="false" />
+                <element signature="e#15275#15615#0" expanded="false" />
+                <element signature="e#15649#17436#0" expanded="false" />
+                <element signature="e#15682#15733#0" expanded="false" />
+                <element signature="e#15772#16224#0" expanded="false" />
+                <element signature="e#16263#16604#0" expanded="false" />
+                <marker date="1504869891705" expanded="true" signature="6301:6327" ph="..." />
+                <marker date="1504869891705" expanded="true" signature="7376:7381" ph="¥" />
               </folding>
             </state>
           </provider>
@@ -78,12 +79,13 @@
       <file leaf-file-name="gc_space.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gc_space.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="95" column="44" lean-forward="false" selection-start-line="95" selection-start-column="44" selection-end-line="95" selection-end-column="44" />
+            <state relative-caret-position="547">
+              <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="161" selection-end-column="56" />
               <folding>
                 <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#li#4;n#ul#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#li#6;n#ul#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#div#0;n#div#0;n#aside#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#aside#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -92,26 +94,57 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.html">
+      <file leaf-file-name="gc_asserts.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gc_asserts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="42" column="17" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="42" selection-end-column="17" />
+            <state relative-caret-position="393">
+              <caret line="87" column="27" lean-forward="false" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
               <folding>
-                <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#li#4;n#ul#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#li#6;n#ul#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#img#0;n#aside#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gc_space.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gc_asserts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/gongchuang/gc_asserts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="73" column="8" lean-forward="true" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+              <folding>
+                <element signature="e#662#2327#0" expanded="false" />
+                <element signature="e#2361#2976#0" expanded="false" />
+                <element signature="e#3000#3340#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="989">
+              <caret line="149" column="80" lean-forward="false" selection-start-line="149" selection-start-column="72" selection-end-line="149" selection-end-column="80" />
+              <folding>
+                <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gc_space.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/gongchuang/gc_space.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="144" column="6" lean-forward="true" selection-start-line="144" selection-start-column="6" selection-end-line="144" selection-end-column="6" />
+            <state relative-caret-position="509">
+              <caret line="148" column="4" lean-forward="false" selection-start-line="148" selection-start-column="4" selection-end-line="166" selection-end-column="6" />
               <folding>
                 <element signature="e#165#1151#0" expanded="false" />
                 <element signature="e#877#1098#0" expanded="false" />
@@ -132,6 +165,23 @@
                 <marker date="1504867958652" expanded="true" signature="7742:7765" ph="..." />
                 <marker date="1504867958652" expanded="true" signature="8007:8020" ph="..." />
                 <marker date="1504867958652" expanded="true" signature="9689:9704" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+              <folding>
+                <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -176,7 +226,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/css/gc_wallet.css" />
         <option value="$PROJECT_DIR$/css/register.html" />
         <option value="$PROJECT_DIR$/css/gc_comment_details.css" />
         <option value="$PROJECT_DIR$/css/gc_space.css" />
@@ -184,7 +233,6 @@
         <option value="$PROJECT_DIR$/js/gongchuang/gc_market_add.js" />
         <option value="$PROJECT_DIR$/css/gc_market.css" />
         <option value="$PROJECT_DIR$/gc_address.html" />
-        <option value="$PROJECT_DIR$/gc_asserts.html" />
         <option value="$PROJECT_DIR$/gc_asserts_detail.html" />
         <option value="$PROJECT_DIR$/gc_market.html" />
         <option value="$PROJECT_DIR$/gc_market_add.html" />
@@ -203,7 +251,6 @@
         <option value="$PROJECT_DIR$/js/gongchuang/register.js" />
         <option value="$PROJECT_DIR$/js/jquery-ui.min.js" />
         <option value="$PROJECT_DIR$/js/gongchuang/login.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/gc_account.css" />
         <option value="$PROJECT_DIR$/js/MooFlow/MooFlow.css" />
         <option value="$PROJECT_DIR$/js/MooFlow/MooFlow.js" />
@@ -218,7 +265,6 @@
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/css/index.css" />
         <option value="$PROJECT_DIR$/login.html" />
-        <option value="$PROJECT_DIR$/js/gongchuang/index.js" />
         <option value="$PROJECT_DIR$/js/api.js" />
         <option value="$PROJECT_DIR$/gc_account.html" />
         <option value="$PROJECT_DIR$/js/gongchuang/gc_account.js" />
@@ -227,6 +273,10 @@
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/gc_space.html" />
         <option value="$PROJECT_DIR$/js/gongchuang/gc_space.js" />
+        <option value="$PROJECT_DIR$/js/gongchuang/gc_asserts.js" />
+        <option value="$PROJECT_DIR$/gc_asserts.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/gongchuang/index.js" />
       </list>
     </option>
   </component>
@@ -439,12 +489,12 @@
       <workItem from="1504696963700" duration="8055000" />
       <workItem from="1504750444508" duration="5933000" />
       <workItem from="1504770108004" duration="9897000" />
-      <workItem from="1504836860376" duration="29114000" />
+      <workItem from="1504836860376" duration="31049000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315815000" />
+    <option name="totallyTimeSpent" value="317750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -488,25 +538,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/js/gongchuang/index.js</url>
-          <line>105</line>
+          <line>114</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/js/gongchuang/index.js</url>
+          <line>340</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/imgs/index/bycircle_sm.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imgs/index/gc_index_car_sm.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/jquery-ui.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -788,19 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="199" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="200" selection-end-column="60" />
-          <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gc_account.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -898,62 +931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/gongchuang/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="301" column="19" lean-forward="true" selection-start-line="296" selection-start-column="18" selection-end-line="301" selection-end-column="19" />
-          <folding>
-            <element signature="e#247#292#0" expanded="false" />
-            <element signature="e#409#893#0" expanded="false" />
-            <element signature="e#951#1112#0" expanded="false" />
-            <element signature="e#1174#1337#0" expanded="false" />
-            <element signature="e#1379#3010#0" expanded="false" />
-            <element signature="e#1397#1567#0" expanded="false" />
-            <element signature="e#1622#1815#0" expanded="false" />
-            <element signature="e#3037#4112#0" expanded="false" />
-            <element signature="e#3055#3143#0" expanded="false" />
-            <element signature="e#3202#3314#0" expanded="false" />
-            <element signature="e#4143#5207#0" expanded="false" />
-            <element signature="e#5234#8456#0" expanded="false" />
-            <element signature="e#5250#5394#0" expanded="false" />
-            <element signature="e#5446#5625#0" expanded="false" />
-            <element signature="e#8496#8851#0" expanded="false" />
-            <element signature="e#8879#9239#0" expanded="false" />
-            <element signature="e#9282#9389#0" expanded="false" />
-            <element signature="e#9442#9571#0" expanded="false" />
-            <element signature="e#11897#12188#0" expanded="false" />
-            <element signature="e#12510#12707#0" expanded="false" />
-            <element signature="e#12736#13132#0" expanded="false" />
-            <element signature="e#13171#13422#0" expanded="false" />
-            <element signature="e#13467#14245#0" expanded="false" />
-            <element signature="e#14279#14866#0" expanded="false" />
-            <element signature="e#14888#14931#0" expanded="false" />
-            <element signature="e#14955#15295#0" expanded="false" />
-            <element signature="e#15329#17116#0" expanded="false" />
-            <element signature="e#15362#15413#0" expanded="false" />
-            <element signature="e#15452#15904#0" expanded="false" />
-            <element signature="e#15943#16284#0" expanded="false" />
-            <marker date="1504839977814" expanded="true" signature="6070:6096" ph="..." />
-            <marker date="1504839977814" expanded="true" signature="7145:7150" ph="¥" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gc_space.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="95" column="44" lean-forward="false" selection-start-line="95" selection-start-column="44" selection-end-line="95" selection-end-column="44" />
-          <folding>
-            <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#li#4;n#ul#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#li#6;n#ul#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#aside#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#aside#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/api.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="673">
@@ -966,9 +943,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="42" column="17" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="42" selection-end-column="17" />
+        <state relative-caret-position="570">
+          <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
           <folding>
+            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -977,10 +956,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gc_space.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="161" selection-end-column="56" />
+          <folding>
+            <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#li#4;n#ul#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#li#6;n#ul#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#aside#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#aside#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/gongchuang/gc_space.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="144" column="6" lean-forward="true" selection-start-line="144" selection-start-column="6" selection-end-line="144" selection-end-column="6" />
+        <state relative-caret-position="509">
+          <caret line="148" column="4" lean-forward="false" selection-start-line="148" selection-start-column="4" selection-end-line="166" selection-end-column="6" />
           <folding>
             <element signature="e#165#1151#0" expanded="false" />
             <element signature="e#877#1098#0" expanded="false" />
@@ -1001,6 +996,88 @@
             <marker date="1504867958652" expanded="true" signature="7742:7765" ph="..." />
             <marker date="1504867958652" expanded="true" signature="8007:8020" ph="..." />
             <marker date="1504867958652" expanded="true" signature="9689:9704" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gc_asserts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="87" column="27" lean-forward="false" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
+          <folding>
+            <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#li#4;n#ul#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#li#6;n#ul#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#img#0;n#aside#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/gongchuang/gc_asserts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="73" column="8" lean-forward="true" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+          <folding>
+            <element signature="e#662#2327#0" expanded="false" />
+            <element signature="e#2361#2976#0" expanded="false" />
+            <element signature="e#3000#3340#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="989">
+          <caret line="149" column="80" lean-forward="false" selection-start-line="149" selection-start-column="72" selection-end-line="149" selection-end-column="80" />
+          <folding>
+            <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/gongchuang/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="60" column="48" lean-forward="false" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
+          <folding>
+            <element signature="e#247#292#0" expanded="false" />
+            <element signature="e#409#895#0" expanded="false" />
+            <element signature="e#953#1114#0" expanded="false" />
+            <element signature="e#1176#1339#0" expanded="false" />
+            <element signature="e#1608#3241#0" expanded="false" />
+            <element signature="e#1626#1796#0" expanded="false" />
+            <element signature="e#1851#2044#0" expanded="false" />
+            <element signature="e#3268#4343#0" expanded="false" />
+            <element signature="e#3286#3374#0" expanded="false" />
+            <element signature="e#3433#3545#0" expanded="false" />
+            <element signature="e#4374#5438#0" expanded="false" />
+            <element signature="e#5465#8687#0" expanded="false" />
+            <element signature="e#5481#5625#0" expanded="false" />
+            <element signature="e#5677#5856#0" expanded="false" />
+            <element signature="e#8727#9082#0" expanded="false" />
+            <element signature="e#9110#9470#0" expanded="false" />
+            <element signature="e#9496#12790#0" expanded="false" />
+            <element signature="e#9513#9620#0" expanded="false" />
+            <element signature="e#9673#9802#0" expanded="false" />
+            <element signature="e#12217#12508#0" expanded="false" />
+            <element signature="e#12830#13027#0" expanded="false" />
+            <element signature="e#13056#13452#0" expanded="false" />
+            <element signature="e#13491#13742#0" expanded="false" />
+            <element signature="e#13787#14565#0" expanded="false" />
+            <element signature="e#14599#15186#0" expanded="false" />
+            <element signature="e#15208#15251#0" expanded="false" />
+            <element signature="e#15275#15615#0" expanded="false" />
+            <element signature="e#15649#17436#0" expanded="false" />
+            <element signature="e#15682#15733#0" expanded="false" />
+            <element signature="e#15772#16224#0" expanded="false" />
+            <element signature="e#16263#16604#0" expanded="false" />
+            <marker date="1504869891705" expanded="true" signature="6301:6327" ph="..." />
+            <marker date="1504869891705" expanded="true" signature="7376:7381" ph="¥" />
           </folding>
         </state>
       </provider>
