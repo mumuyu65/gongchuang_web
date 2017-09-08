@@ -110,31 +110,31 @@
                 </ul>
             </div>
             <div class="pull-left tab-content account-content">
-                    <div class="tab-pane fade in active gc_address" id="home" >
+                    <form class="tab-pane fade in active gc_address" id="home" method="post" enctype="multipart/form-data"  >
                         <h4>个人资料</h4>
                         <div class="gc_address_new_content">
                             <h4 class="account-profile">
                                 当前头像: <img src="imgs/no-img.jpg" id="nextview" >
                                 <div style="position: relative; margin-left:140px;">
                                     <button class="btn btn-danger">上传头像</button>
-                                    <input type="file" id="file" style="position: absolute; left:-50px; top:2px; opacity: 0;"/>
+                                    <input type="file" id="file" name="file" style="position: absolute; left:-50px; top:2px; opacity: 0;"/>
                                 </div>
                             </h4>
                             <h4>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称 :
-                                <input type="text" value="" id="gc_account_nick" /></h4>
+                                <input type="text" value="" name="nick" id="gc_account_nick" /></h4>
                             <h4 style="margin-left:0;">
-                                所在城市: <input type="text" value="" id="gc_account_address"/>
+                                所在城市: <input type="text" name="city" value="" id="gc_account_address"/>
                             </h4>
                             <h4>
-                                个人简介: <div id="gc_account_intro" contenteditable="true"
-                                                ></div>
+                                个人简介: <textarea name="intro" id="gc_account_intro" contenteditable="true"
+                                                ></textarea>
                             </h4>
                             <h3 class="text-center">
                                 <button class="btn btn-default" id="gc_account_cancel">取消</button>
-                                <button class="btn btn-danger" id="gc_account_save">保存</button>
+                                <input type="submit" value="保存" class="btn btn-danger" id="gc_account_save" />
                             </h3>
                         </div>
-                    </div>
+                    </form>
                     <div class="tab-pane fade gc_address" id="ios">
                         <h4>新增收货地址</h4>
                         <div class="gc_address_new_content">
@@ -254,6 +254,7 @@
     </footer>
 </div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/blueImp/md5.min.js"></script>

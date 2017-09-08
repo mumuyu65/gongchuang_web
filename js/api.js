@@ -17,6 +17,7 @@ var api_config={
     personSetting:endpoint+'/cowin/userinfo/update',  //个人设置
     authentication:endpoint+'/cowin/user/authen',  //身份验证
     checkAuthen:endpoint+'/cowin/user/authen/query',   //查询身份认证
+    upLoadFile:endpoint+'/cowin/upload/head',   //上传头像
     downloadProfile:endpoint+'/cowin/head/head',   //下载头像
     messageQuery:endpoint+'/cowin/msg/query',   //消息查询
     talkQuery:endpoint+'/cowin/talk/query',      //查询说说
@@ -67,4 +68,5 @@ var api_config={
     defaultAddress:endpoint+'/cowin/shipaddr/default',   //设置默认收货地址
     powerBank:endpoint+'/cowin/userproduct/baseinfo',    //充电宝基本信息
     powerBankUsage:endpoint+'/cowin/userproduct/useinfo',  //充电宝使用信息
+    talkDetail:endpoint+'/cowin/talk/review/query',  //评论详情查询
 };

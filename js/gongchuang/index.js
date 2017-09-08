@@ -1,5 +1,5 @@
 /**
- * Created by admin on 2017/8/26.
+ * Created by yuyangyang on 2017/8/26.
  */
 var Index={
     Version:'1.0.0',
@@ -300,7 +300,7 @@ var Index={
                       var comment_img = '<img src="'+arr[j]+'" />';
                       hd_item_img.append(comment_img);
                   }
-                  var hd_item = '<div class="hd_item" data-id="'+comment_data.id+'" data-index="'+i+'">'+
+                  var hd_item = '<div class="hd_item" data-index="'+i+'" data-index="'+i+'">'+
                           '<img class="img_title" src="'+comment_data.headurl+'" alt=""/>'+
                           '<div class="hd_item_h">'+
                               '<h4>'+comment_data.nick+'</h4>'+
@@ -334,16 +334,18 @@ var Index={
               });
 
               $("#hd_inner .hd_item .hd_item_comment .comment").click(function () {
-                  var Id =$(this).parent().parent().parent(".hd_item").attr("data-id");
-                  Index.commentList(Id);
+                  var Idx =$(this).parent().parent().parent(".hd_item").attr("data-index");
+
+                  Index.commentList(temp_comment[Idx]);
               });
           }
        })
     },
     //评论
-    commentList:function(Id){
+    commentList:function(obj){
         if(Index.user){
-            window.open('gc_comment_details.html?Id='+Id);
+            $.cookie("talk",JSON.stringify(obj));
+            window.open('gc_comment_details.html');
         }else{
             window.open("login.html");
         }

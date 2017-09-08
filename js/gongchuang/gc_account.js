@@ -38,8 +38,8 @@ var gcAccount={
             gcAccount.coupon();
         }
 
-        //检测登录
-        gcAccount.isLogin();
+
+        //检测登录 gcAccount.isLogin();
 
         //我的空间
         $("#gc_space").click(function () {
@@ -133,7 +133,7 @@ var gcAccount={
             alert(result.Msg);
         });
     },
-    //检测登录
+    /*检测登录
     isLogin:function () {
         var obj={
             sid:gcAccount.user.SessionId,
@@ -158,17 +158,15 @@ var gcAccount={
             alert(result.Msg);
         })
     },
+     */
     //用户信息查询
     userInfo:function () {
         $("#gc_account_nick").val(gcAccount.user.Nick);
         $("#gc_account_intro").text(gcAccount.user.Intro);
         $("#gc_account_address").val(gcAccount.user.City);
-        /*
         var url=api_config.downloadProfile+''+gcAccount.user.UserId;
         $('#nextview').attr('src',url);
-
         $('#gc_account_profile').attr('src',url);
-         */
     },
     //上传头像
     profileReview:function () {
@@ -200,7 +198,6 @@ var gcAccount={
                     }
                     ,debug:true
                 });
-
             };
             reader.readAsDataURL(oFile);
         },false);
@@ -211,36 +208,30 @@ var gcAccount={
             Intro=$("#gc_account_intro").text(),
             City=$("#gc_account_address").val(),
             proFile=$("#nextview").attr("src");
-        if(Nick && Intro && City && proFile){
-            var obj={
-                sid:gcAccount.user.SessionId,
-                nick:Nick,
-                intro:Intro,
-                city:City,
-                file:proFile,
+        if(Nick && Intro && City && proFile) {
+            var obj = {
+                sid: gcAccount.user.SessionId,
+                nick: Nick,
+                intro: Intro,
+                city: City,
                 ver: gcAccount.Version,
-                ts:gcAccount.Ts
+                ts: gcAccount.Ts
             };
 
-            var Sign=gcAccount.md(obj);
+            var Sign = gcAccount.md(obj);
 
-            var params={
-                sid:gcAccount.user.SessionId,
-                nick:Nick,
-                intro:Intro,
-                city:City,
-                file:proFile,
-                ver: gcAccount.Version,
-                ts:gcAccount.Ts,
-                sign:Sign
-            };
-
-            $.post(api_config.personSetting,params,function (result) {
-                //console.log(result);
-                alert(result.Msg);
+            // 传给后台
+            var url=api_config.personSetting+'?sid='+gcAccount.user.SessionId+'&ver='+gcAccount.Version+
+            '&ts='+gcAccount.Ts+'&sign='+Sign;
+            $("#home").ajaxSubmit({
+                url: url,
+                success: function(result) {
+                    if(result.Code ==3){
+                        $.cookie("gcUser",JSON.stringify(result.Data));
+                        window.location.reload();
+                    }
+                }
             });
-        }else{
-            alert("存在未填信息，请检查！");
         }
 
     },
@@ -287,7 +278,7 @@ var gcAccount={
         };
 
         $.post(api_config.exchangCoupon,params,function (result) {
-           console.log(result);
+           //console.log(result);
         });
     }
 };

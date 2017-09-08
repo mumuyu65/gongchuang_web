@@ -236,7 +236,7 @@
 .gc_index_hd{
     width:100%;
     height:auto;
-    z-index:2;
+    z-index:1;
     position: relative;
 }
 
