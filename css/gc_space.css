@@ -24,6 +24,14 @@
     color:#fff;
 }
 
+.gc-space .space_comment.active{
+    display:block;
+}
+
+.gc-space .space_comment{
+    display:none;
+}
+
 
 
 

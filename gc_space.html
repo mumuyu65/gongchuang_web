@@ -19,11 +19,64 @@
     <meta name="keywords" content="单车商城,充电宝,共创,互惠互利" >
     <meta name="description" content="单车商城,充电宝商城">
     <link rel="stylesheet" type="text/css" href="js/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="js/wangEditor/wangEditor.min.css" />
     <link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <link rel="stylesheet" type="text/css" href="css/gc_comment_details.css"/>
     <link rel="stylesheet" type="text/css" href="css/gc_space.css"/>
+    <style>
+        .chat-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .chat-face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            left: 5px;
+            bottom:70px;
+            display:none !important;
+            overflow: hidden;
+        }
+
+        .chat-face.active{
+            display:block !important;
+        }
+
+        .chat-face .chat-face-inner {
+            position: relative;
+            width: 100%;
+            height: 99%;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        .chat-face .chat-face-inner .chat-face-content {
+            position: absolute;
+            width: 300px;
+            height: 100%;
+            left: 0;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+
+        .chat-face .chat-face-inner .chat-face-content>img{
+            padding:5px;
+            cursor:pointer;
+        }
+
+        .hd_item_h .icon-cha{
+            cursor:pointer;
+            color:#C02D28;
+            display:none;
+        }
+
+        .hd_item_h:hover .icon-cha{
+            display:inline-block;
+        }
+    </style>
 </head>
 <body>
 <!-- header -->
@@ -106,11 +159,21 @@
                                     <h4 class="media-heading"></h4>
                                 </div>
                                 <div class="hd_comment_context" contenteditable="true">
-                                    说点什么。。。
+
                                 </div>
                                 <ul class="list-inline hd_comment_icon">
-                                    <li><i class="iconfont icon icon-xiaolian"></i></li>
-                                    <li><i class="iconfont icon icon-img"></i></li>
+                                    <li class="chat-icon"><i class="iconfont icon icon-xiaolian" id="icon_xiaolian"></i></li>
+                                    <li class="chat-face" id="chat_face">
+                                        <div class="chat-face-inner">
+                                            <div class="chat-face-content">
+                                                <img src="" alt="" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="chat-icon">
+                                        <i class="iconfont icon icon-img"></i>
+                                        <input type="file" value="" id="file"  style="position: absolute;left:0; top:10px; opacity: 0;"/>
+                                    </li>
                                     <li class="pull-right">
                                         <button class="btn btn-danger" id="comment_publish">
                                             发表
@@ -157,9 +220,11 @@
 </div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/wangEditor/wangEditor.min.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/blueImp/md5.min.js"></script>
 <script type="text/javascript" src="js/api.js"></script>
+<script type="text/javascript" src="js/pictrueHandle/tools.js"></script>
 <script type="text/javascript" src="js/gongchuang/gc_space.js"></script>
 </body>
 </html>

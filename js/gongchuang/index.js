@@ -297,16 +297,19 @@ var Index={
        };
 
        $.post(api_config.talkQuery,params,function (result) {
-          //console.log(result);
           if(result.Code ==3){
               var temp_comment = result.Data.Detail;
               var comment_len = result.Data.Total;
               for(var i =0; i<comment_len;i++) {
                   var comment_data = temp_comment[i];
-                  var hd_item_img = $('<div class="hd_item_img"></div>');
+                  if(comment_data.headurl == 'undefined'){
+                      console.log(comment_data);
+                  }
+                  var headUrl= comment_data.headurl;
 
+                  var hd_item_img = $('<div class="hd_item_img"></div>');
                   var hd_item = '<div class="hd_item" data-index="'+i+'" data-index="'+i+'">'+
-                          '<img class="img_title" src="'+comment_data.headurl+'" alt=""/>'+
+                          '<img class="img_title" src="'+headUrl+'" alt=""/>'+
                           '<div class="hd_item_h">'+
                               '<h4>'+comment_data.nick+'</h4>'+
                               '<h5>'+Index.dateStamp(comment_data.unix*1000)+'</h5>'+
@@ -471,6 +474,27 @@ var Index={
 
         return md5(str);
     },
+    //查询购物车
+    queryShoppingCart:function () {
+        var obj={
+            sid:Index.user.SessionId,
+            ver: Index.Version,
+            ts:Index.Ts
+        };
+
+        var Sign = Index.md(obj);
+
+        var params={
+            sid:Index.user.SessionId,
+            ver: Index.Version,
+            ts:Index.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.shopCartQuery,params,function (res) {
+            console.log(res);
+        })
+    }
 };
 
 Index.msTimeCount.prototype={

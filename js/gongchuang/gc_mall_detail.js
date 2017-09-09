@@ -6,8 +6,15 @@ var gcMallDetail={
     Ts:Date.parse(new Date())/1000,
     user:'',
     ptId:'',
+    maxNum:'',
+    Style:'',
+    hmid:'',
+    City:'',
+    Product:'',
     init:function () {
         var product = JSON.parse($.cookie("mall_products"));
+
+        gcMallDetail.Product = product;
 
         gcMallDetail.ptId = product.pt_id;
 
@@ -19,11 +26,32 @@ var gcMallDetail={
 
         $("#products_desc .money").text(product.discount_price);
 
-        $("#products_desc .color").text(product.style);
+        var style_arr = product.style.split(";");
+
+        for(var i=0; i<style_arr.length;i++){
+            var Color=$('<span data-idx="'+i+'"></span>');
+
+            Color.text(style_arr[i]);
+
+            $("#products_desc .color").append(Color);
+        }
+
+        gcMallDetail.Style = style_arr[0];
+
+        $("#products_desc .color span").eq(0).addClass("active");
+
+        $("#products_desc .color span").click(function () {
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
+            var idx = $(this).attr("data-idx");
+            gcMallDetail.Style = style_arr[idx];
+        });
 
         $("#products_desc .total span").text(product.presale_total);
 
         $("#products_desc .sold_total span").text(product.sale_total);
+
+        gcMallDetail.maxNum = parseInt(product.presale_total)-parseInt(product.sale_total);
 
         gcMallDetail.hostMethod();  //托管方式查询
 
@@ -38,7 +66,38 @@ var gcMallDetail={
 
         //加入购物车
         $("#add_to_cart").click(function () {
-            gcMallDetail.shoppingCart();
+            if(gcMallDetail.user){
+                gcMallDetail.shoppingCart();
+            }else{
+                window.location.href="login.html";
+            }
+        });
+
+        //商品数量
+        $("#products_desc .plus").click(function () {
+            var curNum =parseInt($("#products_desc .num").val());
+            if(curNum>=gcMallDetail.maxNum){
+                $("#products_desc .num").val(gcMallDetail.maxNum);
+            }else{
+                curNum+=1;
+                $("#products_desc .num").val(curNum);
+            }
+
+        });
+
+        $("#products_desc .quantity").click(function () {
+            $(this).addClass("active");
+            $("#products_desc .num").val(gcMallDetail.maxNum);
+        });
+
+        $("#products_desc .minus").click(function () {
+            var curNum =parseInt($("#products_desc .num").val());
+            if(curNum<=1){
+                $("#products_desc .num").val('1');
+            }else{
+                curNum-=1;
+                $("#products_desc .num").val(curNum);
+            }
         });
 
         //我的空间
@@ -74,8 +133,9 @@ var gcMallDetail={
 
             $("#gc_notice").css("display","inline-block");
             gcMallDetail.notice();   //通知查询
-        }
 
+            gcMallDetail.queryShoppingCart();  //查询购物车
+        }
     },
     //通知
     notice:function () {
@@ -172,6 +232,17 @@ var gcMallDetail={
                     item.text(result.Data[i].text);
                     $("#products_desc .host_method").append(item);
                 }
+
+                gcMallDetail.hmid =result.Data[0].id;
+
+                $("#products_desc .host_method span").eq(0).addClass("active");
+
+                $("#products_desc .host_method span").click(function () {
+                    $(this).siblings().removeClass("active");
+                    $(this).addClass("active");
+                    var Id = $(this).attr("data-id");
+                    gcMallDetail.hmid = Id;
+                });
             }
         })
     },
@@ -192,13 +263,23 @@ var gcMallDetail={
         };
 
         $.post(api_config.soldQuery,params,function (result) {
-           //console.log(result);
            if(result.Code ==3){
                for(var i =0; i<result.Data.PreSale.length;i++) {
                    var item = $('<span data-city="' + result.Data.PreSale[i].city + '"></span> ');
                    item.text(result.Data.PreSale[i].city);
                    $("#products_desc .desc_ct").append(item);
                }
+
+               gcMallDetail.City = result.Data.PreSale[0].city;
+
+               $("#products_desc .desc_ct span").eq(0).addClass("active");
+
+               $("#products_desc .desc_ct span").click(function () {
+                   $(this).siblings().removeClass("active");
+                   $(this).addClass("active");
+                   var City = $(this).attr("data-city");
+                   gcMallDetail.City = City;
+               });
            }
         });
     },
@@ -325,13 +406,43 @@ var gcMallDetail={
             }, function () {
                 $(this).detach()
             });
-
-            var num = parseInt($("#shop_cart_num").text());
-
-            num = num +1;
-
-            $("#shop_cart_num").text(num);
+            gcMallDetail.addShoppingCart();
         }
+    },
+    addShoppingCart:function () {
+        var obj={
+            sid:gcMallDetail.user.SessionId,
+            pid:gcMallDetail.Product.id,
+            pt_id:gcMallDetail.ptId,
+            order_quantity:$("#products_desc .num").val(),
+            style:gcMallDetail.Style,
+            hosted_mid:gcMallDetail.hmid,
+            hosted_city:gcMallDetail.City,
+            ver: gcMallDetail.Version,
+            ts:gcMallDetail.Ts
+        };
+
+        var Sign=gcMallDetail.md(obj);
+
+        var params={
+            sid:gcMallDetail.user.SessionId,
+            pid:gcMallDetail.Product.id,
+            pt_id:gcMallDetail.ptId,
+            order_quantity:$("#products_desc .num").val(),
+            style:gcMallDetail.Style,
+            hosted_mid:gcMallDetail.hmid,
+            hosted_city:gcMallDetail.City,
+            ver: gcMallDetail.Version,
+            ts:gcMallDetail.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.shopCartAdd,params,function (res) {
+           alert(res.Msg);
+            if(res.Code ==3){
+                gcMallDetail.queryShoppingCart();
+            }
+        });
     },
     timerDistance:function (distance) {
         var timer_distance = parseInt(distance)-Date.parse(new Date())/1000;
@@ -353,6 +464,30 @@ var gcMallDetail={
         if(timer_distance<1){
             clearInterval(timer_distance);
         }
+    },
+    //查询购物车
+    queryShoppingCart:function () {
+        var obj={
+            sid:gcMallDetail.user.SessionId,
+            ver: gcMallDetail.Version,
+            ts:gcMallDetail.Ts
+        };
+
+        var Sign = gcMallDetail.md(obj);
+
+        var params={
+            sid:gcMallDetail.user.SessionId,
+            ver: gcMallDetail.Version,
+            ts:gcMallDetail.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.shopCartQuery,params,function (res) {
+            //console.log(res);
+            if(res.Code == 3){
+                $("#shop_cart_num").text(res.Data.length);
+            }
+        })
     }
 };
 

@@ -6,6 +6,7 @@ var gcAccount={
     Version:'1.0.0',
     Ts:Date.parse(new Date())/1000,
     user:'',
+    addressArr:[],
     init:function(){
         if($.cookie('gcUser')){
             gcAccount.user = JSON.parse($.cookie('gcUser'));
@@ -36,27 +37,19 @@ var gcAccount={
 
             //优惠券
             gcAccount.coupon();
+        }else{
+            window.location.href="index.html";
         }
-
-
         //检测登录 gcAccount.isLogin();
 
-        //我的空间
-        $("#gc_space").click(function () {
-            if(Index.user){
-                window.open("gc_space.html");
-            }else{
-                window.open("login.html");
-            }
+        //收货地址
+        gcAccount.queryAddress();
+        $("#gc_account_address_save").click(function () {
+            gcAccount.receAddress();
         });
 
-        //我的资产
-        $("#gc_asserts").click(function () {
-            if(Index.user){
-                window.open("gc_asserts.html");
-            }else{
-                window.open("login.html");
-            }
+        $("#gc_account_address_cancel").click(function () {
+
         });
     },
     //通知
@@ -254,6 +247,208 @@ var gcAccount={
 
         return md5(str);
     },
+    //收货地址
+    receAddress:function () {
+        var Recver=$("#gc_account_recUser").val(),
+            Address=$("#gc_account_detailAddress").val(),
+            Phone=$("#gc_account_phone").val();
+
+        if(Recver && Address && Phone && $("#gc_account_detailAddress").val()){
+            var obj={
+                sid:gcAccount.user.SessionId,
+                recver:Recver,
+                address:Address,
+                phone:Phone,
+                default:0,
+                ver: gcAccount.Version,
+                ts:gcAccount.Ts
+            };
+
+            var Sign = gcAccount.md(obj);
+
+            var params={
+                sid:gcAccount.user.SessionId,
+                recver:Recver,
+                address:Address,
+                phone:Phone,
+                default:0,
+                ver: gcAccount.Version,
+                ts:gcAccount.Ts,
+                sign:Sign
+            };
+
+            $.post(api_config.receivingAddressAdd,params,function (result) {
+                alert(result.Msg);
+                if(result.Code==3){
+                    $("#gc_account_recUser").val('');
+                    $("#gc_account_detailAddress").val('');
+                    $("#gc_account_phone").val('');
+                    gcAccount.queryAddress();
+                }
+            })
+        }
+
+    },
+    queryAddress:function () {
+        var obj={
+            sid:gcAccount.user.SessionId,
+            ver: gcAccount.Version,
+            ts:gcAccount.Ts
+        };
+
+        var Sign=gcAccount.md(obj);
+
+        var params={
+            sid:gcAccount.user.SessionId,
+            ver: gcAccount.Version,
+            ts:gcAccount.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.receivingAddressQuery,params,function (res) {
+            if(res.Code ==3){
+                if(res.Msg !=='no data'){
+                    var temp_addr = res.Data;
+                    gcAccount.addressArr=temp_addr;
+                    var len= temp_addr.length;
+                    $("#gc_address_inner").empty();
+                    for(var i = 0; i<len; i++){
+                        var item =$('<div class="item">'+
+                            '<div class="item_header">收货地址</div>'+
+                            '<div class="item_detail">'+
+                                '<h4>收件人:'+temp_addr[i].recver+'</h4>'+
+                                ' <h4>地址:'+temp_addr[i].address+'</h4>'+
+                                ' <h4>电话:'+temp_addr[i].phone+'</h4>'+
+                            '</div>'+
+                            '<div class="pull-right text-center item_opera" data-idx="'+i+'" data-id="'+temp_addr[i].id+'">'+
+                                '<h5 class="editor">编辑</h5>'+
+                                '<h5 class="default">设为默认收货地址</h5>'+
+                                '<h5 class="del"><i class="iconfont icon icon-trash"></i>删除</h5>'+
+                            '</div>'+
+                        '</div>');
+
+                        if(temp_addr[i].default == 1){
+                            item.find(".item_header").text("默认地址").addClass("active");
+
+                            item.find(".default").remove();
+                        }
+
+                        $("#gc_address_inner").append(item);
+                    }
+
+                    //设置默认收货地址
+                    $("#gc_address_inner .default").click(function () {
+                        var aid= $(this).parent(".item_opera").attr("data-id");
+                        gcAccount.defaultAddress(aid);
+                    });
+
+                    //编辑地址
+                    $("#gc_address_inner .editor").click(function () {
+                        var idx= $(this).parent(".item_opera").attr("data-idx");
+                        gcAccount.editAddress(idx);
+                    });
+
+                    //删除地址
+                    $("#gc_address_inner .del").click(function () {
+                        var idx= $(this).parent(".item_opera").attr("data-idx");
+                        gcAccount.delAddress(idx);
+                    });
+                }
+            }
+        })
+    },
+    defaultAddress:function (Aid) {
+        var obj={
+            sid:gcAccount.user.SessionId,
+            id:Aid,
+            ver: gcAccount.Version,
+            ts:gcAccount.Ts
+        };
+
+        var Sign=gcAccount.md(obj);
+
+        var params={
+            sid:gcAccount.user.SessionId,
+            id:Aid,
+            ver: gcAccount.Version,
+            ts:gcAccount.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.defaultAddress,params,function (res) {
+            if(res.Code ==3){
+                gcAccount.queryAddress();
+            }
+            alert(res.Msg);
+        });
+    },
+    editAddress:function (Idx) {
+        $("#modify").css("display",'block');
+        $("#add").css("display",'none');
+        var editor=gcAccount.addressArr[Idx];
+        $("#gc_account_recUser").val(editor.recver);
+        $("#gc_account_detailAddress").val(editor.address);
+        $("#gc_account_phone").val(editor.phone);
+
+        $("#gc_account_address_modifycancel").click(function () {
+            gcAccount.queryAddress();
+        });
+
+        $("#gc_account_address_modifysave").click(function () {
+            var obj={
+                sid:gcAccount.user.SessionId,
+                id:editor.id,
+                ver: gcAccount.Version,
+                ts:gcAccount.Ts
+            };
+
+            var Sign=gcAccount.md(obj);
+
+            var params={
+                sid:gcAccount.user.SessionId,
+                id:editor.id,
+                ver: gcAccount.Version,
+                ts:gcAccount.Ts,
+                sign:Sign
+            };
+
+            $.post(api_config.receivingAddressUpdate,params,function (res) {
+                alert(res.Msg);
+                if(res.Code ==3){
+                    $("#gc_account_recUser").val('');
+                    $("#gc_account_detailAddress").val('');
+                    $("#gc_account_phone").val('');
+                    gcAccount.queryAddress();
+                }
+            })
+        });
+    },
+    delAddress:function (Idx) {
+        var editor=gcAccount.addressArr[Idx];
+        var obj={
+            sid:gcAccount.user.SessionId,
+            id:editor.id,
+            ver: gcAccount.Version,
+            ts:gcAccount.Ts
+        };
+
+        var Sign=gcAccount.md(obj);
+
+        var params={
+            sid:gcAccount.user.SessionId,
+            id:editor.id,
+            ver: gcAccount.Version,
+            ts:gcAccount.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.receivingAddressDel,params,function (res) {
+            alert(res.Msg);
+            if(res.Code ==3){
+                $("#gc_address_inner .item").eq(Idx).remove();
+            }
+        })
+    },
     //优惠券
     coupon:function () {
         var obj={
@@ -278,9 +473,17 @@ var gcAccount={
         };
 
         $.post(api_config.exchangCoupon,params,function (result) {
-           //console.log(result);
+            //console.log(result);
         });
-    }
+
+        //TODO
+        $("#home_1 .tab-content-inner").empty();
+
+        $("#ejb .tab-content-inner").empty();
+
+        $("#home_1 .tab-content-inner").html('<img src="imgs/noquan.png" />');
+        $("#ejb .tab-content-inner").html('<img src="imgs/noquan.png" />');
+    },
 };
 
 $(document).ready(function () {

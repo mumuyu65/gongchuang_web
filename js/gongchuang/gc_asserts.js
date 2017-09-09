@@ -21,6 +21,9 @@ var gcAsserts={
 
         $("#gc_notice").css("display","inline-block");
         gcAsserts.notice();   //通知查询
+        
+        //产品种类查询
+        gcAsserts.products();
     },
     //通知
     notice:function () {
@@ -115,6 +118,24 @@ var gcAsserts={
 
         return md5(str);
     },
+    products:function () {
+        var obj={
+            ver: gcAsserts.Version,
+            ts:gcAsserts.Ts
+        }
+
+        var Sign=gcAsserts.md(obj);
+
+        var params={
+            ver: gcAsserts.Version,
+            ts:gcAsserts.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.productsCate,params,function (result) {
+            console.log(result);
+        })
+    }
 };
 
 

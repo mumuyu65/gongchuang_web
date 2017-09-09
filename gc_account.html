@@ -36,8 +36,8 @@
         <ul class="pull-right list-inline">
             <li><a href="gc_mall.html">商城</a></li>
             <li><a href="gc_transactionmall.html">流转商城</a></li>
-            <li><a href="javascript:void(0)" id="gc_space">我的空间</a></li>
-            <li><a href="javascript:void(0)" id="gc_asserts">我的资产</a></li>
+            <li><a href="gc_space.html" id="gc_space">我的空间</a></li>
+            <li><a href="gc_asserts.html" id="gc_asserts">我的资产</a></li>
             <li style="display:none;" class="dropdown" id="gc_user_logined">
                 <a href="javascript:void(0)" class="dropdown-toggle" id="dropdownMenu1"
                    data-toggle="dropdown" style="color:#C02D28;">
@@ -138,55 +138,21 @@
                     <div class="tab-pane fade gc_address" id="ios">
                         <h4>新增收货地址</h4>
                         <div class="gc_address_new_content">
-                            <h4> 收件人: <input type="text" /></h4>
-                            <h4> 收件地址:
-                                <select id="s1"><option>省份</option></select>
-                                <select id="s2"><option>地级市</option></select>
-                                <select id="s3"><option>市、县级市、县</option></select>
-                            </h4>
-                            <h4> 详细地址: <input type="text" /></h4>
-                            <h4> 手机号码: <input type="number" /></h4>
-                            <h4><i class="iconfont icon icon-duigou1" style="color:#C02D28; font-size: 20px; margin-right:10px;"></i>设为默认地址</h4>
-                            <h3>
-                                <button class="btn btn-default">取消</button>
-                                <button class="btn btn-danger">保存</button>
+                            <h4> 收件人: <input type="text" id="gc_account_recUser" /></h4>
+                            <h4> 详细地址: <input type="text"  id="gc_account_detailAddress"/></h4>
+                            <h4> 手机号码: <input type="number" id="gc_account_phone" /></h4>
+                            <h3 id="add">
+                                <button class="btn btn-default" id="gc_account_address_cancel">取消</button>
+                                <button class="btn btn-danger" id="gc_account_address_save">保存</button>
+                            </h3>
+                            <h3 id="modify" style="display:none;">
+                                <button class="btn btn-default" id="gc_account_address_modifycancel">取消</button>
+                                <button class="btn btn-danger" id="gc_account_address_modifysave">保存</button>
                             </h3>
                         </div>
-
                         <h4>我的收货地址</h4>
                         <hr/>
-                        <div class="gc_address_inner" style="padding:0;">
-                            <div class="item">
-                                <div class="item_header active">
-                                    默认地址
-                                </div>
-                                <div class="item_detail">
-                                    <h4>收件人:小羽</h4>
-                                    <h4>地址:上海市长宁区延安西路2077号金桥大厦1907室</h4>
-                                    <h4>电话:13545267412</h4>
-                                </div>
-                                <div class="pull-right text-center item_opera">
-                                    <h5>编辑</h5>
-                                    <h5>设为默认收货地址</h5>
-                                    <h5><i class="iconfont icon icon-trash"></i>删除</h5>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item_header">
-                                    收货地址
-                                </div>
-                                <div class="item_detail">
-                                    <h4>收件人:小羽</h4>
-                                    <h4>地址:上海市长宁区延安西路2077号金桥大厦1907室</h4>
-                                    <h4>电话:13545267412</h4>
-                                </div>
-                                <div class="pull-right text-center item_opera">
-                                    <h5>编辑</h5>
-                                    <h5>设为默认收货地址</h5>
-                                    <h5><i class="iconfont icon icon-trash"></i>删除</h5>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="gc_address_inner" id="gc_address_inner" style="padding:0;"></div>
                     </div>
                     <div class="tab-pane fade" id="jmeter">
                         <h4>我的优惠券</h4>

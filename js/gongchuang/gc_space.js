@@ -7,6 +7,7 @@ var gcSpace={
     Ts:Date.parse(new Date())/1000,
     user:'',
     bidx:0,
+    chatFaces:[],
     init:function () {
         //登录
         gcSpace.user = JSON.parse($.cookie('gcUser'));
@@ -28,9 +29,12 @@ var gcSpace={
 
         $("#hd_item_comment .media-object").attr("src",api_config.downloadProfile+gcSpace.user.UserId);
 
+        //表情
+        gcSpace.chatFace();
+
         //发布说说
         $("#comment_publish").click(function () {
-            var context = $("#hd_item_comment .hd_comment_context").text();
+            var context = $("#hd_item_comment .hd_comment_context").html();
             if(context){
                 gcSpace.publish(context);
             }else{
@@ -38,8 +42,8 @@ var gcSpace={
             }
         });
 
-        //查询说说
-        gcSpace.queryTalk();
+        //上传图片
+        gcSpace.profileReview();
     },
     //通知
     notice:function () {
@@ -165,6 +169,48 @@ var gcSpace={
 
         return md5(str);
     },
+    chatFace:function () {
+        $.ajax({
+            type:"get",
+            url:"https://api.weibo.com/2/emotions.json?source=1362404091",/*url写异域的请求地址*/
+            dataType:"jsonp",
+            jsonpCallback:"cb",
+            success:function(res){
+                if(res.code ==1){
+                    var len=res.data.length;
+                    var temp_data= res.data;
+                    gcSpace.chatFaces=temp_data;
+                    $("#chat_face .chat-face-content").empty();
+                    for(var i=0; i<len;i++){
+                        var data_icon = temp_data[i];
+                        var img=$('<img src="" alt=""/>');
+                        img.attr('src',data_icon.icon);
+                        img.attr('alt',data_icon.phrase);
+                        $("#chat_face .chat-face-content").append(img);
+                    }
+
+                    $("#chat_face .chat-face-content>img").click(function () {
+                        $("#hd_item_comment .hd_comment_context").append($(this).attr("alt"));
+                        $("#chat_face").removeClass("active");
+                    });
+
+                    $("#icon_xiaolian").click(function () {
+                        if($("#chat_face").hasClass("active")){
+                            $("#chat_face").removeClass("active")
+                        }else{
+                            $("#chat_face").addClass("active");
+                        }
+                    });
+
+                    //查询说说
+                    gcSpace.queryTalk();
+
+                }else{
+                    console.log("请求表情图标失败！");
+                }
+            }
+        });
+    },
     publish:function (ctx) {
         var obj={
             sid:gcSpace.user.SessionId,
@@ -211,9 +257,9 @@ var gcSpace={
         };
         
         $.post(api_config.talkQuery,params,function (result) {
-            //console.log(result);
             if(result.Code ==3){
                 var data = result.Data.Detail;
+                $("#comment_inner").empty();
                 for(var i=0; i<data.length;i++){
                     var temp = data[i];
                     var hd_item_img='<div class="hd_item_img"></div>';
@@ -228,10 +274,10 @@ var gcSpace={
                             '<div class="timer">'+gcSpace.month(temp.unix*1000)+'</div>'+
                             '<img class="img_title" src="'+api_config.downloadProfile+gcSpace.user.UserId+'" alt=""/>'+
                             '<div class="hd_item_h">'+
-                            '<h4>'+gcSpace.user.Nick+'</h4>'+
+                            '<h4>'+gcSpace.user.Nick+'<i class="pull-right iconfont icon icon-cha" data-index="'+i+'" data-cid="'+temp.id+'"></i></h4>'+
                             '<h5>'+gcSpace.dateStamp(temp.unix*1000)+'</h5>'+
                             '<div class="hd_item_des">'+
-                            '<h5>'+temp.text+'</h5>'+hd_item_img+
+                            '<h5>'+gcSpace.analysis(temp.text)+'</h5>'+hd_item_img+
                         '</div>'+
                         '<ul class="list-inline hd_item_comment">'+
                             '<li>'+
@@ -249,7 +295,7 @@ var gcSpace={
                         '</ul>'+
                         '</div>'+
                         '</div>');
-                    var space_comment = '<div class="space_comment" style="display:none;"></div>';
+                    var space_comment = '<div class="space_comment"></div>';
                     comment_item.append(space_comment);
                     $("#comment_inner").append(comment_item);
                 }
@@ -260,11 +306,23 @@ var gcSpace={
 
                     var cid= $(this).attr("data-cid");
                     if(parseInt(comment_num)>0){
-                        $("#comment_inner .hd_item").eq(Idx).find(".space_comment").css("display",'block');
-
-                        //查看评论详情
-                        gcSpace.commentList(cid,Idx,0,10);
+                        if($("#comment_inner .hd_item").eq(Idx).find(".space_comment").hasClass("active")){
+                            $("#comment_inner .hd_item").eq(Idx).find(".space_comment").removeClass("active")
+                        }else{
+                            $("#comment_inner .hd_item").eq(Idx).find(".space_comment").addClass("active");
+                            //查看评论详情
+                            gcSpace.commentList(cid,Idx,0,10);
+                        }
                     }
+                });
+
+                //删除
+                $("#comment_inner .icon-cha").click(function () {
+                    var Idx=$(this).attr("data-index");
+
+                    var cid= $(this).attr("data-cid");
+
+                    gcSpace.delComment(cid,Idx);
                 });
             }
         });
@@ -292,12 +350,12 @@ var gcSpace={
         };
 
         $.post(api_config.talkDetail,params,function (result) {
-            //console.log(result);
             if(result.Code ==3){
                 var temp=result.Data.Detail;
 
                 var Total = result.Data.Total;
 
+                $("#comment_inner .hd_item").eq(Idx).find(".space_comment").empty();
                 for(var i=0; i<temp.length;i++){
                     var data = temp[i].Review;
                     var hd_item_comment_inner=$(
@@ -342,6 +400,83 @@ var gcSpace={
 
             }
         })
+    },
+    delComment:function(cid,Idx){
+        var obj={
+            sid:gcSpace.user.SessionId,
+            id:cid,
+            ver: gcSpace.Version,
+            ts:gcSpace.Ts
+        };
+
+        var Sign= gcSpace.md(obj);
+
+        var params={
+            sid:gcSpace.user.SessionId,
+            id:cid,
+            ver: gcSpace.Version,
+            ts:gcSpace.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.talkDel,params,function (result) {
+            alert(result.Msg);
+            if(result.Code ==3){
+                $("#comment_inner .hd_item").eq(Idx).remove();
+            }
+        });
+    },
+    //分析输入的聊天内容
+    /*进行解析*/
+    analysis:function(value) {
+        var arr = value.match(/\[.{1,5}\]/g);
+        if (arr) {
+            for (var i = 0; i < arr.length; i++) {
+                for (var j in gcSpace.chatFaces) {
+                    if (arr[i] == gcSpace.chatFaces[j].phrase) {
+                        var ex = '<img src="' + gcSpace.chatFaces[j].url + '"/>';
+                        value = value.replace(arr[i], ex);
+                        break;
+                    }
+
+                }
+            }
+        }
+        return value;
+    },
+    //上传图片
+    profileReview:function () {
+        var _upFile=document.getElementById("file");
+
+        _upFile.addEventListener("change", function() {
+            if (_upFile.files.length === 0) {
+                alert("请选择图片");
+                return;
+            }
+            var oFile = _upFile.files[0];
+
+            if(!new RegExp("(jpg|jpeg|png)+","gi").test(oFile.type)){
+                alert("照片上传：文件类型必须是JPG、JPEG、PNG");
+                return;
+            }
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var base64Img= e.target.result;
+                var _ir=ImageResizer({
+                    resizeMode:"auto"
+                    ,dataSource:base64Img
+                    ,dataSourceType:"base64"
+                    ,maxWidth:1200 //允许的最大宽度
+                    ,maxHeight:600 //允许的最大高度。
+                    ,success:function(resizeImgBase64,canvas){
+                        $('#nextview').attr('src',resizeImgBase64);
+                    }
+                    ,debug:true
+                });
+            };
+            reader.readAsDataURL(oFile);
+        },false);
     },
 };
 
