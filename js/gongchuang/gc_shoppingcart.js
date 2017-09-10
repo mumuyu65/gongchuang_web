@@ -6,6 +6,9 @@ var gcShoppingCart={
     Version:'1.0.0',
     Ts:Date.parse(new Date())/1000,
     user:'',
+    host_method:[],  //托管方式
+    totalMoney:[],
+    InitMoney:0,
     init:function () {
         gcShoppingCart.user = JSON.parse($.cookie('gcUser'));
         console.log(gcShoppingCart.user);
@@ -21,7 +24,12 @@ var gcShoppingCart={
         $("#gc_notice").css("display","inline-block");
         gcShoppingCart.notice();   //通知查询
 
-        gcShoppingCart.queryShoppingCart();  //查询购物车
+        gcShoppingCart.hostMethod(); // 查询托管方式
+        
+        //购物车结算
+        $("#gc_shoppingcart_bid .bid").click(function () {
+            window.location.href="";
+        });
     },
     //通知
     notice:function () {
@@ -116,6 +124,27 @@ var gcShoppingCart={
 
         return md5(str);
     },
+    hostMethod:function () {
+        var obj={
+            ver: gcShoppingCart.Version,
+            ts:gcShoppingCart.Ts
+        };
+
+        var Sign=gcShoppingCart.md(obj);
+
+        var params={
+            ver: gcShoppingCart.Version,
+            ts:gcShoppingCart.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.hostMethods,params,function (result) {
+            if(result.Code ==3){
+                gcShoppingCart.host_method = result.Data;
+                gcShoppingCart.queryShoppingCart();  //查询购物车
+            }
+        })
+    },
     //查询购物车
     queryShoppingCart:function () {
         var obj={
@@ -137,6 +166,164 @@ var gcShoppingCart={
             console.log(res);
             if(res.Code == 3){
                 $("#shop_cart_num").text(res.Data.length);
+                gcShoppingCart.details(res.Data);
+            }
+        })
+    },
+    details:function (arr) {
+        var len = arr.length;
+        $("#gc_shoppingcart").empty();
+        for(var i=0; i<len;i++){
+            var sale;
+            if(arr[i].presale == '1'){
+                sale = '预售';
+            }else{
+                sale = '已售';
+            }
+            var hostMethod ;
+            for(var j=0; j<gcShoppingCart.host_method.length;j++){
+                if(arr[i].hosted_mid == gcShoppingCart.host_method[j].id){
+                    hostMethod=gcShoppingCart.host_method[j].text;
+                }
+            }
+            var shoppingCart_item = $('<div class="item" data-id="'+arr[i].id+'"  data-idx="'+i+'">'+
+            '<ul class="list-inline">'+
+                '<li><i class="iconfont icon icon-duigou select active"></i></li>'+
+                ' <li><img src="imgs/mall/mall_car.png" alt=""> </li>'+
+                ' <li>'+
+                    '  <div class="cart_list_desc">'+
+                        '<div class="pull-right">'+
+                        ' <i class="iconfont icon icon-cha" data-index="'+i+'"></i>'+
+                        '</div>'+
+                        '<div class="desc_title">【'+sale+'】'+arr[i].product_name+'</div>'+
+                        ' <ol class="list-inline comment_ct">'+
+                            '<li>'+arr[i].style+'</li>'+
+                            '<li>'+hostMethod+'</li>'+
+                            '<li>'+arr[i].hosted_city+'</li>'+
+                        ' </ol>'+
+                        ' <hr/>'+
+                        '<div class="desc_num">'+
+                            ' <div class="pull-left">'+
+                                ' <span class="plus" data-index="'+i+'">+</span>'+
+                                '<input type="number" data-index="'+i+'" value="'+arr[i].order_quantity+'" class="num" />'+
+                                '<span class="minus" data-index="'+i+'">-</span>'+
+                            '</div>'+
+                            ' <span class="pull-right">&yen; '+arr[i].discount_price+'</span>'+
+                        '</div>'+
+                    '</div>'+
+                '</li>'+
+            ' </ul>'+
+            '</div>');
+            gcShoppingCart.totalMoney.push({id:arr[i].id,num:arr[i].order_quantity,money:arr[i].discount_price});
+            $("#gc_shoppingcart").append(shoppingCart_item);
+            gcShoppingCart.InitMoney += parseInt(arr[i].order_quantity)*parseFloat(arr[i].discount_price);
+        }
+
+        //计算总钱数
+        gcShoppingCart.countMoney(gcShoppingCart.totalMoney);
+
+        $("#gc_shoppingcart .select.icon-duigou").click(function () {
+            $(this).removeClass("active");
+            var Idx = $(this).parent().parent().parent(".item").attr("data-idx");
+
+            var Id = $(this).parent().parent().parent(".item").attr("data-id");
+
+            for(var j =0 ; j<gcShoppingCart.totalMoney.length;j++){
+                if(Id == gcShoppingCart.totalMoney[j].id){
+                    gcShoppingCart.totalMoney.splice(j,1);
+                }
+            }
+            if($("#gc_shoppingcart_bid .icon-duigou").hasClass("active")){
+                $("#gc_shoppingcart_bid .icon-duigou").removeClass("active");
+            }
+            gcShoppingCart.countMoney(gcShoppingCart.totalMoney);
+        });
+
+        $("#gc_shoppingcart_bid .icon-duigou").click(function () {
+            if($("#gc_shoppingcart_bid .icon-duigou").hasClass("active")){
+                $("#gc_shoppingcart_bid .icon-duigou").removeClass("active");
+                $("#gc_shoppingcart .select.icon-duigou").removeClass("active");
+                gcShoppingCart.countMoney([]);
+            }else{
+                $("#gc_shoppingcart_bid .icon-duigou").addClass("active");
+                $("#gc_shoppingcart .select.icon-duigou").addClass("active");
+                $("#gc_shoppingcart_bid .totalmoney").text(gcShoppingCart.InitMoney);
+            }
+        });
+
+        $("#gc_shoppingcart .icon-cha").click(function () {
+            var Idx = $(this).attr("data-index");
+            gcShoppingCart.delProducts(arr[Idx],Idx);
+        });
+
+        //增加
+        $("#gc_shoppingcart .plus").click(function () {
+            var Idx =parseInt($(this).attr("data-index"));
+            var curNum =  $("#gc_shoppingcart .item").eq(Idx).find(".num").val();
+            $("#gc_shoppingcart .item").eq(Idx).find(".num").val(parseInt(curNum)+1);
+            gcShoppingCart.totalMoney[Idx].num =parseInt(gcShoppingCart.totalMoney[Idx].num)+1;
+
+            gcShoppingCart.countMoney(gcShoppingCart.totalMoney);
+        });
+
+        //减少
+        $("#gc_shoppingcart .minus").click(function () {
+            var Idx =parseInt($(this).attr("data-index"));
+            var curNum =  $("#gc_shoppingcart .item").eq(Idx).find(".num").val();
+            if(curNum==1){
+                    $(this).attr("disabled",true);
+            }else{
+                gcShoppingCart.totalMoney[Idx].num =parseInt(gcShoppingCart.totalMoney[Idx].num)-1;
+                $("#gc_shoppingcart .item").eq(Idx).find(".num").val(parseInt(curNum)-1);
+                gcShoppingCart.countMoney(gcShoppingCart.totalMoney);
+            }
+        });
+
+        //手动输入
+        $("#gc_shoppingcart .num").blur(function () {
+            var Idx =parseInt($(this).attr("data-index"));
+            var curNum =  $(this).val();
+            if(curNum>=1){
+                gcShoppingCart.totalMoney[Idx].num =curNum;
+                gcShoppingCart.countMoney(gcShoppingCart.totalMoney);
+            }else{
+                $(this).val("1");
+            }
+        });
+    },
+    countMoney:function (arr) {
+        var len = arr.length;
+        var totalmoney = 0;
+        for(var i = 0; i<len;i++){
+            totalmoney+=parseInt(arr[i].num)*parseFloat(arr[i].money);
+        }
+
+        $("#gc_shoppingcart_bid .totalmoney").text(totalmoney);
+    },
+    delProducts:function (item,Idx) {
+        var obj={
+            sid:gcShoppingCart.user.SessionId,
+            id:item.id,
+            ver: gcShoppingCart.Version,
+            ts:gcShoppingCart.Ts
+        };
+
+        var Sign = gcShoppingCart.md(obj);
+
+        var params={
+            sid:gcShoppingCart.user.SessionId,
+            id:item.id,
+            ver: gcShoppingCart.Version,
+            ts:gcShoppingCart.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.shopCartDel,params,function (res) {
+            alert(res.Msg);
+            if(res.Code ==3){
+                $("#gc_shoppingcart .item").eq(Idx).remove();
+                gcShoppingCart.totalMoney.splice(Idx,1);
+                gcShoppingCart.countMoney(gcShoppingCart.totalMoney);
             }
         })
     }
