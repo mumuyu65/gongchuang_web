@@ -8,6 +8,7 @@ var gcSpace={
     user:'',
     bidx:0,
     chatFaces:[],
+    ImgArr:[],
     init:function () {
         //登录
         gcSpace.user = JSON.parse($.cookie('gcUser'));
@@ -34,7 +35,7 @@ var gcSpace={
 
         //发布说说
         $("#comment_publish").click(function () {
-            var context = $("#hd_item_comment .hd_comment_context").html();
+            var context = $("#hd_item_comment .hd_comment_context").text();
             if(context){
                 gcSpace.publish(context);
             }else{
@@ -43,7 +44,14 @@ var gcSpace={
         });
 
         //上传图片
-        gcSpace.profileReview();
+        $("#add_img").click(function () {
+            if($("#img_inner").parent(".img-inner").hasClass("active")){
+                $("#img_inner").parent(".img-inner").removeClass("active");
+            }else{
+                $("#img_inner").parent(".img-inner").addClass("active");
+                gcSpace.profileReview();
+            }
+        });
     },
     //通知
     notice:function () {
@@ -212,29 +220,76 @@ var gcSpace={
         });
     },
     publish:function (ctx) {
-        var obj={
-            sid:gcSpace.user.SessionId,
-            text:ctx,
-            ver: gcSpace.Version,
-            ts:gcSpace.Ts
-        };
+        var Imgs = gcSpace.ImgArr.length;
 
-        var Sign= gcSpace.md(obj);
+        if(Imgs>0){
+            var obj={
+                sid:gcSpace.user.SessionId,
+                text:ctx,
+                imgs:Imgs,
+                ver: gcSpace.Version,
+                ts:gcSpace.Ts
+            };
 
-        var params={
-            sid:gcSpace.user.SessionId,
-            text:ctx,
-            ver: gcSpace.Version,
-            ts:gcSpace.Ts,
-            sign:Sign
-        };
+            var Sign= gcSpace.md(obj);
 
-        $.post(api_config.talkPublish,params,function (result) {
-            alert(result.Msg);
-            if(result.Code ==3){
-                gcSpace.queryTalk();
+            var param = new FormData();
+
+            param.append('sid', gcSpace.user.SessionId);
+
+            param.append('text',ctx);
+
+            param.append('imgs',Imgs);
+
+            param.append('ver',gcSpace.Version);
+
+            param.append('ts',gcSpace.Ts);
+
+            param.append('sign',Sign);
+
+            for(var i =0 ; i<Imgs;i++){
+                var num = i+1;
+                var img = 'img'+num;
+                param.append(img,gcSpace.ImgArr[i]);
             }
-        });
+            $.ajax({
+                url:api_config.talkPublish,
+                type:"post",
+                data:param,
+                processData:false,
+                contentType:false,
+                success:function(res){
+                    alert(res.Msg);
+                    if(res.Code ==3){
+                        gcSpace.queryTalk();
+                    }
+                }
+            });
+        }else{
+            var obj={
+                sid:gcSpace.user.SessionId,
+                text:ctx,
+                ver: gcSpace.Version,
+                ts:gcSpace.Ts
+            };
+
+            var Sign= gcSpace.md(obj);
+
+            var params={
+                sid:gcSpace.user.SessionId,
+                text:ctx,
+                ver: gcSpace.Version,
+                ts:gcSpace.Ts,
+                sign:Sign
+            };
+
+            $.post(api_config.talkPublish,params,function (result) {
+                alert(result.Msg);
+                if(result.Code ==3){
+                    gcSpace.queryTalk();
+                }
+            });
+        }
     },
     queryTalk:function () {
         var obj={
@@ -262,14 +317,6 @@ var gcSpace={
                 $("#comment_inner").empty();
                 for(var i=0; i<data.length;i++){
                     var temp = data[i];
-                    var hd_item_img='<div class="hd_item_img"></div>';
-                    if(temp.imgurl){
-                        var arr = temp.imgurl.split(";");
-                        for(var j =0; j<arr.length-1;j++){
-                            var comment_img = '<img src="'+arr[j]+'" />';
-                            $(hd_item_img).append(comment_img);
-                        }
-                    }
                     var comment_item=$('<div class="hd_item">'+
                             '<div class="timer">'+gcSpace.month(temp.unix*1000)+'</div>'+
                             '<img class="img_title" src="'+api_config.downloadProfile+gcSpace.user.UserId+'" alt=""/>'+
@@ -277,7 +324,7 @@ var gcSpace={
                             '<h4>'+gcSpace.user.Nick+'<i class="pull-right iconfont icon icon-cha" data-index="'+i+'" data-cid="'+temp.id+'"></i></h4>'+
                             '<h5>'+gcSpace.dateStamp(temp.unix*1000)+'</h5>'+
                             '<div class="hd_item_des">'+
-                            '<h5>'+gcSpace.analysis(temp.text)+'</h5>'+hd_item_img+
+                            '<h5>'+gcSpace.analysis(temp.text)+'</h5>'+
                         '</div>'+
                         '<ul class="list-inline hd_item_comment">'+
                             '<li>'+
@@ -295,8 +342,20 @@ var gcSpace={
                         '</ul>'+
                         '</div>'+
                         '</div>');
+                    var hd_item_img=$('<div class="hd_item_img"></div>');
+                    if(temp.imgurl){
+                        var arr = temp.imgurl.split(";");
+                        for(var j =0; j<arr.length-1;j++){
+                            var comment_img = '<img src="'+arr[j]+'" />';
+                            hd_item_img.append(comment_img);
+                        }
+
+                        comment_item.find(".hd_item_des").append(hd_item_img);
+                    }
+
                     var space_comment = '<div class="space_comment"></div>';
                     comment_item.append(space_comment);
+
                     $("#comment_inner").append(comment_item);
                 }
 
@@ -360,12 +419,6 @@ var gcSpace={
                     var data = temp[i].Review;
                     var hd_item_comment_inner=$(
                         '<div class="hd_item_comment_inner" style="display: block;">'+
-                        '<div class="hd_icon" >'+
-                        '<i class="iconfont icon icon-xiangshang"></i>'+
-                        '</div>'+
-                        '<div class="hd_icon_inner">'+
-                        '<i class="iconfont icon icon-xiangshang"></i>'+
-                        '</div>'+
                         '<div class="media">'+
                         '<a class="media-left" href="javascript:void(0)">'+
                         '<img class="media-object" src="'+data.headurl+'" alt=""/>'+
@@ -396,8 +449,16 @@ var gcSpace={
                         });
                     }
                     $("#comment_inner .hd_item").eq(Idx).find(".space_comment").append(hd_item_comment_inner);
-                }
 
+                    var Icon ='<div class="hd_icon" >'+
+                        '<i class="iconfont icon icon-xiangshang"></i>'+
+                        '</div>'+
+                        '<div class="hd_icon_inner">'+
+                        '<i class="iconfont icon icon-xiangshang"></i>'+
+                        '</div>';
+                    $("#comment_inner .hd_item").eq(Idx).find(".space_comment").
+                    find('.hd_item_comment_inner').eq(0).append(Icon);
+                }
             }
         })
     },
@@ -446,39 +507,104 @@ var gcSpace={
     },
     //上传图片
     profileReview:function () {
-        var _upFile=document.getElementById("file");
+        var objUrl;
+        var img_html;
 
-        _upFile.addEventListener("change", function() {
-            if (_upFile.files.length === 0) {
-                alert("请选择图片");
-                return;
+        $("#myFile").change(function() {
+            var img_div = $("#img_inner");
+            var filepath = $("input[name='myFile']").val();
+            for(var i = 0; i < this.files.length; i++) {
+                objUrl = getObjectURL(this.files[i]);
+                console.log(objUrl);
+                var extStart = filepath.lastIndexOf(".");
+                var ext = filepath.substring(extStart, filepath.length).toUpperCase();
+                /*
+                 描述：鉴定每个图片上传尾椎限制
+                 * */
+                if(ext != ".BMP" && ext != ".PNG" && ext != ".GIF" && ext != ".JPG" && ext != ".JPEG") {
+                    $(".shade").fadeIn(500);
+                    $(".text_span").text("图片限于bmp,png,gif,jpeg,jpg格式");
+                    this.value = "";
+                    $("#img_inner").html("");
+                    return false;
+                } else {
+                    /*
+                     若规则全部通过则在此提交url到后台数据库
+                     * */
+                    img_html = "<div class='isImg'>" +
+                        "<img src='" + objUrl + "' onclick='javascript:lookBigImg(this)' style='height: 100%; width: 100%;' />" +
+                        "<button class='removeBtn' onclick='javascript:removeImg(this)'>x</button></div>";
+                    img_div.append(img_html);
+
+                    gcSpace.ImgArr.push(this.files[i]);
+                }
             }
-            var oFile = _upFile.files[0];
-
-            if(!new RegExp("(jpg|jpeg|png)+","gi").test(oFile.type)){
-                alert("照片上传：文件类型必须是JPG、JPEG、PNG");
-                return;
+            /*
+             描述：鉴定每个图片大小总和
+             * */
+            var file_size = 0;
+            var all_size = 0;
+            for(j = 0; j < this.files.length; j++) {
+                file_size = this.files[j].size;
+                all_size = all_size + this.files[j].size;
+                var size = all_size / 1024;
+                if(size > 500) {
+                    $(".shade").fadeIn(500);
+                    $(".text_span").text("上传的图片大小不能超过100k！");
+                    this.value = "";
+                    $(".img_div").html("");
+                    return false;
+                }
             }
-
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var base64Img= e.target.result;
-                var _ir=ImageResizer({
-                    resizeMode:"auto"
-                    ,dataSource:base64Img
-                    ,dataSourceType:"base64"
-                    ,maxWidth:1200 //允许的最大宽度
-                    ,maxHeight:600 //允许的最大高度。
-                    ,success:function(resizeImgBase64,canvas){
-                        $('#nextview').attr('src',resizeImgBase64);
-                    }
-                    ,debug:true
-                });
-            };
-            reader.readAsDataURL(oFile);
-        },false);
+            return true;
+        });
     },
 };
+
+
+/*
+ 描述：鉴定每个浏览器上传图片url 目前没有合并到Ie
+ * */
+function getObjectURL(file) {
+    var url = null;
+    if(window.createObjectURL != undefined) { // basic
+        url = window.createObjectURL(file);
+    } else if(window.URL != undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file);
+    } else if(window.webkitURL != undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file);
+    }
+    return url;
+}
+
+/*
+ 描述：上传图片附带删除 再次地方可以加上一个ajax进行提交到后台进行删除
+ * */
+function removeImg(r){
+    $(r).parent().remove();
+}
+
+/*
+ 描述：上传图片附带放大查看处理
+ * */
+function lookBigImg(b){
+    $(".shadeImg").fadeIn(500);
+    $(".showImg").attr("src",$(b).attr("src"))
+}
+
+/*
+ 描述：关闭弹出层
+ * */
+function closeShade(){
+    $(".shade").fadeOut(500);
+}
+
+/*
+ 描述：关闭弹出层
+ * */
+function closeShadeImg(){
+    $(".shadeImg").fadeOut(500);
+}
 
 
 $(document).ready(function () {

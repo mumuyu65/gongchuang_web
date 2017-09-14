@@ -1,5 +1,5 @@
 /**
- * Created by admin on 2017/8/29.
+ * Created by yuyangyang on 2017/8/29.
  */
 var gcMallDetail={
     Version:'1.0.0',
@@ -57,7 +57,11 @@ var gcMallDetail={
 
         gcMallDetail.hostCity();  //托管城市查询
 
-        gcMallDetail.productsDetail(product.imgurl);  //商品详情
+        if(product.imgurl){
+            gcMallDetail.productsDetail(product.imgurl);  //商品详情
+        }else{
+            $("#home").html('<img src="imgs/nodata.png"  />');
+        }
 
         gcMallDetail.productsComment(); //商品评价查询
 
@@ -103,18 +107,18 @@ var gcMallDetail={
         //我的空间
         $("#gc_space").click(function () {
             if(gcMallDetail.user){
-                window.open("gc_space.html");
+                window.location.href = "gc_space.html";
             }else{
-                window.open("login.html");
+                window.location.href = "login.html";
             }
         });
 
         //我的资产
         $("#gc_asserts").click(function () {
             if(gcMallDetail.user){
-                window.open("gc_asserts.html");
+                window.location.href = "gc_asserts.html";
             }else{
-                window.open("login.html");
+                window.location.href = "login.html";
             }
         });
 
@@ -248,7 +252,7 @@ var gcMallDetail={
     },
     hostCity:function () {
         var obj={
-            id:gcMallDetail.ptId,
+            id:gcMallDetail.Product.id,
             ver: gcMallDetail.Version,
             ts:gcMallDetail.Ts
         };
@@ -256,7 +260,7 @@ var gcMallDetail={
         var Sign=gcMallDetail.md(obj);
 
         var params={
-            id:gcMallDetail.ptId,
+            id:gcMallDetail.Product.id,
             ver: gcMallDetail.Version,
             ts:gcMallDetail.Ts,
             sign:Sign
@@ -287,6 +291,9 @@ var gcMallDetail={
         var Nmgs=imgs.split(';');
         for(var i=0; i<Nmgs.length-1;i++){
             var img_temp =$('<img src=" " style="width:100%; margin:20px;"/>');
+            img_temp.error(function () {
+                img_temp.attr("","imgs/nodata.png");
+            });
             img_temp.attr("src",Nmgs[i]);
             $("#home").append(img_temp);
         }
@@ -483,9 +490,10 @@ var gcMallDetail={
         };
 
         $.post(api_config.shopCartQuery,params,function (res) {
-            //console.log(res);
             if(res.Code == 3){
-                $("#shop_cart_num").text(res.Data.length);
+                if(res.Data){
+                    $("#shop_cart_num").text(res.Data.length);
+                }
             }
         })
     }

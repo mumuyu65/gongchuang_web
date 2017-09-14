@@ -5,7 +5,9 @@
 
 // var endpoint='https://api.yddtv.cn:10032';
 
-var endpoint = 'http://api.yddtv.cn:10031';
+//var endpoint = 'http://api.yddtv.cn:10031';
+
+var endpoint = 'http://192.168.0.101:10031';
 
 var api_config={
     login:endpoint+'/cowin/login',   //登录
@@ -14,6 +16,7 @@ var api_config={
     checkLogin:endpoint+'/cowin/check',    //检测登录
     resetPwd:endpoint+'/cowin/pwd/reset',    //重置密码
     logout:endpoint+'/cowin/logout',    //退出
+    userInfo:endpoint+'/cowin/userinfo',   //用户查询信息
     personSetting:endpoint+'/cowin/userinfo/update',  //个人设置
     authentication:endpoint+'/cowin/user/authen',  //身份验证
     checkAuthen:endpoint+'/cowin/user/authen/query',   //查询身份认证
@@ -46,8 +49,10 @@ var api_config={
     shopCartCleaning:endpoint+'/cowin/shopcart/settle',  //购物车结算
     //已购买产品
     productsBuy:endpoint+'/cowin/mall/product/buy',  //产品购买
-    orderConfirm:endpoint+'/cowin/mall/order/pay',  //产品订单支付确认
+    payOrder:endpoint+'/cowin/mall/order/pay',  //产品订单支付确认
     contractDownLoad:endpoint+'/cowin/product/agreement/down',  //产品合同下载
+    queryContract:endpoint+'/cowin/product/agreement/query',  //查询合同
+    signContract:endpoint+'/cowin/product/agreement/sign',   //签署合同
     //优惠券
     couponqQuery:endpoint+'/cowin/coupon/query',  //优惠券查询
     exchangCoupon:endpoint+'/cowin/isscoup/query',  //兑换优惠券

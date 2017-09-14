@@ -7,9 +7,9 @@ var gcCommentDetai={
     Ts:Date.parse(new Date())/1000,
     user:'',
     Comment:'',
+    ImgArr:[],
     init:function () {
         gcCommentDetai.user = JSON.parse($.cookie('gcUser'));
-        //console.log(gcCommentDetai.user);
         $("#gc_user_logined").css('display','inline-block');
         $("#gc_user_login").css('display','none');
 
@@ -24,6 +24,7 @@ var gcCommentDetai={
 
         //说说内容
         var talkDetail=JSON.parse($.cookie("talk"));
+        //console.log(talkDetail);
         gcCommentDetai.Comment = talkDetail;
         gcCommentDetai.details(talkDetail);
 
@@ -41,6 +42,25 @@ var gcCommentDetai={
                 alert("评论内容为空.");
             }
         });
+
+        //上传图片
+        $("#add_img").click(function () {
+            if($("#img_inner").parent(".img-inner").hasClass("active")){
+                $("#img_inner").parent(".img-inner").removeClass("active");
+            }else{
+                $("#img_inner").parent(".img-inner").addClass("active");
+                gcCommentDetai.profileReview();
+            }
+        });
+
+        //查询购物车
+        gcCommentDetai.queryShoppingCart();
+
+        //点赞
+        $("#gc_comment .zan").click(function () {
+            gcCommentDetai.thumbUp(talkDetail);
+        });
+
     },
     //通知
     notice:function () {
@@ -210,10 +230,8 @@ var gcCommentDetai={
         };
 
         $.post(api_config.talkDetail,params,function (result) {
-            //console.log(result);
             if(result.Code ==3){
                 var temp_data = result.Data.Detail;
-
                 var len=temp_data.length;
                 $("#hd_item_comment_inner .content").empty();
                 for(var i=0; i<len;i++){
@@ -223,11 +241,22 @@ var gcCommentDetai={
                             '<img class="media-object" src="'+data.headurl+'" alt=""/></a>'+
                         '<div class="media-body">'+
                             '<h4 class="media-heading">'+data.nick+'</h4>'+
-                            '<h5>12:30</h5>'+
+                            '<h5>'+gcCommentDetai.dateStamp(data.unix*1000)+'</h5>'+
                             '<div class="hd_comment_content">'+data.content+
                                 '</div>'+
                         '</div>'+
                     '</div>');
+
+                    var hd_item_img=$('<div class="hd_item_img"></div>');
+                    if(data.imgurl){
+                        var arr = data.imgurl.split(";");
+                        for(var j =0; j<arr.length-1;j++){
+                            var comment_img = '<img src="'+arr[j]+'" />';
+                            hd_item_img.append(comment_img);
+                        }
+
+                        item.find(".hd_comment_content").append(hd_item_img);
+                    }
 
                     $("#hd_item_comment_inner .content").append(item);
                 }
@@ -235,37 +264,254 @@ var gcCommentDetai={
         });
     },
     publish:function (cid,ctx) {
+        var Imgs = gcCommentDetai.ImgArr.length;
+        if(Imgs>0){
+            var obj={
+                sid:gcCommentDetai.user.SessionId,
+                id:cid,
+                content:ctx,
+                imgs:Imgs,
+                ver: gcCommentDetai.Version,
+                ts:gcCommentDetai.Ts
+            };
+
+            var Sign=gcCommentDetai.md(obj);
+
+            var param = new FormData();
+
+            param.append('sid',gcCommentDetai.user.SessionId);
+
+            param.append('content',ctx);
+
+            param.append('id',cid);
+
+            param.append('imgs',Imgs);
+
+            param.append('ver',gcCommentDetai.Version);
+
+            param.append('ts',gcCommentDetai.Ts);
+
+            param.append('sign',Sign);
+
+            for(var i =0 ; i<Imgs;i++){
+                var num = i+1;
+                var img = 'img'+num;
+                param.append(img,gcCommentDetai.ImgArr[i]);
+            }
+
+            $.ajax({
+                url:api_config.talkComment,
+                type:"post",
+                data:param,
+                processData:false,
+                contentType:false,
+                success:function(res){
+                    alert(res.Msg);
+                    if(res.Code ==3){
+                        var Count = parseInt(gcCommentDetai.Comment.review)+1;
+                        gcCommentDetai.talkInner(cid,Count);
+
+                        $("#gc_comment .comment").text(Count);
+
+                        $("#hd_item_comment_inner").css("display",'block');
+
+                        $("#hd_item_comment_inner .hd_comment_context").html("");
+
+                        $("#img_inner").empty();
+                    }
+                }
+            });
+
+        }else{
+            var obj={
+                sid:gcCommentDetai.user.SessionId,
+                id:cid,
+                content:ctx,
+                ver: gcCommentDetai.Version,
+                ts:gcCommentDetai.Ts
+            };
+
+            var Sign=gcCommentDetai.md(obj);
+
+            var params={
+                sid:gcCommentDetai.user.SessionId,
+                id:cid,
+                content:ctx,
+                ver: gcCommentDetai.Version,
+                ts:gcCommentDetai.Ts,
+                sign:Sign
+            };
+
+            $.post(api_config.talkComment,params,function (result) {
+                alert(result.Msg);
+                if(result.Code ==3){
+                    var Count = parseInt(gcCommentDetai.Comment.review)+1;
+                    $("#hd_item_comment_inner").css("display",'block');
+                    $("#hd_item_comment .hd_comment_context").text('说点什么。。。。');
+                    gcCommentDetai.talkInner(cid,Count);
+                    $("#gc_comment .comment").text(Count);
+                }
+            });
+        }
+    },
+    //上传图片
+    profileReview:function () {
+        var objUrl;
+        var img_html;
+
+        $("#myFile").change(function() {
+            var img_div = $("#img_inner");
+            var filepath = $("input[name='myFile']").val();
+            for(var i = 0; i < this.files.length; i++) {
+                objUrl = getObjectURL(this.files[i]);
+                var extStart = filepath.lastIndexOf(".");
+                var ext = filepath.substring(extStart, filepath.length).toUpperCase();
+                /*
+                 描述：鉴定每个图片上传尾椎限制
+                 * */
+                if(ext != ".BMP" && ext != ".PNG" && ext != ".GIF" && ext != ".JPG" && ext != ".JPEG") {
+                    $(".shade").fadeIn(500);
+                    $(".text_span").text("图片限于bmp,png,gif,jpeg,jpg格式");
+                    this.value = "";
+                    $("#img_inner").html("");
+                    return false;
+                } else {
+                    /*
+                     若规则全部通过则在此提交url到后台数据库
+                     * */
+                    img_html = "<div class='isImg'>" +
+                        "<img src='" + objUrl + "' onclick='javascript:lookBigImg(this)' style='height: 100%; width: 100%;' />" +
+                        "<button class='removeBtn' onclick='javascript:removeImg(this)'>x</button></div>";
+                    img_div.append(img_html);
+
+                    gcCommentDetai.ImgArr.push(this.files[i]);
+                }
+            }
+            /*
+             描述：鉴定每个图片大小总和
+             * */
+            var file_size = 0;
+            var all_size = 0;
+            for(j = 0; j < this.files.length; j++) {
+                file_size = this.files[j].size;
+                all_size = all_size + this.files[j].size;
+                var size = all_size / 1024;
+                if(size > 500) {
+                    $(".shade").fadeIn(500);
+                    $(".text_span").text("上传的图片大小不能超过100k！");
+                    this.value = "";
+                    $(".img_div").html("");
+                    return false;
+                }
+            }
+            return true;
+        });
+    },
+    //查询购物车
+    queryShoppingCart:function () {
         var obj={
             sid:gcCommentDetai.user.SessionId,
-            id:cid,
-            content:ctx,
             ver: gcCommentDetai.Version,
             ts:gcCommentDetai.Ts
         };
 
-        var Sign=gcCommentDetai.md(obj);
+        var Sign = gcCommentDetai.md(obj);
 
         var params={
             sid:gcCommentDetai.user.SessionId,
-            id:cid,
-            content:ctx,
             ver: gcCommentDetai.Version,
             ts:gcCommentDetai.Ts,
             sign:Sign
         };
 
-        $.post(api_config.talkComment,params,function (result) {
-            alert(result.Msg);
-            if(result.Code ==3){
-                $("#hd_item_comment_inner").css("display",'block');
-                $("#hd_item_comment .hd_comment_context").text('说点什么。。。。');
-                gcCommentDetai.talkInner(cid,parseInt(gcCommentDetai.Comment.review)+1);
+        $.post(api_config.shopCartQuery,params,function (res) {
+            if(res.Code == 3){
+                $("#shop_cart_num").text(res.Data.length);
             }
+        })
+    },
+    dateStamp:function (tm){
+        //获取一个事件戳
+        var time = new Date(tm);
+
+        var H = time.getHours();
+
+        var M = time.getMinutes();
+        //返回拼接信息
+        return gcCommentDetai.add(H) + '：' + gcCommentDetai.add(M);
+    },
+    add:function(m) {
+        return m < 10 ? '0' + m : m
+    },
+    //点赞
+    thumbUp:function (Obj) {
+        var obj={
+            sid:gcCommentDetai.user.SessionId,
+            id:Obj.id,
+            ver: gcCommentDetai.Version,
+            ts:gcCommentDetai.Ts
+        };
+
+        var Sign = gcCommentDetai.md(obj);
+
+        var params={
+            sid:gcCommentDetai.user.SessionId,
+            id:Obj.id,
+            ver: gcCommentDetai.Version,
+            ts:gcCommentDetai.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.fans,params,function (result) {
+            alert(result.Msg);
+            window.location.href="index.html";
         });
-
-
-    }
+    },
 };
+
+/*
+ 描述：鉴定每个浏览器上传图片url 目前没有合并到Ie
+ * */
+function getObjectURL(file) {
+    var url = null;
+    if(window.createObjectURL != undefined) { // basic
+        url = window.createObjectURL(file);
+    } else if(window.URL != undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file);
+    } else if(window.webkitURL != undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file);
+    }
+    return url;
+}
+
+/*
+ 描述：上传图片附带删除 再次地方可以加上一个ajax进行提交到后台进行删除
+ * */
+function removeImg(r){
+    $(r).parent().remove();
+}
+
+/*
+ 描述：上传图片附带放大查看处理
+ * */
+function lookBigImg(b){
+    $(".shadeImg").fadeIn(500);
+    $(".showImg").attr("src",$(b).attr("src"))
+}
+
+/*
+ 描述：关闭弹出层
+ * */
+function closeShade(){
+    $(".shade").fadeOut(500);
+}
+
+/*
+ 描述：关闭弹出层
+ * */
+function closeShadeImg(){
+    $(".shadeImg").fadeOut(500);
+}
 
 $(document).ready(function () {
     gcCommentDetai.init();

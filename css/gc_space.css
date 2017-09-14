@@ -32,6 +32,19 @@
     display:none;
 }
 
+.gc-space .img-inner{
+    display:none;
+}
+
+.gc-space .img-inner img{
+    width:150px;
+    height:150px;
+}
+
+.gc-space .img-inner.active{
+    display:block;
+}
+
 
 
 

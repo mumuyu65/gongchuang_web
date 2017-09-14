@@ -31,6 +31,26 @@ var gcMall={
             $("#gc_notice").css("display","inline-block");
             gcMall.notice();   //通知查询
         }
+
+        //我的空间
+        $("#gc_space").click(function () {
+            if(gcMall.user){
+                window.location.href="gc_space.html";
+            }else{
+                window.location.href="login.html";
+            }
+        });
+
+        //我的资产
+        $("#gc_asserts").click(function () {
+            if(gcMall.user){
+                window.location.href="gc_asserts.html";
+            }else{
+                window.location.href = "login.html";
+            }
+        });
+
+        gcMall.queryShoppingCart();  //查询购物车
     },
     //通知
     notice:function () {
@@ -124,41 +144,49 @@ var gcMall={
 
         $.post(api_config.carouselQuery,params,function (result) {
             if(result.Code  == 3){
-                var temp_mall_carousel = result.Data;
-                //console.log(result.Data);
-                $("#gc_mall_carousel").empty();
-                for(var i =0; i<temp_mall_carousel.length;i++){
-                    var temp_carousel='<div class="item">'+
-                        '<div class="item_inner">'+
-                            '<h1>轻客 Tsinova</h1>'+
-                            '<h1>人生赢家的出行美学</h1>'+
-                            '<ul class="list-inline item_desc">'+
-                                '<li class="text-center">'+
-                                    '<img src="imgs/mall/num-1.png" alt="">'+
-                                    '<h4>x芯片</h4>'+
-                                '</li>'+
-                                '<li class="text-center">'+
-                                    '<img src="imgs/mall/num-2.png" alt="">'+
-                                    '<h4>超长续航</h4>'+
-                                '</li>'+
-                                '<li class="text-center">'+
-                                    '<img src="imgs/mall/num-3.png" alt="">'+
-                                    '<h4>车重</h4>'+
-                                '</li>'+
-                            '</ul>'+
+                if(result.Data){
+                    var temp_mall_carousel = result.Data;
+                    console.log(result.Data);
+                    $("#gc_mall_carousel").empty();
+                    for(var i =0; i<temp_mall_carousel.length;i++){
+                        var carousel_item = '<div class="item">'+
+                            '<a href="'+temp_mall_carousel[i].gotourl+'"><img src="'+temp_mall_carousel[i].imgurl+'" ' +
+                            ' style="width:100%; height:586px;"/></a>'+
+                            '</div>';
 
-                            '<ol class="list-inline item_icon">'+
-                                '<li><a href="'+temp_mall_carousel[i].gotourl+'">了解更多</a></li>'+
-                                '<li><a href="#">马上购买</a></li>'+
-                            '</ol>'+
-                        '</div>'+
-                        '<a href="'+temp_mall_carousel[i].gotourl+'"><img src="'+temp_mall_carousel[i].imgurl+'" alt="" style="width:100%;"/></a>'+
-                        '</div>';
+                        $("#gc_mall_carousel").append(carousel_item);
+                        // var temp_carousel=$('<div class="item">'+
+                        //     '<div class="item_inner">'+
+                        //     '<h1>轻客 Tsinova</h1>'+
+                        //     '<h1>人生赢家的出行美学</h1>'+
+                        //     '<ul class="list-inline item_desc">'+
+                        //     '<li class="text-center">'+
+                        //     '<img src="imgs/mall/num-1.png" alt="">'+
+                        //     '<h4>x芯片</h4>'+
+                        //     '</li>'+
+                        //     '<li class="text-center">'+
+                        //     '<img src="imgs/mall/num-2.png" alt="">'+
+                        //     '<h4>超长续航</h4>'+
+                        //     '</li>'+
+                        //     '<li class="text-center">'+
+                        //     '<img src="imgs/mall/num-3.png" alt="">'+
+                        //     '<h4>车重</h4>'+
+                        //     '</li>'+
+                        //     '</ul>'+
+                        //
+                        //     '<ol class="list-inline item_icon">'+
+                        //     '<li><a href="'+temp_mall_carousel[i].gotourl+'">了解更多</a></li>'+
+                        //     '<li><a href="#">马上购买</a></li>'+
+                        //     '</ol>'+
+                        //     '</div>'+
+                        //     '<a href="'+temp_mall_carousel[i].gotourl+'"><img src="'+temp_mall_carousel[i].imgurl+'" alt="" style="width:100%;"/></a>'+
+                        //     '</div>');
 
-                    $("#gc_mall_carousel").append(temp_carousel);
+                        //$("#gc_mall_carousel").append(temp_carousel);
+                    }
+                    $("#gc_mall_carousel .item").eq(0).addClass('active');
+                    $('#gc_mall_myCarousel').carousel({ interval: 5000 });
                 }
-                $("#gc_mall_carousel .item").eq(0).addClass('active');
-                //$('#gc_mall_myCarousel').carousel({ interval: 5000 });
             }
         });
     },
@@ -181,6 +209,7 @@ var gcMall={
 
         return md5(str);
     },
+    //推荐产品
     recommandProducts:function () {
         var obj={
             recommend:1,
@@ -204,86 +233,88 @@ var gcMall={
         };
 
         $.post(api_config.productsQuery,params,function(result){
-            //console.log(result);
             if(result.Code ==3){
-                var mall_recommand_tmp=result.Data.Detail;
-                var tmp_len = mall_recommand_tmp.length;
-                $("#today_deadline .carousel-indicators").empty();
-                $("#mall_recommand").empty();
-                for(var i= 0; i<tmp_len;i++){
-                    var recommand_icon = '<li></li>';
-                    $("#today_deadline .carousel-indicators").append(recommand_icon);
-                    var Idx = i+1;
-                    var mall_recommand = '<div class="media media-'+Idx+'">'+
-                        '<div class="media-body">'+
+                if(result.Data){
+                    var mall_recommand_tmp=result.Data.Detail;
+                    var tmp_len = mall_recommand_tmp.length;
+                    $("#today_deadline .carousel-indicators").empty();
+                    $("#mall_recommand").empty();
+                    for(var i= 0; i<tmp_len;i++){
+                        var recommand_icon = '<li></li>';
+                        $("#today_deadline .carousel-indicators").append(recommand_icon);
+                        var Idx = i+1;
+                        var mall_recommand = '<div class="media media-'+Idx+'">'+
+                            '<div class="media-body">'+
                             '<h4 class="media-heading">'+
-                                '<img src="imgs/mall/square-2.png">'+
-                                ' <div class="mall-media-icon">'+
-                                    '  <span class="icon-c"></span>'+
-                                    ' <span class="icon-t">'+mall_recommand_tmp[i].name+'</span>'+
-                                '   </div>'+
+                            '<img src="imgs/mall/square-2.png">'+
+                            ' <div class="mall-media-icon">'+
+                            '  <span class="icon-c"></span>'+
+                            ' <span class="icon-t">'+mall_recommand_tmp[i].name+'</span>'+
+                            '   </div>'+
                             '  </h4>'+
-                        '  <h3>'+mall_recommand_tmp[i].web_intro+'</h3>'+
-                    '  <div class="media-inner">'+
-                    ' <img src="imgs/mall/mall_money.png"/>'+
-                    ' <div class="mall-media-icon">'+
-                    '  <span class="icon-t">'+mall_recommand_tmp[i].discount_price+'</span>'+
-                    '   <span class="icon-y">元</span>'+
-                    '   </div>'+
-                    '   </div>'+
-                    '   </div>'+
-                    '  <a class="media-right" href="#">'+
-                    '    <img class="media-object" src="'+mall_recommand_tmp[i].coverurl+'" >'+
-                    '    </a>'+
-                    '    <div class="text-center mall_deadline">'+
-                    '    <ul class="list-inline">'+
-                    '    <li><h3>剩余</h3></li>'+
-                    '    <li class="timer"><h3>18</h3></li>'+
-                    '   <li>:</li>'+
-                    '<li class="timer"><h3>12</h3></li>'+
-                    '    <li>:</li>'+
-                    '<li class="timer"><h3>13</h3></li>'+
-                    '    </ul>'+
-                    '    </div>'+
-                    '    </div>';
+                            '  <h3>'+mall_recommand_tmp[i].web_intro+'</h3>'+
+                            '  <div class="media-inner">'+
+                            ' <img src="imgs/mall/mall_money.png"/>'+
+                            ' <div class="mall-media-icon">'+
+                            '  <span class="icon-t">'+mall_recommand_tmp[i].discount_price+'</span>'+
+                            '   <span class="icon-y">元</span>'+
+                            '   </div>'+
+                            '   </div>'+
+                            '   </div>'+
+                            '  <a class="media-right" href="#">'+
+                            '    <img class="media-object" src="'+mall_recommand_tmp[i].coverurl+'" >'+
+                            '    </a>'+
+                            '    <div class="text-center mall_deadline">'+
+                            '    <ul class="list-inline">'+
+                            '    <li><h3>剩余</h3></li>'+
+                            '    <li class="timer"><h3>18</h3></li>'+
+                            '   <li>:</li>'+
+                            '<li class="timer"><h3>12</h3></li>'+
+                            '    <li>:</li>'+
+                            '<li class="timer"><h3>13</h3></li>'+
+                            '    </ul>'+
+                            '    </div>'+
+                            '    </div>';
 
-                    $("#mall_recommand").append(mall_recommand);
+                        $("#mall_recommand").append(mall_recommand);
+                    }
+
+                    $("#today_deadline .carousel-indicators li").eq(1).addClass("active");
+
+                    $("#today_deadline li").click(function () {
+                        $(this).siblings().removeClass('active');
+                        $(this).addClass("active");
+                        var Index = $(this).index();
+                        if(Index==0){
+                            $("#today_deadline .media").eq(Index+2).animate(
+                                { left: '1460px'}, 2000);
+                            $("#today_deadline .media").eq(Index).animate(
+                                { left: '+300px' }, 2000);
+                            $("#today_deadline .media").eq(Index+1).animate(
+                                { left: '+880px' }, 2000);
+                        }
+                        if(Index==1){
+                            $("#today_deadline .media").eq(Index-1).animate(
+                                { left: '-280px' }, 2000);
+                            $("#today_deadline .media").eq(Index).animate(
+                                { left: '300px' }, 2000);
+                            $("#today_deadline .media").eq(Index+1).animate(
+                                { left: '880px' }, 2000);
+                        }
+                        if(Index==2){
+                            $("#today_deadline .media").eq(Index-2).animate(
+                                { left: '-880px' }, 2000);
+                            $("#today_deadline .media").eq(Index).animate(
+                                { left: '300px' }, 2000);
+                            $("#today_deadline .media").eq(Index-1).animate(
+                                { left: '-280px' }, 2000);
+                        }
+                    });
                 }
-
-                $("#today_deadline .carousel-indicators li").eq(1).addClass("active");
-
-                $("#today_deadline li").click(function () {
-                    $(this).siblings().removeClass('active');
-                    $(this).addClass("active");
-                    var Index = $(this).index();
-                    if(Index==0){
-                        $("#today_deadline .media").eq(Index+2).animate(
-                            { left: '1460px'}, 2000);
-                        $("#today_deadline .media").eq(Index).animate(
-                            { left: '+300px' }, 2000);
-                        $("#today_deadline .media").eq(Index+1).animate(
-                            { left: '+880px' }, 2000);
-                    }
-                    if(Index==1){
-                        $("#today_deadline .media").eq(Index-1).animate(
-                            { left: '-280px' }, 2000);
-                        $("#today_deadline .media").eq(Index).animate(
-                            { left: '300px' }, 2000);
-                        $("#today_deadline .media").eq(Index+1).animate(
-                            { left: '880px' }, 2000);
-                    }
-                    if(Index==2){
-                        $("#today_deadline .media").eq(Index-2).animate(
-                            { left: '-880px' }, 2000);
-                        $("#today_deadline .media").eq(Index).animate(
-                            { left: '300px' }, 2000);
-                        $("#today_deadline .media").eq(Index-1).animate(
-                            { left: '-280px' }, 2000);
-                    }
-                });
             }
         });
     },
+    //产品
     wholeProducts:function () {
         var obj={
             recommend:-1,
@@ -307,45 +338,71 @@ var gcMall={
         };
 
         $.post(api_config.productsQuery,params,function(result){
-            //console.log(result);
             if(result.Code ==3){
-                var mall_products = result.Data.Detail;
+                if(result.Data){
+                    var mall_products = result.Data.Detail;
 
-                var products_len = mall_products.length;
+                    var products_len = mall_products.length;
 
-                $("#mall_goods").empty();
-                for(var i=0; i<products_len;i++){
-                    var status;
-                    if(mall_products[i].status ==1){
-                        status = '预售';
-                    }else{
-                        status = '已售';
-                    }
-                    var mall_products_item = '<div class="goods_item text-center">'+
-                    '<img src="'+mall_products[i].coverurl+'" style="width:277px; height:248px;"  />'+
-                        '<div class="item-desc">'+
-                            '<p>'+
+                    $("#mall_goods").empty();
+                    for(var i=0; i<products_len;i++){
+                        var status;
+                        if(mall_products[i].status ==1){
+                            status = '预售';
+                        }else{
+                            status = '已售';
+                        }
+                        var mall_products_item = $('<div class="goods_item text-center">'+
+                            '<img src="'+mall_products[i].coverurl+'" style="width:277px; height:248px;"  />'+
+                            '<div class="item-desc">'+
+                            '<p style="height:67px; overflow:hidden; text-align: start">'+
                             '【<span style="color:#E61F1C">'+status+'</span>】'+mall_products[i].product_name+
                             '</p>'+
                             '<img src="imgs/mall/square-3.png" alt="">'+
-                                '<h4>预售:'+mall_products[i].presale_total+'</h4>'+
+                            '<h4>预售:'+mall_products[i].presale_total+'</h4>'+
                             '<hr/>'+
                             '<ul class="list-inline">'+
-                                '<li><a href="javascript:void(0)" class="products_add_more" data-index="'+i+'">了解更多</a></li>'+
-                               ' <li><a href="javascript:void(0)"><i class="iconfont icon icon-gouwuchekong add-shop-cart"></i></a></li>'+
+                            '<li><a href="javascript:void(0)" class="products_add_more" data-index="'+i+'">了解更多</a></li>'+
+                            // ' <li><a href="javascript:void(0)"><i class="iconfont icon icon-gouwuchekong add-shop-cart"></i></a></li>'+
                             '</ul>'+
-                        '</div>'+
-                    '</div>';
-                    $("#mall_goods").append(mall_products_item);
-                }
+                            '</div>'+
+                            '</div>');
+                        $("#mall_goods").append(mall_products_item);
+                    }
 
-                $("#mall_goods .products_add_more").click(function () {
-                    var Idx = $(this).attr("data-index");
-                    $.cookie('mall_products',JSON.stringify(mall_products[parseInt(Idx)]));
-                    window.open('gc_mall_detail.html');
-                });
+                    $("#mall_goods .products_add_more").click(function () {
+                        var Idx = $(this).attr("data-index");
+                        $.cookie('mall_products',JSON.stringify(mall_products[parseInt(Idx)]));
+                        window.location.href='gc_mall_detail.html';
+                    });
+                }
             }
         });
+    },
+    //查询购物车
+    queryShoppingCart:function () {
+        var obj={
+            sid:gcMall.user.SessionId,
+            ver: gcMall.Version,
+            ts:gcMall.Ts
+        };
+
+        var Sign = gcMall.md(obj);
+
+        var params={
+            sid:gcMall.user.SessionId,
+            ver: gcMall.Version,
+            ts:gcMall.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.shopCartQuery,params,function (res) {
+            if(res.Code == 3){
+                if(res.Data){
+                    $("#shop_cart_num").text(res.Data.length);
+                }
+            }
+        })
     }
 };
 

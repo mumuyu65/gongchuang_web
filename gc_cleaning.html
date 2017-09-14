@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>利公共创平台--共创商城--详情页</title>
+    <title>利公共创平台--结算</title>
+    <base target="_blank">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="robots" content="all" >
@@ -20,12 +21,51 @@
     <link rel="stylesheet" type="text/css" href="js/bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/gc_mall_detail.css"/>
+    <link rel="stylesheet" type="text/css" href="css/gc_cleaning.css"/>
     <style type="text/css">
-        .quantity.active{
-            background-color:#C02D28;
+        .modal-content{
+            background-color:#313131;
+            padding:8px; border-radius:0;
+        }
+
+        .modal-header{
+            padding:10px 0;
+        }
+
+        .icon-cha{
             color:#fff;
         }
+
+        .modal-title{
+            background-color:#fff; font-size:14px; padding:5px 10px; position: absolute;
+        }
+
+        .modal-body{
+            background-color:#fff; padding:50px;
+        }
+
+        .modal-body li{
+            position: relative;
+        }
+
+        .modal-body li>input[type="radio"]{
+            position: absolute;
+            left:7px;
+            top:3px;
+            opacity: 0;
+            width:15px;
+            height:15px;
+        }
+
+        .modal-body li>.iconfont{
+            color:#eaeaea;
+            font-size:20px;
+        }
+        .modal-body li>input[type="radio"]:checked+i{
+            color:#C02D28;
+        }
+
+
     </style>
 </head>
 <body>
@@ -39,10 +79,10 @@
             </a>
         </div>
         <ul class="pull-right list-inline">
-            <li class="active"><a href="gc_mall.html">商城</a></li>
+            <li><a href="gc_mall.html">商城</a></li>
             <li><a href="gc_transactionmall.html">流转商城</a></li>
-            <li><a href="javascript:void(0)" id="gc_space">我的空间</a></li>
-            <li><a href="javascript:void(0)" id="gc_asserts">我的资产</a></li>
+            <li><a href="gc_space.html" id="gc_space">我的空间</a></li>
+            <li><a href="gc_asserts.html" id="gc_asserts">我的资产</a></li>
             <li style="display:none;" class="dropdown" id="gc_user_logined">
                 <a href="javascript:void(0)" class="dropdown-toggle" id="dropdownMenu1"
                    data-toggle="dropdown" style="color:#C02D28;">
@@ -90,60 +130,56 @@
     </div>
 </header>
 <!-- section -->
-<section class="gc_mall_detail">
+<section>
     <div class="layout">
-        <aside>
-            <div class="desc">
-                <p class="desc_1" id="products_title"></p>
-                <p class="desc_2" id="products_intro"></p>
-                <div class="text-center desc_3" id="products_detail">
-                    <ul class="list-inline">
-                        <li><h2>剩余</h2></li>
-                        <li class="timer"><h2>00</h2></li>
-                        <li>:</li>
-                        <li class="timer"><h2>00</h2></li>
-                        <li>:</li>
-                        <li class="timer"><h2>00</h2></li>
-                    </ul>
-                    <img src="" alt="" />
+        <aside class="gc_address">
+            <div class="gc_address_header">选购商品</div>
+            <div class="gc_address_inner gc_cleaning_products" id="gc_cleaning_products"></div>
+            <div class="gc_address_header">地址管理</div>
+            <div class="gc_address_inner">
+                <div id="gc_address_inner"></div>
+                <div class="text-center gc_address_new" id="gc_address_new">
+                    <i class="iconfont icon icon-jia" style="font-size:20px;"></i>添加新地址
                 </div>
 
-                <div class="desc_4" id="products_desc">
-                    <span class="money"></span><span>RMB</span>
-                    <h4 class="color">颜色</h4>
-                    <h4 class="host_method">托管方式</h4>
-                    <h4 class="desc_ct">托管城市</h4>
-                    <h4 class="total">可购买数量 <span></span></h4>
-                    <h4 class="sold_total">已售数量 <span class="active"></span></h4>
-                    <h4 style="display:inline-block;vertical-align: top; margin:5px 0;">购买数量</h4>
-                    <ol class="list-inline" style="display:inline-block; vertical-align: top; margin-left:10px;">
-                        <li><span class="minus">-</span><input type="number" value="1" class="num"/><span class="plus">+</span></li>
-                        <li class="quantity">全部</li>
-                    </ol>
-                    <div class="desc_6">
-                        <a class="pull-left shopping-cart" href="javascript:void(0)" id="add_to_cart" ><i class="iconfont icon icon-gouwuchekong"></i></a>
-                        <a class="pull-left" href="javascript:void(0)" onclick="alert('暂无法购买！')">立即购买</a>
-                    </div>
+                <div class="gc_address_new_content" id="gc_address_new_content" >
+                    <h4> 收件人: <input type="text"  value="" id="gc_account_recUser" /></h4>
+                    <h4> 详细地址: <input type="text" value="" id="gc_account_detailAddress" /></h4>
+                    <h4> 手机号码: <input type="number" value="" id="gc_account_phone" /></h4>
+                    <h3>
+                        <button class="btn btn-default" id="gc_address_new_cancel">取消</button>
+                        <button class="btn btn-danger" id="gc_address_new_save">保存</button>
+                        <button class="btn btn-danger" id="gc_account_address_modifysave" style="display: none;">保存</button>
+                    </h3>
                 </div>
-            </div>
-            <div class="text-center" style=" margin:20px 0;">
-                <span style="padding:10px 25px;font-size:24px; color:#fff;
-                 background: url('imgs/index/btn-index.png') 12px -5px no-repeat;">产品详情</span>
             </div>
 
-            <ul id="myTab" class="nav nav-tabs">
-                <li  class="active">
-                    <a href="#home" data-toggle="tab">
-                        商品详情
-                    </a>
-                </li>
-                <li><a href="#ios" data-toggle="tab">评价</a></li>
-            </ul>
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade in active" id="home" >
-                </div>
-                <div class="tab-pane fade " id="ios">
-                </div>
+            <div class="gc_address_header">确认订单信息</div>
+
+            <div class="gc_address_inner invoice">
+                <ul class="list-unstyled">
+                    <li style="background-color:#eaeaea;">
+                        <span>发票</span><span style="color:#C02D28">(必填)</span>
+                    </li>
+                    <li>
+                        <i class="iconfont icon icon-duigou active"></i>个人
+                    </li>
+                    <li>
+                        <i class="iconfont icon icon-duigou"></i>公司
+                    </li>
+                    <li>
+                        税号:
+                        <input type="text" class="form-control" id="gc_cleaning_tax" />
+                    </li>
+                    <li>
+                        抬头:
+                        <input type="text" class="form-control" id="gc_cleaning_name" />
+                    </li>
+                </ul>
+            </div>
+
+            <div style="height:50px; padding-right:50px;">
+                <button class="btn btn-danger pull-right" id="gc_cleaning_pay">订购</button>
             </div>
         </aside>
     </div>
@@ -178,12 +214,50 @@
         <hr style="border-top:1px solid #6F6F6F;"/>
     </footer>
 </div>
+<!-- payModal-->
+<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="iconfont icon icon-cha close" data-dismiss="modal" aria-hidden="true"></i>
+                <span class="modal-title">支付</span>
+            </div>
+            <div class="modal-body">
+                <h4>提取到:</h4>
+                <ul class="list-inline">
+                    <li>
+                        <input type="radio" value="" name="pay" />
+                        <i class="iconfont icon icon-duigou"></i>
+                        <img src="imgs/alipay.png" alt="">
+                    </li>
+                    <li>
+                        <input type="radio" value="" name="pay" />
+                        <i class="iconfont icon icon-duigou"></i>
+                        <img src="imgs/wechat.png" alt="">
+                    </li>
+                    <li>
+                        <input type="radio" value="" name="pay" />
+                        <i class="iconfont icon icon-duigou"></i>
+                        <img src="imgs/union.png" alt="">
+                    </li>
+                    <li>
+                        <input type="radio" value="" name="pay" checked />
+                        <i class="iconfont icon icon-duigou"></i>
+                        共创
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer" style="background-color:#fff; text-align: center;">
+                <button type="button" class="btn btn-danger" id="gc_cleaning_confirm" >确认</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/blueImp/md5.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/api.js"></script>
-<script type="text/javascript" src="js/gongchuang/gc_mall_detail.js"></script>
+<script type="text/javascript" src="js/gongchuang/gc_cleaning.js"></script>
 </body>
 </html>

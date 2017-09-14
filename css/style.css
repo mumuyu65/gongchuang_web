@@ -91,7 +91,7 @@ header .navbar-header>a:hover{
 }
 
 header .navbar-header span{
-    color:#fff;
+    color: #D0D0D0;
     margin-left:30px;
     font-size:26px;
     vertical-align: top;
@@ -117,7 +117,7 @@ header .list-inline>li:hover>a{
 }
 
 header .list-inline>li>a{
-    color:#fff;
+    color: #D0D0D0;
     font-size:18px;
     position: relative;
     display: inline-block;
@@ -370,8 +370,13 @@ footer{
 }
 
 .gc_address .gc_address_inner .item .item_opera i {
-
     font-size: 22px;
+}
+
+.gc_address .gc_address_header{
+    padding:10px 40px;
+    font-size:18px;
+    border-bottom:2px solid #eaeaea;
 }
 
 

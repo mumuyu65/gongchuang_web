@@ -36,19 +36,382 @@
         <ul class="pull-right list-inline">
             <li><a href="gc_mall.html">商城</a></li>
             <li><a href="gc_transactionmall.html">流转商城</a></li>
-            <li><a href="gc_space.html">我的空间</a></li>
-            <li><a href="gc_asserts.html">我的资产</a></li>
-            <li><a href="login.html">登录</a> <a href="register.html" style="margin-left:20px;">注册</a></li>
-            <li><a href="#"><i class="iconfont icon icon-lingdang" style="font-size:24px;"></i><span class="alert">99</span></a></li>
-            <li style="margin-right:0;"><a href="gc_shoppingcart.html"><i class="iconfont icon icon-gouwuchekong" style="margin-right:10px;"></i>购物车(0)</a></li>
+            <li><a href="gc_space.html" id="gc_space">我的空间</a></li>
+            <li><a href="gc_asserts.html" id="gc_asserts">我的资产</a></li>
+            <li style="display:none;" class="dropdown" id="gc_user_logined">
+                <a href="javascript:void(0)" class="dropdown-toggle" id="dropdownMenu1"
+                   data-toggle="dropdown" style="color:#C02D28;">
+                    <span class="gc_nick">主题</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="padding-bottom:0;">
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="gc_wallet.html" class="text-center">我的钱包</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="gc_order.html">我的订单</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">我的流转</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="gc_contract.html">我的合同</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="gc_account.html">账号管理</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="javascript:void(0)" id="gc_logout">退出</a>
+                    </li>
+                </ul>
+            </li>
+            <li id="gc_user_login"><a href="login.html">登录</a> <a href="register.html" style="margin-left:20px;">注册</a></li>
+            <li class="dropdown gc_notice" id="gc_notice" style="display: none;">
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2">
+                    <i class="iconfont icon icon-lingdang" style="font-size:24px;"></i>
+                    <span class="alert">0</span>
+                </a>
+                <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                    <div class="notice-inner">
+                        <i class="iconfont icon icon-xiangshang"></i>
+                        <div class="notice-info">
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="shopping-cart"><a href="gc_shoppingcart.html"><i class="iconfont icon icon-gouwuchekong" style="margin-right:10px;"></i>购物车(<span id="shop_cart_num">0</span>)</a></li>
         </ul>
     </div>
 </header>
 <!-- section -->
 <section>
     <div class="layout">
-        <aside>
-
+        <aside class="gc_order">
+            <ul id="myTab" class="nav nav-tabs">
+                <li style="position: relative;">
+                    <a>
+                       我的订单
+                    </a>
+                    <div class="divider"></div>
+                </li>
+                <li class="active">
+                    <a href="#order_unshipped" data-toggle="tab">
+                        待付款
+                    </a>
+                </li>
+                <li>
+                    <a href="#order_shipping" data-toggle="tab">进行中</a>
+                </li>
+                <li>
+                    <a href="#order_shipped" data-toggle="tab">已完成</a>
+                </li>
+            </ul>
+            <hr/>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="order_unshipped">
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">取消订单</button>
+                                        <button class="btn btn-danger">去支付</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">取消订单</button>
+                                        <button class="btn btn-danger">去支付</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">取消订单</button>
+                                        <button class="btn btn-danger">去支付</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">取消订单</button>
+                                        <button class="btn btn-danger">去支付</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="order_shipping" style="min-height:700px;">
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">查看物流</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">查看物流</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">查看物流</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">查看物流</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="order_shipped">
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">评论</button>
+                                        <button class="btn btn-default">删除订单</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">评论</button>
+                                        <button class="btn btn-default">删除订单</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">评论</button>
+                                        <button class="btn btn-default">删除订单</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-h">
+                            订单号:123456789
+                        </div>
+                        <div class="media">
+                            <a class="media-left" href="javascript:void(0)">
+                                <img class="media-object" src="imgs/mall/mall_car.png" alt=""  />
+                            </a>
+                            <div class="media-body">
+                                <h3 class="media-heading">轻客Tsinova智慧电单车 锂电池助力电动自行车 TS01</h3>
+                                <div class="order_desc">
+                                    <h4>颜色：白色, 投放城市:上海,投放数量：10</h4>
+                                    <h4>颜色：粉色, 投放城市:北京,投放数量：10</h4>
+                                    <h4>总投放数量:20 <span class="pull-right">&yen;60000</span></h4>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><h4>发票:利公上海网络科技有限公司</h4></li>
+                                    <li class="pull-right">
+                                        <button class="btn btn-default">评论</button>
+                                        <button class="btn btn-default">删除订单</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </aside>
     </div>
 </section>
@@ -84,7 +447,9 @@
 </div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/blueImp/md5.min.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/api.js"></script>
 <script type="text/javascript" src="js/gongchuang/gc_order.js"></script>
 </body>
 </html>

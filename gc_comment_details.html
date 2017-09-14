@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>利公共创平台--说说详情</title>
-    <base target="_blank">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="robots" content="all" >
@@ -23,6 +22,77 @@
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <link rel="stylesheet" type="text/css" href="css/gc_comment_details.css"/>
+    <style type="text/css">
+        .shade {
+            position: absolute;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.55);
+        }
+        .shade div {
+            width: 300px;
+            height: 200px;
+            line-height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -150px;
+            background: white;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .a-upload {
+            height: auto;
+            line-height: 20px;
+            position: relative;
+            cursor: pointer;
+            color: #888;
+            background: #fafafa;
+            overflow: hidden;
+            display: block;
+            zoom: 1
+        }
+        .a-upload input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: pointer
+        }
+        .img_div{min-height: 100px; min-width: 100px;}
+        .isImg{width: 120px; height: 120px; position: relative; float: left; margin-left: 10px;}
+        .removeBtn{position: absolute; top: 0; right: 0; z-index: 11; border: 0px; border-radius: 50px;
+            background-color: #c02d28; width: 22px; height: 22px; color: white;}
+        .shadeImg{position: absolute;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 15;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.55);}
+        .showImg{width: 400px; height: 500px; margin-top: 140px;}
+
+        .img-inner{
+            display:none;
+        }
+
+        .img-inner img{
+            width:150px;
+            height:150px;
+        }
+
+        .img-inner.active{
+            display:block;
+        }
+    </style>
 </head>
 <body>
 <!-- header -->
@@ -137,12 +207,32 @@
                                 <div class="media-body">
                                     <h4 class="media-heading"></h4>
                                 </div>
-                                <div class="hd_comment_context" contenteditable="true">
-                                    说点什么。。。
+                                <div>
+                                    <div class="hd_comment_context" contenteditable="true"></div>
+                                    <div class="img-inner">
+                                        <div class="img_div" id="img_inner" style="display: inline-block; vertical-align: top;">
+                                        </div>
+                                        <a href="javascript:;" class="a-upload">
+                                            <input type="file" name="myFile" id="myFile" multiple="multiple" />
+                                            <img src="imgs/authen.png" alt="">
+                                        </a>
+                                        <div class="shade" onclick="javascript:closeShade()">
+                                            <div class="">
+                                                <span class="text_span">
+
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="shadeImg" onclick="javascript:closeShadeImg()">
+                                            <div class="">
+                                                <img class="showImg" src="">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <ul class="list-inline hd_comment_icon">
-                                    <li><i class="iconfont icon icon-xiaolian"></i></li>
-                                    <li><i class="iconfont icon icon-img"></i></li>
+                                    <li><i class="iconfont icon icon-img" id="add_img"></i></li>
                                     <li class="pull-right">
                                         <button class="btn btn-danger" id="comment_publish">
                                             发表

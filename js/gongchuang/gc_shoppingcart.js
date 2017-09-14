@@ -11,7 +11,7 @@ var gcShoppingCart={
     InitMoney:0,
     init:function () {
         gcShoppingCart.user = JSON.parse($.cookie('gcUser'));
-        console.log(gcShoppingCart.user);
+        //console.log(gcShoppingCart.user);
         $("#gc_user_logined").css('display','inline-block');
         $("#gc_user_login").css('display','none');
 
@@ -28,7 +28,11 @@ var gcShoppingCart={
         
         //购物车结算
         $("#gc_shoppingcart_bid .bid").click(function () {
-            window.location.href="";
+            if(parseInt($("#gc_shoppingcart_bid .totalmoney").val()) == 0){
+                alert("无商品可结算！");
+            }else{
+                window.location.href="gc_cleaning.html";
+            }
         });
     },
     //通知
@@ -163,10 +167,16 @@ var gcShoppingCart={
         };
 
         $.post(api_config.shopCartQuery,params,function (res) {
-            console.log(res);
+            //console.log(res);
             if(res.Code == 3){
-                $("#shop_cart_num").text(res.Data.length);
-                gcShoppingCart.details(res.Data);
+                if(res.Data){
+                    $("#shop_cart_num").text(res.Data.length);
+                    gcShoppingCart.details(res.Data);
+                }else{
+                    $("#gc_shoppingcart").css("display","none");
+                    $("#gc_shoppingcart_bid").css("display","none");
+                    $("#gc_shoppingcart_nodata").css("display","block");
+                }
             }
         })
     },
@@ -189,7 +199,7 @@ var gcShoppingCart={
             var shoppingCart_item = $('<div class="item" data-id="'+arr[i].id+'"  data-idx="'+i+'">'+
             '<ul class="list-inline">'+
                 '<li><i class="iconfont icon icon-duigou select active"></i></li>'+
-                ' <li><img src="imgs/mall/mall_car.png" alt=""> </li>'+
+                ' <li><img src="'+arr[i].coverurl+'" alt="" style="width:277px; height:248px;" /> </li>'+
                 ' <li>'+
                     '  <div class="cart_list_desc">'+
                         '<div class="pull-right">'+

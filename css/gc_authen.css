@@ -1,0 +1,31 @@
+.gc-authen{
+    padding:50px 0; min-height:700px;
+}
+
+.gc-authen .form-control{
+    margin-bottom:30px;
+}
+
+.gc-authen .control-label{
+    font-size:16px; color:#666666;
+}
+
+.gc-authen .list-inline{
+    margin-top:50px;
+}
+
+.gc-authen  .list-inline>li{
+    position: relative;
+}
+
+.gc-authen .list-inline>li input{
+    position: absolute;
+    left:0;
+    top:40%;
+    opacity: 0;
+}
+
+.gc-authen .list-inline>li img{
+    width:200px;
+    height:200px;
+}

@@ -1,49 +1,59 @@
 /**
- * Created by yangyangyu on 2017/8/31.
+ * Created by yangyangyu on 2017/9/14.
  */
 
-var Order={
+var SignContract={
     Version:'1.0.0',
     Ts:Date.parse(new Date())/1000,
     user:'',
     init:function () {
-        Order.user = JSON.parse($.cookie('gcUser'));
+        SignContract.user = JSON.parse($.cookie('gcUser'));
         $("#gc_user_logined").css('display','inline-block');
         $("#gc_user_login").css('display','none');
 
-        $("#dropdownMenu1 .gc_nick").text(Order.user.Nick);
+        $("#dropdownMenu1 .gc_nick").text(SignContract.user.Nick);
 
         //退出
         $("#gc_logout").click(function () {
-            Order.logout();
+            SignContract.logout();
         });
 
         $("#gc_notice").css("display","inline-block");
 
-        Order.notice();   //通知查询
+        SignContract.notice();   //通知查询
 
-        Order.queryShoppingCart();  //查询购物车
+        //查询合同
+        SignContract.contract();
+
+        //是否同意合同
+        $("#contract_agree").click(function () {
+            window.location.href="gc_order.html";
+        });
+
+        $("#contract_unagree").click(function () {
+            window.location.href="gc_contract.html";
+        });
     },
     //通知
     notice:function () {
         var obj={
-            sid:Order.user.SessionId,
+            sid:SignContract.user.SessionId,
             begidx:0,
             counts:10,
             flag:0,
-            ver: Order.Version,
-            ts:Order.Ts
+            ver: SignContract.Version,
+            ts:SignContract.Ts
         };
 
-        var Sign=Order.md(obj);
+        var Sign=SignContract.md(obj);
 
         var params={
-            sid:Order.user.SessionId,
+            sid:SignContract.user.SessionId,
             begidx:0,
             counts:10,
             flag:0,
-            ver: Order.Version,
-            ts:Order.Ts,
+            ver: SignContract.Version,
+            ts:SignContract.Ts,
             sign:Sign
         };
 
@@ -72,24 +82,21 @@ var Order={
                 }
             }
         });
-
-        //查询待支付的订单
-        Order.unpay();
     },
     //退出
     logout:function () {
         var obj={
-            sid:Order.user.SessionId,
-            ver: Order.Version,
-            ts:Order.Ts
+            sid:SignContract.user.SessionId,
+            ver: SignContract.Version,
+            ts:SignContract.Ts
         };
 
-        var Sign = Order.md(obj);
+        var Sign = SignContract.md(obj);
 
         var params={
-            sid:Order.user.SessionId,
-            ver: Order.Version,
-            ts:Order.Ts,
+            sid:SignContract.user.SessionId,
+            ver: SignContract.Version,
+            ts:SignContract.Ts,
             sign:Sign
         };
 
@@ -120,63 +127,38 @@ var Order={
 
         return md5(str);
     },
-    //查询购物车
-    queryShoppingCart:function () {
+    contract:function () {
         var obj={
-            sid:Order.user.SessionId,
-            ver: Order.Version,
-            ts:Order.Ts
+            sid:SignContract.user.SessionId,
+            ver: SignContract.Version,
+            ts:SignContract.Ts
         };
 
-        var Sign = Order.md(obj);
+        var Sign=SignContract.md(obj);
 
         var params={
-            sid:Order.user.SessionId,
-            ver: Order.Version,
-            ts:Order.Ts,
+            sid:SignContract.user.SessionId,
+            ver: SignContract.Version,
+            ts:SignContract.Ts,
             sign:Sign
         };
 
-        $.post(api_config.shopCartQuery,params,function (res) {
-            if(res.Code == 3){
+        $.post(api_config.queryContract,params,function (res) {
+            if(res.Code ==3){
                 if(res.Data){
-                    $("#shop_cart_num").text(res.Data.length);
+                    $("#gc_contract_sign").html(res.Data);
+                }else{
+                    $("#gc_contract_sign").html('<img src="imgs/nodata.png" style="width:100%;"/>');
                 }
+            }else{
+                alert(res.Msg);
             }
         })
-    },
-    //查询待支付订单
-    unpay:function () {
-        var obj={
-            sid:Order.user.SessionId,
-            pay_status:0,
-            status:1,
-            begidx:0,
-            counts:10,
-            ver: Order.Version,
-            ts:Order.Ts
-        };
 
-        var Sign = Order.md(obj);
-
-        var params={
-            sid:Order.user.SessionId,
-            pay_status:0,
-            status:1,
-            begidx:0,
-            counts:10,
-            ver: Order.Version,
-            ts:Order.Ts,
-            sign:Sign
-        };
-
-        $.post(api_config.orderQuery,params,function (res) {
-            console.log(res);
-        });
     }
 };
 
 
 $(document).ready(function () {
-    Order.init();
+    SignContract.init();
 });

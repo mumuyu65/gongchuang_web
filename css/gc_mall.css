@@ -16,17 +16,6 @@
 }
 
 /* 轮播图 */
-.gc_mall_ad{
-    width:100%;
-    height:600px;
-    overflow: hidden;
-}
-
-.gc_mall .carousel-inner .item{
-    height:600px;
-    position: relative;
-}
-
 .gc_mall .carousel-inner .item .item_inner{
     position: absolute;
     left:30px;

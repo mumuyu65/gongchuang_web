@@ -7,6 +7,7 @@ var gcAccount={
     Ts:Date.parse(new Date())/1000,
     user:'',
     addressArr:[],
+    ImgArr:[],
     init:function(){
         if($.cookie('gcUser')){
             gcAccount.user = JSON.parse($.cookie('gcUser'));
@@ -23,7 +24,7 @@ var gcAccount={
             $("#gc_notice").css("display","inline-block");
             gcAccount.notice();   //通知查询
             
-            gcAccount.userInfo();  //用户信息
+            gcAccount.userInfo(gcAccount.user);  //用户信息
 
             gcAccount.profileReview();  //上传头像
 
@@ -37,6 +38,8 @@ var gcAccount={
 
             //优惠券
             gcAccount.coupon();
+
+            gcAccount.queryShoppingCart();  //查询购物车
         }else{
             window.location.href="index.html";
         }
@@ -126,6 +129,25 @@ var gcAccount={
             alert(result.Msg);
         });
     },
+    md:function (obj) {
+        var _arr = new Array();
+
+        var str = new String();
+
+        for(var o in obj){
+            _arr.push(o);
+        }
+
+        _arr = _arr.sort();
+
+        for(var i in _arr){
+            str +=_arr[i] + '='+obj[_arr[i]]+'&'
+        }
+
+        str = str + 'key=cmHsE0VMDXLcGBmaoepS&0b#WcVyH@c5';
+
+        return md5(str);
+    },
     /*检测登录
     isLogin:function () {
         var obj={
@@ -153,11 +175,11 @@ var gcAccount={
     },
      */
     //用户信息查询
-    userInfo:function () {
-        $("#gc_account_nick").val(gcAccount.user.Nick);
-        $("#gc_account_intro").text(gcAccount.user.Intro);
-        $("#gc_account_address").val(gcAccount.user.City);
-        var url=api_config.downloadProfile+''+gcAccount.user.UserId;
+    userInfo:function (obj) {
+        $("#gc_account_nick").val(obj.Nick);
+        $("#gc_account_intro").text(obj.Intro);
+        $("#gc_account_address").val(obj.City);
+        var url=api_config.downloadProfile+''+obj.UserId;
         $('#nextview').attr('src',url);
         $('#gc_account_profile').attr('src',url);
     },
@@ -165,35 +187,41 @@ var gcAccount={
     profileReview:function () {
         var _upFile=document.getElementById("file");
 
+        var objUrl;
+        var img_html;
+
         _upFile.addEventListener("change", function() {
-            if (_upFile.files.length === 0) {
-                alert("请选择图片");
-                return;
+            var filepath = $("input[name='file']").val();
+            for(var i = 0; i < this.files.length; i++) {
+                objUrl = getObjectURL(this.files[i]);
+                var extStart = filepath.lastIndexOf(".");
+                var ext = filepath.substring(extStart, filepath.length).toUpperCase();
+                /*
+                 描述：鉴定每个图片上传限制
+                 * */
+                if(ext != ".BMP" && ext != ".PNG" && ext != ".GIF" && ext != ".JPG" && ext != ".JPEG") {
+                    return false;
+                } else {
+                    $("#nextview").attr("src",objUrl);
+                    gcAccount.ImgArr.push(this.files[i]);
+                }
             }
-            var oFile = _upFile.files[0];
-
-            if(!new RegExp("(jpg|jpeg|png)+","gi").test(oFile.type)){
-                alert("照片上传：文件类型必须是JPG、JPEG、PNG");
-                return;
+            /*
+             描述：鉴定每个图片大小总和
+             * */
+            var file_size = 0;
+            var all_size = 0;
+            for(j = 0; j < this.files.length; j++) {
+                file_size = this.files[j].size;
+                all_size = all_size + this.files[j].size;
+                var size = all_size / 1024;
+                if(size > 500) {
+                    alert("上传的图片大小不能超过100k！");
+                    return false;
+                }
             }
-
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var base64Img= e.target.result;
-                var _ir=ImageResizer({
-                    resizeMode:"auto"
-                    ,dataSource:base64Img
-                    ,dataSourceType:"base64"
-                    ,maxWidth:1200 //允许的最大宽度
-                    ,maxHeight:600 //允许的最大高度。
-                    ,success:function(resizeImgBase64,canvas){
-                        $('#nextview').attr('src',resizeImgBase64);
-                    }
-                    ,debug:true
-                });
-            };
-            reader.readAsDataURL(oFile);
-        },false);
+            return true;
+        });
     },
     //更新个人信息
     updatePersonal:function () {
@@ -213,39 +241,42 @@ var gcAccount={
 
             var Sign = gcAccount.md(obj);
 
+            var param = new FormData();
+
+            param.append('sid',gcAccount.user.SessionId);
+
+            param.append('nick',Nick);
+
+            param.append('intro',Intro);
+
+            param.append('city',City);
+
+            param.append('ver',gcAccount.Version);
+
+            param.append('ts',gcAccount.Ts);
+
+            param.append('file',gcAccount.ImgArr[0]);
+
+            param.append('sign',Sign);
+
             // 传给后台
-            var url=api_config.personSetting+'?sid='+gcAccount.user.SessionId+'&ver='+gcAccount.Version+
-            '&ts='+gcAccount.Ts+'&sign='+Sign;
-            $("#home").ajaxSubmit({
-                url: url,
-                success: function(result) {
-                    if(result.Code ==3){
-                        $.cookie("gcUser",JSON.stringify(result.Data));
+            $.ajax({
+                url:api_config.personSetting,
+                type:"post",
+                data:param,
+                processData:false,
+                contentType:false,
+                success:function(res){
+                    alert(res.Msg);
+                    if(res.Code ==3){
+                        $.cookie("gcUser",JSON.stringify(res.Data));
                         window.location.reload();
                     }
                 }
             });
+
         }
 
-    },
-    md:function (obj) {
-        var _arr = new Array();
-
-        var str = new String();
-
-        for(var o in obj){
-            _arr.push(o);
-        }
-
-        _arr = _arr.sort();
-
-        for(var i in _arr){
-            str +=_arr[i] + '='+obj[_arr[i]]+'&'
-        }
-
-        str = str + 'key=cmHsE0VMDXLcGBmaoepS&0b#WcVyH@c5';
-
-        return md5(str);
     },
     //收货地址
     receAddress:function () {
@@ -484,7 +515,47 @@ var gcAccount={
         $("#home_1 .tab-content-inner").html('<img src="imgs/noquan.png" />');
         $("#ejb .tab-content-inner").html('<img src="imgs/noquan.png" />');
     },
+    //查询购物车
+    queryShoppingCart:function () {
+        var obj={
+            sid:gcAccount.user.SessionId,
+            ver: gcAccount.Version,
+            ts:gcAccount.Ts
+        };
+
+        var Sign = gcAccount.md(obj);
+
+        var params={
+            sid:gcAccount.user.SessionId,
+            ver: gcAccount.Version,
+            ts:gcAccount.Ts,
+            sign:Sign
+        };
+
+        $.post(api_config.shopCartQuery,params,function (res) {
+            if(res.Code == 3){
+                if(res.Data){
+                    $("#shop_cart_num").text(res.Data.length);
+                }
+            }
+        })
+    },
 };
+
+/*
+ 描述：鉴定每个浏览器上传图片url 目前没有合并到Ie
+ * */
+function getObjectURL(file) {
+    var url = null;
+    if(window.createObjectURL != undefined) { // basic
+        url = window.createObjectURL(file);
+    } else if(window.URL != undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file);
+    } else if(window.webkitURL != undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file);
+    }
+    return url;
+}
 
 $(document).ready(function () {
     gcAccount.init();

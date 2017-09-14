@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>利公共创平台--账号管理</title>
-    <base target="_blank">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="robots" content="all" >
@@ -110,7 +109,7 @@
                 </ul>
             </div>
             <div class="pull-left tab-content account-content">
-                    <form class="tab-pane fade in active gc_address" id="home" method="post" enctype="multipart/form-data"  >
+                    <div class="tab-pane fade in active gc_address" id="home" >
                         <h4>个人资料</h4>
                         <div class="gc_address_new_content">
                             <h4 class="account-profile">
@@ -131,10 +130,10 @@
                             </h4>
                             <h3 class="text-center">
                                 <button class="btn btn-default" id="gc_account_cancel">取消</button>
-                                <input type="submit" value="保存" class="btn btn-danger" id="gc_account_save" />
+                                <button class="btn btn-danger" id="gc_account_save">保存</button>
                             </h3>
                         </div>
-                    </form>
+                    </div>
                     <div class="tab-pane fade gc_address" id="ios">
                         <h4>新增收货地址</h4>
                         <div class="gc_address_new_content">

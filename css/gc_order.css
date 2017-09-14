@@ -1,0 +1,71 @@
+.gc_order{
+    padding:25px 75px;
+}
+
+.gc_order .nav-tabs a{
+    font-size:20px;
+    color:#333333;
+}
+
+.gc_order .nav-tabs a:hover{
+    background-color:#fff;
+    border:1px solid transparent;
+    border-bottom:1px solid #BFBFBF;
+}
+
+.gc_order .nav-tabs{
+    border-bottom:none ;
+}
+
+.gc_order .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #C02D28;
+    cursor: default;
+    background-color: #fff;
+    border: none;
+    border-bottom: 2px solid  #C02D28;
+    margin-bottom:-2px;
+}
+
+.gc_order .divider{
+    width:2px; height:40px; background-color: #BFBFBF;position: absolute; right:0;bottom: 5px;
+}
+
+.gc_order hr{
+    border-top:2px solid #BFBFBF; margin-top:0;
+}
+
+.gc_order .tab-content{
+    margin-top:40px;
+}
+
+.gc_order .tab-content .tab-pane{
+    min-height:700px;
+}
+
+.gc_order .tab-content .tab-pane .item{
+    width:100%; height:290px;overflow: hidden; border:1px solid #BFBFBF; margin-bottom:20px;
+}
+
+.gc_order .tab-content .tab-pane .item .item-h{
+    height:55px; background-color:#F3F3F3;line-height:55px; font-size:16px; padding-left:20px;
+}
+
+.gc_order .tab-content .tab-pane .item .media{
+    padding-left:20px;
+}
+
+.gc_order .tab-content .tab-pane .item .media .media-body{
+    padding-right:20px;
+}
+
+.gc_order .tab-content .tab-pane .item .media .media-body .order_desc{
+    padding:20px 0; border-bottom:2px solid #BFBFBF;
+}
+
+.gc_order .tab-content .tab-pane .item .media .media-body h4{
+    font-size:17px;
+}
+
+.gc_order .tab-content .tab-pane .item .media .media-body .list-inline{
+    padding:10px 0;
+}
