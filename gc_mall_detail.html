@@ -139,7 +139,21 @@
                         <li class="quantity">全部</li>
                     </ol>
                     <div class="total">库存: <span></span>辆</div>
-                    <h4 class="sold_total">已售:<span class="active"></span></h4>
+                    <h4 class="sold_total text-center" style="right:-40px; top:-7px;">
+                        <div style="position: absolute; left:13px; top:17px;">
+                            <small style="color:#C02D28;font-size:16px;"></small>
+                            <div>已售</div>
+                        </div>
+                        <div id="sold_total" style="width:120px; height:120px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
+                                <path fill-opacity="0" stroke-width="2" stroke="#bbb"
+                                      d="M2 12a10 10 0 0 1 10 -10h30a10 10 0 0 1 10 10v30a10 10 0 0 1 -10 10h-30a10 10 0 0 1 -10 -10z"/>
+
+                                <path id="heart-path" fill-opacity="0" stroke-width="3" stroke="#b52520"
+                                      d="M2 12a10 10 0 0 1 10 -10h30a10 10 0 0 1 10 10v30a10 10 0 0 1 -10 10h-30a10 10 0 0 1 -10 -10z"/>
+                            </svg>
+                        </div>
+                    </h4>
                     <div class="desc_6">
                         <a class="pull-left shopping-cart" href="javascript:void(0)" id="add_to_cart" ><i class="iconfont icon icon-gouwuchekong"></i></a>
                         <a class="pull-left" href="javascript:void(0)" id="mall_purchase">立即购买</a>
@@ -203,6 +217,7 @@
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/blueImp/md5.min.js"></script>
+<script type="text/javascript" src="js/progressbar.min.js"></script>
 <script type="text/javascript" src="js/api.js"></script>
 <script type="text/javascript" src="js/gongchuang/gc_mall_detail.js"></script>
 </body>

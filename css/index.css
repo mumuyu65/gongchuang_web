@@ -28,7 +28,7 @@
 }
 
 .gc_detail>.list-inline{
-    width:1070px;
+    width:1071px;
     margin:0 auto;
 }
 
@@ -117,6 +117,7 @@
     height:330px;
     width:500px;
     margin-top:50px;
+    margin-left: 95px;
 }
 
 .gc_detail>.gc_detail_inner .index_deadline>.list-inline{
@@ -162,10 +163,6 @@
 .gc_detail>.gc_detail_inner .pull-left h4{
     color:#C02D28;
     margin:20px 0;
-}
-
-.gc_detail>.gc_detail_inner .pull-left h4:nth-child(1){
-    margin-bottom:50px;
 }
 
 .gc_detail>.gc_detail_inner .pull-left h4.active{

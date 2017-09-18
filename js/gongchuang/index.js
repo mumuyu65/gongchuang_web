@@ -213,7 +213,17 @@ var Index={
                           '<h3>'+index_products[i].product_name+'</h3>'+
                           '</div>'+
                           '<div class="pull-left">'+
-                          '<h4>已售：'+index_products[i].sale_total+'</h4>'+
+                          '<h4 style="position: relative;">' +
+                              '<div style="width:130px; height:130px;">' +
+                                    '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 100 100">'+
+                                        '<path fill-opacity="0" stroke-width="2" stroke="#bbb"'+
+                                            'd="M2 12a10 10 0 0 1 10 -10h30a10 10 0 0 1 10 10v30a10 10 0 0 1 -10 10h-30a10 10 0 0 1 -10 -10z"/>'+
+                                        '<path id="container_'+i+'" fill-opacity="0" stroke-width="3" stroke="#c02d28"'+
+                                            'd="M2 12a10 10 0 0 1 10 -10h30a10 10 0 0 1 10 10v30a10 10 0 0 1 -10 10h-30a10 10 0 0 1 -10 -10z"/>'+
+                                  '</svg>' +
+                              '</div>'+
+                              '<div style="position: absolute; left:14px; top:16px; text-align: center">'+index_products[i].sale_total+'<div>已售</div></div>' +
+                          '</h4>'+
                           '<h4>颜色：</h4>'+
                           '</div>'+
                           '<div class="pull-right">'+
@@ -263,6 +273,16 @@ var Index={
                       $("#myCarousel_products .carousel-inner .item").eq(0).addClass('active');
 
                       Index.timerCount('timer_count'+i,i);
+                  }
+
+                  for(var k=0; k<index_products.length;k++){
+                      var container = '#container_'+k;
+                      var bar = new ProgressBar.Path(container, {
+                          easing: 'easeInOut',
+                          duration: 2000
+                      });
+                      bar.set(0);
+                      bar.animate(parseFloat(index_products[k].sale_total)/parseFloat(index_products[k].presale_total));
                   }
               }else{
                   $("#myCarousel_products .carousel-inner").html("暂无商品!");

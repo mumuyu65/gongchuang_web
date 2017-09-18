@@ -66,9 +66,18 @@ var gcMallDetail={
             gcMallDetail.Style = style_arr[idx];
         });
 
+        //环形已售进度条
+        var bar = new ProgressBar.Path('#heart-path', {
+            easing: 'easeInOut',
+            duration: 2000
+        });
+
+        bar.set(0);
+        bar.animate(parseInt(product.sale_total)/parseInt(product.presale_total));
+
         $("#products_desc .total span").text(product.presale_total);
 
-        $("#products_desc .sold_total span").text(product.sale_total);
+        $("#products_desc .sold_total small").text(product.sale_total);
 
         gcMallDetail.maxNum = parseInt(product.presale_total)-parseInt(product.sale_total);
 
