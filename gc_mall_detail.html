@@ -26,6 +26,22 @@
             background-color:#C02D28;
             color:#fff;
         }
+
+        .desc_ct_inner{
+            display: inline-block;
+            vertical-align: top;
+            width:70%;
+            overflow: hidden;
+            line-height:2;
+        }
+
+        .sold_total{
+            position: absolute; right:10px; top:10px;
+        }
+
+        .total{
+            color:#C02D28; font-size:16px;
+        }
     </style>
 </head>
 <body>
@@ -112,17 +128,21 @@
                     <span class="money"></span><span>RMB</span>
                     <h4 class="color">颜色</h4>
                     <h4 class="host_method">托管方式</h4>
-                    <h4 class="desc_ct">托管城市</h4>
-                    <h4 class="total">可购买数量 <span></span></h4>
-                    <h4 class="sold_total">已售数量 <span class="active"></span></h4>
+                    <h4 class="desc_ct">
+                        托管城市
+                        <div class="desc_ct_inner">
+                        </div>
+                    </h4>
                     <h4 style="display:inline-block;vertical-align: top; margin:5px 0;">购买数量</h4>
                     <ol class="list-inline" style="display:inline-block; vertical-align: top; margin-left:10px;">
                         <li><span class="minus">-</span><input type="number" value="1" class="num"/><span class="plus">+</span></li>
                         <li class="quantity">全部</li>
                     </ol>
+                    <div class="total">库存: <span></span>辆</div>
+                    <h4 class="sold_total">已售:<span class="active"></span></h4>
                     <div class="desc_6">
                         <a class="pull-left shopping-cart" href="javascript:void(0)" id="add_to_cart" ><i class="iconfont icon icon-gouwuchekong"></i></a>
-                        <a class="pull-left" href="javascript:void(0)" onclick="alert('暂无法购买！')">立即购买</a>
+                        <a class="pull-left" href="javascript:void(0)" id="mall_purchase">立即购买</a>
                     </div>
                 </div>
             </div>

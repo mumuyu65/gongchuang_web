@@ -23,11 +23,8 @@ var gcCommentDetai={
         gcCommentDetai.notice();   //通知查询
 
         //说说内容
-        var talkDetail=JSON.parse($.cookie("talk"));
-        //console.log(talkDetail);
-        gcCommentDetai.Comment = talkDetail;
-        gcCommentDetai.details(talkDetail);
-
+        var talkid=JSON.parse($.cookie("talkId"));
+        gcCommentDetai.Content(talkid);
         //评论
         $("#hd_item_comment .media-heading").text(gcCommentDetai.user.Nick);
 
@@ -60,7 +57,39 @@ var gcCommentDetai={
         $("#gc_comment .zan").click(function () {
             gcCommentDetai.thumbUp(talkDetail);
         });
+    },
+    Content:function (Id) {
+        var obj={
+            begidx:0,
+            counts:10,
+            ver: gcCommentDetai.Version,
+            ts:gcCommentDetai.Ts
+        };
 
+        var Sign=gcCommentDetai.md(obj);
+
+        var params={
+            begidx:0,
+            counts:10,
+            sign:Sign,
+            ver: gcCommentDetai.Version,
+            ts:gcCommentDetai.Ts
+        };
+
+        $.post(api_config.talkQuery,params,function (result) {
+            if(result.Code ==3){
+                if(result.Data){
+                    var temp_comment = result.Data.Detail;
+                    var comment_len = temp_comment.length;
+                    for(var i =0; i<comment_len;i++) {
+                        var comment_data = temp_comment[i];
+                        if(comment_data.id ==Id ){
+                            gcCommentDetai.details(comment_data);
+                        }
+                    }
+                }
+            }
+        })
     },
     //通知
     notice:function () {
@@ -315,7 +344,7 @@ var gcCommentDetai={
 
                         $("#hd_item_comment_inner").css("display",'block');
 
-                        $("#hd_item_comment_inner .hd_comment_context").html("");
+                        $("#hd_item_comment_inner .hd_comment_context").html("说点什么");
 
                         $("#img_inner").empty();
                     }

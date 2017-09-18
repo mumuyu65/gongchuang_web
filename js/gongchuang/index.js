@@ -218,7 +218,7 @@ var Index={
                           '</div>'+
                           '<div class="pull-right">'+
                           '<h2>&yen;'+index_products[i].discount_price+'</h2>'+
-                          '<a href="javascript:;" class="purchase">立即购买</a>'+
+                          '<a href="javascript:;" class="purchase" data-idx="'+i+'">立即购买</a>'+
                           '<a href="javascript:void(0)" class="add_to_cart" data-idx="'+i+'">'+
                           '<i class="iconfont icon icon-gouwuchekong"></i>加入购物车'+
                           '</a>'+
@@ -247,40 +247,15 @@ var Index={
 
                       //购买
                       products_item.find(".purchase").click(function () {
-                          alert("暂时不可以购买!");
+                          var idx = $(this).attr("data-idx");
+                          $.cookie('mall_products',JSON.stringify(index_products[idx]));
+                          window.location.href="gc_mall_detail.html";
                       });
 
                       products_item.find(".add_to_cart").click(function () {
-                          var cart = $(this);
-                          var imgtodrag = $(this).parent().siblings('.index_deadline').find('img');
-                          if (imgtodrag) {
-                              var imgclone = imgtodrag.clone().offset({
-                                  top: imgtodrag.offset().top,
-                                  left: imgtodrag.offset().left
-                              }).css({
-                                  'opacity': '0.5',
-                                  'position': 'absolute',
-                                  'height': '150px',
-                                  'width': '150px',
-                                  'z-index': '100'
-                              })
-                                  .appendTo($('body'))
-                                  .animate({
-                                      'top': cart.offset().top + 10,
-                                      'left': cart.offset().left + 10,
-                                      'width': 75,
-                                      'height': 75
-                                  }, 1000, 'easeInOutExpo');
-
-                              imgclone.animate({
-                                  'width': 0,
-                                  'height': 0
-                              }, function () {
-                                  $(this).detach()
-                              });
-                              var Idx = $(this).attr("data-idx");
-                              Index.addShoppingCart(Idx);
-                          }
+                          var idx = $(this).attr("data-idx");
+                          $.cookie('mall_products',JSON.stringify(index_products[idx]));
+                          window.location.href="gc_mall_detail.html";
                       });
 
                       $("#myCarousel_products .carousel-inner").append(products_item);
@@ -394,10 +369,10 @@ var Index={
     //评论
     commentList:function(obj){
         if(Index.user){
-            $.cookie("talk",JSON.stringify(obj));
-            window.open('gc_comment_details.html');
+            $.cookie("talkId",JSON.stringify(obj.id));
+            window.location.href ='gc_comment_details.html';
         }else{
-            window.open("login.html");
+            window.location.href = "login.html";
         }
     },
     //倒计时

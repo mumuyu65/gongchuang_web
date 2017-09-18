@@ -485,6 +485,7 @@ var gcCleaning={
             };
 
             $.post(api_config.payOrder,params,function (res) {
+                $("#payModal").modal("hide");
                 alert(res.Msg);
                 if(res.Code ==3){
                     var Confirm = confirm('是否已进行实名认证？');
@@ -493,6 +494,8 @@ var gcCleaning={
                     }else{
                         window.location.href= 'gc_authen.html';
                     }
+                }else if(res.Code == 5){
+                    window.location.href= 'gc_wallet.html';
                 }
             });
         });

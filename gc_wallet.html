@@ -21,6 +21,80 @@
     <link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="css/gc_wallet.css"/>
+    <style type="text/css">
+        .modal-content{
+            background-color:#313131;
+            padding:8px; border-radius:0;
+        }
+
+        .modal-header{
+            padding:10px 0;
+        }
+
+        .icon-cha{
+            color:#fff;
+        }
+
+        .modal-title{
+            background-color: #fff;
+            font-size: 16px;
+            padding: 5px 30px;
+            position: absolute;
+            font-weight: 600;
+        }
+
+        .modal-body{
+            background-color:#fff; padding:50px;
+        }
+
+        .modal-body>.list-inline{
+            padding:20px 0; border-bottom:1px solid #ececec;
+        }
+
+        .modal-body li{
+            position: relative;
+            margin-right:85px;
+        }
+
+        .modal-body li>input[type="radio"]{
+            position: absolute;
+            left:7px;
+            top:3px;
+            opacity: 0;
+            width:15px;
+            height:15px;
+        }
+
+        .modal-body li>img{
+            vertical-align: top;
+        }
+
+        .modal-body li>.iconfont{
+            color:#eaeaea;
+            font-size:20px;
+        }
+        .modal-body li>input[type="radio"]:checked+i{
+            color:#E52018;
+        }
+
+        .modal-body h4{
+            font-weight:600;
+        }
+
+        .modal-body .withdraw{
+            margin-left:100px;
+        }
+
+        .modal-body .withdraw>span:nth-child(1){
+            font-size:20px; border-bottom:1px solid #bfbfbf;padding:10px 0;
+        }
+
+        .modal-body .withdraw>span:nth-child(1) input{
+            outline:none; width:100px; border:1px solid transparent;
+        }
+
+
+    </style>
 </head>
 <body>
 <!-- header -->
@@ -93,8 +167,8 @@
                     <h1 id="money_remain">98.00</h1>
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-default">充值</button>
-                    <button class="btn btn-default">提现</button>
+                    <button class="btn btn-default" id="gc_charge">充值</button>
+                    <button class="btn btn-default" id="gc_withdraw">提现</button>
                 </div>
             </div>
             <ul class="list-inline wallet_content">
@@ -166,5 +240,89 @@
 <script type="text/javascript" src="js/blueImp/md5.min.js"></script>
 <script type="text/javascript" src="js/api.js"></script>
 <script type="text/javascript" src="js/gongchuang/gc_wallet.js"></script>
+<!-- walletModal-->
+<div class="modal fade" id="walletModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="iconfont icon icon-cha close" data-dismiss="modal" aria-hidden="true"></i>
+                <span class="modal-title">提现</span>
+            </div>
+            <div class="modal-body">
+                <h4>提取到:</h4>
+                <ul class="list-inline">
+                    <li>
+                        <input type="radio" value="" name="pay" checked/>
+                        <i class="iconfont icon icon-duigou"></i>
+                        <img src="imgs/alipay.png" alt="">
+                    </li>
+                    <li>
+                        <input type="radio" value="" name="pay" />
+                        <i class="iconfont icon icon-duigou"></i>
+                        <img src="imgs/wechat.png" alt="">
+                    </li>
+                    <li>
+                        <input type="radio" value="" name="pay" />
+                        <i class="iconfont icon icon-duigou"></i>
+                        <img src="imgs/union.png" alt="">
+                    </li>
+                </ul>
+                <h4>提取金额:</h4>
+                <div class="withdraw">
+                    <span>
+                        &yen; <input type="number"/>
+                    </span>
+                    <span>(可提取金额：0)</span>
+                    <div style="padding:20px 0;">
+                        <button type="button" class="btn btn-danger" id="gc_cleaning_confirm" >两小时到账，确认提取</button>
+                        <div style="margin:10px 0;">
+                            <small style="color:#bfbfbf;">平台每月5号开始提现，当月新增金额不可提</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- chargeModal -->
+<div class="modal fade" id="chargeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="iconfont icon icon-cha close" data-dismiss="modal" aria-hidden="true"></i>
+                <span class="modal-title">充值</span>
+            </div>
+            <div class="modal-body">
+                <h4>选择充值方式:</h4>
+                <ul class="list-inline">
+                    <li>
+                        <input type="radio" value="" name="charge" checked/>
+                        <i class="iconfont icon icon-duigou"></i>
+                        <img src="imgs/alipay.png" alt="">
+                    </li>
+                    <li>
+                        <input type="radio" value="" name="charge" />
+                        <i class="iconfont icon icon-duigou"></i>
+                        <img src="imgs/wechat.png" alt="">
+                    </li>
+                    <li>
+                        <input type="radio" value="" name="charge" />
+                        <i class="iconfont icon icon-duigou"></i>
+                        <img src="imgs/union.png" alt="">
+                    </li>
+                </ul>
+                <h4>充值金额:</h4>
+                <div class="withdraw">
+                    <span>
+                        &yen; <input type="number"/>
+                    </span>
+                    <div style="padding:20px 0;">
+                        <button type="button" class="btn btn-danger" id="gc_cleaning_charge" onclick="javascript:alert('暂无法充值!');" >两小时到账，确认充值</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

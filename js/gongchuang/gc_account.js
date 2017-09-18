@@ -338,7 +338,7 @@ var gcAccount={
 
         $.post(api_config.receivingAddressQuery,params,function (res) {
             if(res.Code ==3){
-                if(res.Msg !=='no data'){
+                if(res.Data){
                     var temp_addr = res.Data;
                     gcAccount.addressArr=temp_addr;
                     var len= temp_addr.length;

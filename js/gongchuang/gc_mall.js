@@ -358,7 +358,7 @@ var gcMall={
                             '<p style="height:67px; overflow:hidden; text-align: start">'+
                             '【<span style="color:#E61F1C">'+status+'</span>】'+mall_products[i].product_name+
                             '</p>'+
-                            '<img src="imgs/mall/square-3.png" alt="">'+
+                            '<div id="container_'+i+'" style="position: relative;"></div>'+
                             '<h4>预售:'+mall_products[i].presale_total+'</h4>'+
                             '<hr/>'+
                             '<ul class="list-inline">'+
@@ -368,6 +368,37 @@ var gcMall={
                             '</div>'+
                             '</div>');
                         $("#mall_goods").append(mall_products_item);
+
+                        var box = '#container_'+i;
+
+                        var bar = new ProgressBar.Line(box, {
+                            from: { color: '#e5221b '},
+                            to: { color: '#febc47 '},
+                            easing: 'easeInOut',
+                            duration:2000,
+                            trailColor: '#f1f1f1',
+                            trailWidth: 3,
+                            strokeWidth: 3,
+                            svgStyle: {width: '100%', height: '100%'},
+                            text: {
+                                style: {
+                                    color: '#e5221b',
+                                    position: 'absolute',
+                                    left: '0',
+                                    top: '30px',
+                                    padding: 0,
+                                    margin: 0,
+                                    transform: null
+                                },
+                                autoStyleContainer: false
+                            },
+                            step: function(state, bar, attachment) {
+                                bar.path.setAttribute('stroke', state.color);
+                                bar.setText(Math.round(bar.value() * 100) + ' %');
+                            },
+                        });
+                        var percent =parseFloat(mall_products[i].sale_total)/parseFloat(mall_products[i].presale_total);
+                        bar.animate(percent);
                     }
 
                     $("#mall_goods .products_add_more").click(function () {

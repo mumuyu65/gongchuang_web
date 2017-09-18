@@ -11,7 +11,7 @@ var gcShoppingCart={
     InitMoney:0,
     init:function () {
         gcShoppingCart.user = JSON.parse($.cookie('gcUser'));
-        //console.log(gcShoppingCart.user);
+
         $("#gc_user_logined").css('display','inline-block');
         $("#gc_user_login").css('display','none');
 

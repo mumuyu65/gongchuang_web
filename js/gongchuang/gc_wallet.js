@@ -26,6 +26,17 @@ var Wallet={
 
         //查询个人信息
         Wallet.userInfo();
+
+        //提现
+        $("#gc_withdraw").click(function () {
+            $("#walletModal").modal("show");
+        });
+
+        //充值
+        $("#gc_charge").click(function () {
+            $("#chargeModal").modal("show");
+        });
+
     },
     //通知
     notice:function () {

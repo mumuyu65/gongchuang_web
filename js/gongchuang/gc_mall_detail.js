@@ -14,6 +14,25 @@ var gcMallDetail={
     init:function () {
         var product = JSON.parse($.cookie("mall_products"));
 
+        //登录
+        if($.cookie('gcUser')){
+            gcMallDetail.user = JSON.parse($.cookie('gcUser'));
+            console.log(gcMallDetail.user);
+            $("#gc_user_logined").css('display','inline-block');
+            $("#gc_user_login").css('display','none');
+
+            $("#dropdownMenu1 .gc_nick").text(gcMallDetail.user.Nick);
+
+            $("#gc_logout").click(function () {
+                gcMallDetail.logout();
+            });
+
+            $("#gc_notice").css("display","inline-block");
+            gcMallDetail.notice();   //通知查询
+
+            gcMallDetail.queryShoppingCart();  //查询购物车
+        }
+
         gcMallDetail.Product = product;
 
         gcMallDetail.ptId = product.pt_id;
@@ -76,6 +95,16 @@ var gcMallDetail={
                 window.location.href="login.html";
             }
         });
+        
+        //立即购买
+        $("#mall_purchase").click(function () {
+            if(gcMallDetail.user){
+                gcMallDetail.addShoppingCart();
+                window.location.href="gc_shoppingcart.html";
+            }else{
+                window.location.href="login.html";
+            }
+        });
 
         //商品数量
         $("#products_desc .plus").click(function () {
@@ -121,25 +150,6 @@ var gcMallDetail={
                 window.location.href = "login.html";
             }
         });
-
-        //登录
-        if($.cookie('gcUser')){
-            gcMallDetail.user = JSON.parse($.cookie('gcUser'));
-            console.log(gcMallDetail.user);
-            $("#gc_user_logined").css('display','inline-block');
-            $("#gc_user_login").css('display','none');
-
-            $("#dropdownMenu1 .gc_nick").text(gcMallDetail.user.Nick);
-
-            $("#gc_logout").click(function () {
-                gcMallDetail.logout();
-            });
-
-            $("#gc_notice").css("display","inline-block");
-            gcMallDetail.notice();   //通知查询
-
-            gcMallDetail.queryShoppingCart();  //查询购物车
-        }
     },
     //通知
     notice:function () {
@@ -268,22 +278,24 @@ var gcMallDetail={
 
         $.post(api_config.soldQuery,params,function (result) {
            if(result.Code ==3){
-               for(var i =0; i<result.Data.PreSale.length;i++) {
-                   var item = $('<span data-city="' + result.Data.PreSale[i].city + '"></span> ');
-                   item.text(result.Data.PreSale[i].city);
-                   $("#products_desc .desc_ct").append(item);
+               if(result.Data){
+                   for(var i =0; i<result.Data.PreSale.length;i++) {
+                       var item = $('<span data-city="' + result.Data.PreSale[i].city + '"></span>');
+                       item.text(result.Data.PreSale[i].city);
+                       $("#products_desc .desc_ct .desc_ct_inner").append(item);
+                   }
+
+                   gcMallDetail.City = result.Data.PreSale[0].city;
+
+                   $("#products_desc .desc_ct span").eq(0).addClass("active");
+
+                   $("#products_desc .desc_ct span").click(function () {
+                       $(this).siblings().removeClass("active");
+                       $(this).addClass("active");
+                       var City = $(this).attr("data-city");
+                       gcMallDetail.City = City;
+                   });
                }
-
-               gcMallDetail.City = result.Data.PreSale[0].city;
-
-               $("#products_desc .desc_ct span").eq(0).addClass("active");
-
-               $("#products_desc .desc_ct span").click(function () {
-                   $(this).siblings().removeClass("active");
-                   $(this).addClass("active");
-                   var City = $(this).attr("data-city");
-                   gcMallDetail.City = City;
-               });
            }
         });
     },
@@ -292,7 +304,7 @@ var gcMallDetail={
         for(var i=0; i<Nmgs.length-1;i++){
             var img_temp =$('<img src=" " style="width:100%; margin:20px;"/>');
             img_temp.error(function () {
-                img_temp.attr("","imgs/nodata.png");
+                img_temp.attr("src","imgs/nodata.png");
             });
             img_temp.attr("src",Nmgs[i]);
             $("#home").append(img_temp);
